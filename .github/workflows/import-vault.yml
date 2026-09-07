@@ -1,10 +1,11 @@
-name: Import latest Rulmera OPA archive
+name: Bootstrap Rulmera OPA baseline
 
 on:
-  workflow_dispatch:
   push:
+    branches: [main]
     paths:
-      - '.github/workflows/import-vault.yml'
+      - '_IMPORT/READY'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -17,14 +18,30 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Check archive URL
-        env:
-          ARCHIVE_URL: ''
+
+      - name: Rebuild payload archive
+        shell: bash
         run: |
-          if [ -z "$ARCHIVE_URL" ]; then
-            echo "Archive URL not configured yet."
-            exit 0
-          fi
-      - name: Import archive
-        if: ${{ false }}
-        run: echo 'URL will be configured after secure temporary upload.'
+          set -euo pipefail
+          test -f _IMPORT/READY
+          cat _IMPORT/part-*.b64 | tr -d '\r\n' | base64 -d > /tmp/payload.zip
+          unzip -t /tmp/payload.zip >/dev/null
+          rm -rf /tmp/import
+          mkdir -p /tmp/import
+          unzip -q /tmp/payload.zip -d /tmp/import
+          test -d /tmp/import/Rulmera-OPA
+
+      - name: Replace main with reviewed Obsidian baseline
+        shell: bash
+        run: |
+          set -euo pipefail
+          PAYLOAD=/tmp/import/Rulmera-OPA
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout --orphan clean-main
+          git rm -rf . || true
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -a "$PAYLOAD"/. .
+          git add -A
+          git commit -m "Baseline: Rulmera OPA Obsidian clean review v0.1"
+          git push --force origin clean-main:main
