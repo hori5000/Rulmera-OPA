@@ -1,0 +1,30 @@
+name: Import latest Rulmera OPA archive
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/import-vault.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check archive URL
+        env:
+          ARCHIVE_URL: ''
+        run: |
+          if [ -z "$ARCHIVE_URL" ]; then
+            echo "Archive URL not configured yet."
+            exit 0
+          fi
+      - name: Import archive
+        if: ${{ false }}
+        run: echo 'URL will be configured after secure temporary upload.'
