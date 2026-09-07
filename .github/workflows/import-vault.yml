@@ -24,7 +24,7 @@ jobs:
         run: |
           set -euo pipefail
           test -f _IMPORT/READY
-          cat _IMPORT/part-*.b64 | tr -d '\r\n' | base64 -d > /tmp/payload.zip
+          cat _IMPORT/seg-*.b64 | tr -d '\r\n' | base64 -d > /tmp/payload.zip
           unzip -t /tmp/payload.zip >/dev/null
           rm -rf /tmp/import
           mkdir -p /tmp/import
