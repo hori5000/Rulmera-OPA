@@ -1,0 +1,93 @@
+{
+  "rootFolder": "00-프로젝트관리/WBS",
+  "recurse": true,
+  "statuses": [
+    {
+      "id": "todo",
+      "label": "To do",
+      "color": "#9aa0a6",
+      "group": "active"
+    },
+    {
+      "id": "in-progress",
+      "label": "In progress",
+      "color": "#3b82f6",
+      "group": "active"
+    },
+    {
+      "id": "blocked",
+      "label": "Blocked",
+      "color": "#ef4444",
+      "group": "deferred"
+    },
+    {
+      "id": "done",
+      "label": "Done",
+      "color": "#22c55e",
+      "group": "completed"
+    }
+  ],
+  "defaultZoom": "Week",
+  "dateFormat": "YYYY/MM/DD",
+  "tz": "system",
+  "detailWidth": 380,
+  "visibleColumns": [
+    "start",
+    "end"
+  ],
+  "columnWidths": {
+    "name": 387
+  },
+  "sortBy": "start",
+  "sortDir": "asc",
+  "filters": [],
+  "filterMatch": "all",
+  "filterPresets": [],
+  "progressLineColor": "#f59e0b",
+  "defaultTagColor": "",
+  "tagColors": [],
+  "folderColors": [],
+  "notify": {
+    "discordWebhook": "",
+    "slackWebhook": "",
+    "teamsWebhook": "",
+    "notifyStart": true,
+    "notifyEnd": true,
+    "leads": [
+      "1d",
+      "1h",
+      "10m"
+    ],
+    "sent": {}
+  },
+  "gcal": {
+    "clientId": "",
+    "clientSecret": "",
+    "refreshToken": "",
+    "calendarId": "",
+    "calendarName": "",
+    "pushEnabled": true,
+    "pullEnabled": true,
+    "optInOnly": true,
+    "scopeFolder": "",
+    "pullIntervalMin": 5,
+    "deleteEventOnTaskDelete": true,
+    "onEventDeleted": "unlink",
+    "syncToken": "",
+    "lastSync": 0,
+    "lastError": "",
+    "state": {}
+  },
+  "keys": {
+    "start": "start",
+    "end": "end",
+    "status": "status",
+    "assignee": "assignee",
+    "after": "after",
+    "progress": "progress",
+    "milestone": "milestone",
+    "parent": "parent",
+    "gcalId": "gcalId",
+    "gcal": "gcal"
+  }
+}

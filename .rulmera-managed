@@ -1,0 +1,4 @@
+﻿managed_by: PUBLISH-RULMERA-OPA.ps1
+kind: Rulmera-OPA source vault
+source_of_truth: local Obsidian Vault
+external_raw_files: excluded

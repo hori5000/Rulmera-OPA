@@ -1,0 +1,20 @@
+# Water-AI: 외부 원본 문서는 Git/Vault에 기본 저장하지 않음
+*.xlsx
+*.xls
+*.docx
+*.pptx
+*.pdf
+*.zip
+*.hwp
+*.hwpx
+*.csv
+*.db
+*.sqlite
+*.sqlite3
+*.xgwx
+*.dbx
+*.dvx
+*.scx
+*.mmd
+
+# 예외: Obsidian/Quartz/자동화에 필요한 텍스트·코드 파일은 추적 가능

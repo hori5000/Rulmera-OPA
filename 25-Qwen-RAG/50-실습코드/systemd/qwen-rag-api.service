@@ -1,0 +1,16 @@
+[Unit]
+Description=Qwen RAG FastAPI
+After=network-online.target qwen-vllm.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=qwenrag
+WorkingDirectory=/home/qwenrag/qwen-rag/rag
+EnvironmentFile=/home/qwenrag/qwen-rag/rag/.env
+ExecStart=/home/qwenrag/qwen-rag/rag/.venv-rag/bin/uvicorn rag_app.api:app --host 127.0.0.1 --port 8100
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
