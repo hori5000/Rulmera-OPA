@@ -1,8 +1,14 @@
 ﻿{
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "water-ai",
-  "compatibility_date": "2026-09-07",
+  "main": "./worker/basic-auth.js",
+  "compatibility_date": "2026-09-08",
+  "workers_dev": true,
+  "preview_urls": false,
   "assets": {
-    "directory": "./.web-public"
+    "directory": "./.web-public",
+    "binding": "ASSETS",
+    "run_worker_first": true
   }
 }
+
