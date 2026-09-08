@@ -1,4 +1,7 @@
 ﻿managed_by: PUBLISH-RULMERA-OPA.ps1
+publisher_config: PUBLISH-PROJECTS.json
 kind: Rulmera-OPA source vault
+source: Rulmera-OPA
+target_role: private-master
 source_of_truth: local Obsidian Vault
 external_raw_files: excluded
