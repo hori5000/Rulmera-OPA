@@ -1,5 +1,5 @@
 ﻿managed_by: PUBLISH-RULMERA-OPA.ps1
-publisher_config: PUBLISH-PROJECTS.json
+publisher_config: _RULMERA/config/projects.json
 kind: Rulmera-OPA source vault
 source: Rulmera-OPA
 target_role: private-master
