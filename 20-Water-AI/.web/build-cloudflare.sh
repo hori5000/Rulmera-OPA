@@ -33,4 +33,11 @@ echo "[5/5] Build Quartz"
 rm -rf "$ROOT/public"
 cp -a "$WORK/public" "$ROOT/public"
 
+# Generate customer-facing change feed and install the popup/notification UI.
+node "$WEB/generate-updates.mjs" \
+  --source "$ROOT" \
+  --dest "$ROOT/public/static/project-updates.json" \
+  --state "$WEB/update-state.json"
+cat "$WEB/rulmera-updates.js" >> "$ROOT/public/postscript.js"
+
 echo "Cloudflare output: $ROOT/public"
