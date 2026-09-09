@@ -4,11 +4,12 @@ title: WWALMDB AlarmDB와 Historian 분리
 plant: 광암
 category: 데이터분석
 status: review
-revision: 0.1
-last_updated: 2026-09-08
+revision: 0.2
+last_updated: 2026-09-09
 source_refs:
   - SRC-WONDERWARE-GW-20260908
   - SRC-WWALMDB-BAK-ANALYSIS
+  - SRC-PREVISIT-HMI-GW-20260909
 ---
 
 # WWALMDB AlarmDB와 Historian 분리
@@ -22,8 +23,10 @@ source_refs:
 ```mermaid
 flowchart LR
     IT["InTouch"] -->|"Alarm/Event"| ADB["WWALMDB<br/>SQL Server"]
-    IT -->|"Process Tag History"| HIST["Wonderware Historian"]
+    IT -->|"History 조회 구성"| HD["InTouch HistData / HistClient"]
+    IT -.->|"장기 공정 History 후보"| HIST["Wonderware Historian"]
     ADB --> EVENT["AI용 이벤트/장애 보조 데이터"]
+    HD -.-> HIST
     HIST --> PV["AI용 공정 시계열 주 데이터"]
 ```
 
@@ -39,7 +42,13 @@ flowchart LR
 
 이전 WWALMDB 재분석에서 `$System` 계열과 Alarm/State 성격의 데이터가 다수 확인된 것도 이 구조와 일치한다.
 
-## Historian에서 기대할 데이터
+## History/Historian에서 기대할 데이터
+
+2024 사전 HMI 백업에서는 `HistdataViewstr → \\192.9.211.120\HistData / ViewStream1` 13개 Point가 직접 확인됐다. 따라서 **과거값 조회 기능이 HMI에 구성돼 있었던 것은 확인**된다.
+
+다만 이 `HistData` Source를 곧바로 Wonderware Historian Server의 실제 저장소라고 동일시하지 않는다. `dhistcfg.ini`, `historian.txt`, Historian SMC/Tag Export를 추가 대조해 실제 장기 저장계층을 확정한다.
+
+### 장기 저장계층에서 기대할 데이터
 
 - 유량/수량
 - 탁도 등 수질 PV
@@ -70,11 +79,15 @@ flowchart LR
 2. Historian Tag 수와 Tag 목록 Export
 3. 최초/최종 Timestamp 확인
 4. Historian Tag ↔ InTouch Tag 매핑
-5. InTouch Tag ↔ DeviceXPlorer Item 매핑
-6. Historian 데이터와 WWALMDB Event를 Timestamp로 결합 가능한지 검증
+5. 2024 `dde.cfg` 14,983개 GFENet Tag/Item ↔ PLC Address 대조
+6. `dhistcfg.ini` / `historian.txt` 재수집
+7. 현재 DeviceXPlorer Application Name 및 `GFENet` 관계 확인
+8. Historian 데이터와 WWALMDB Event를 Timestamp로 결합 가능한지 검증
 
 ## 관련 문서
 
 - [[../20-현장-시스템/01-광암-데이터흐름-및-통신구조]]
 - [[../20-현장-시스템/02-Wonderware-DeviceXPlorer-InTouch-Historian-구조]]
+- [[03-광암-InTouch-dde-cfg-통신매핑-분석]]
+- [[../90-근거-기록/2026-09-09-사전제공-HMI-자료-대조-기록]]
 - [[../90-근거-기록/2026-09-08-Wonderware-자료분석-기록]]

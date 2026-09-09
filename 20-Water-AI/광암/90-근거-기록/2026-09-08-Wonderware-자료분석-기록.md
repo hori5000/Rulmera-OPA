@@ -155,3 +155,43 @@ PLC 수집 패키지에서 `.xgwx` 155개가 확보되어 이제 `DXPSV.dxp`의 
 주요 구조는 [[../20-현장-시스템/04-광암-PLC-XG5000-구조-및-통신맵]]에 별도로 관리한다.
 
 다음 핵심 병목은 InTouch DBDump와 Historian Tag다.
+
+
+## 2026-09-09 사전 제공 HMI 백업 대조에 따른 보정
+
+이 기록의 2026-09-08 판단 중 **`DXPSV`를 광암 InTouch의 실제 SuiteLink Application Name 후보로 우선하던 부분은 보정**한다.
+
+사전 제공 2024 InTouch Application의 `dde.cfg`에서 다음이 직접 확인됐다.
+
+```text
+Application Name = \\192.9.211.120\GFENet
+SuiteLink = 1
+```
+
+또한 GFENet의 주요 Source 13개:
+
+```text
+P1/P2/P4/P6/P7/P8/P21/P22/P23/P25/P26/P27/P30
+```
+
+가 2026 현장 `DXPSV.dxp`의 Device 13개와 완전히 일치한다.
+
+따라서 최신 판정은 다음과 같다.
+
+```text
+DXPSV = DeviceXPlorer 기본 Application Name / .dxp 파일명 단서
+GFENet = 2024 InTouch에서 실제 확인된 PLC I/O Application
+GFENet ↔ DeviceXPlorer 제품/런타임 관계 = 추가 확인 필요
+```
+
+FSGateway도 2024 HMI에서 Source 정의가 직접 확인됐다.
+
+```text
+\\localhost\FSGateway
+Topic = OPC_DeviceGroup
+Point = 0
+```
+
+따라서 FSGateway는 단순 설치파일만 있는 상태보다는 한 단계 더 확인됐지만, 해당 백업의 주 PLC 경로였다는 증거는 없다.
+
+상세: [[2026-09-09-사전제공-HMI-자료-대조-기록]]
