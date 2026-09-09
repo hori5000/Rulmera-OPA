@@ -1,9 +1,9 @@
 {
   "schema": 1,
   "project": "water-ai",
-  "version": "rev-246ea08a3274",
-  "generated_at": "2026-09-09T08:09:20.878Z",
-  "fingerprint": "246ea08a3274fde637796ef1e8644ff9b1e35722ea7fb5e03341bae8e777975e",
+  "version": "rev-d25498498d75",
+  "generated_at": "2026-09-09T08:18:57.800Z",
+  "fingerprint": "d25498498d756ddee50b218e5d0de1defeeea264d84dedb46a848ca44a9f09ce",
   "files": {
     "00-START-WBS-연동.md": {
       "hash": "5aaa1f84105ac70b757b3091e865dc2ef2716d594c66fe87e6d93982bf43ebf8",
@@ -686,11 +686,19 @@
       "summary": ""
     },
     "광암/00-광암-홈.md": {
-      "hash": "b84c6b94910971e6efd18b86a3fc8a83b33fac3a62f0da513c1956bc06ed4242",
+      "hash": "d323b6915a88e1566f989d0e670911ed91c751e149d08502bf3a76c68f41b2cf",
       "title": "Water AI · 광암",
-      "mtime": "2026-09-08T22:44:28.000Z",
+      "mtime": "2026-09-08T23:16:40.000Z",
       "category": "광암",
       "href": "/광암/00-광암-홈",
+      "summary": ""
+    },
+    "광암/10-프로젝트-정의/01-프로젝트-성격-난이도-및-현재단계.md": {
+      "hash": "df1a275c2934e3f5e8bf2297381bde0026234537d820669348178cf1420b0763",
+      "title": "파이브텍 정수·하수 AI 프로젝트 성격·난이도 및 현재 단계",
+      "mtime": "2026-09-09T08:18:30.694Z",
+      "category": "광암",
+      "href": "/광암/10-프로젝트-정의/01-프로젝트-성격-난이도-및-현재단계",
       "summary": ""
     },
     "광암/20-현장-시스템/01-광암-데이터흐름-및-통신구조.md": {
@@ -712,7 +720,7 @@
     "광암/20-현장-시스템/03-광암-실제-연결-확인-파일-및-설정위치.md": {
       "hash": "3da36299c748bab0abc572255a654ea1017119da55f6d94537657a5157c25653",
       "title": "광암 실제 연결 확인 파일 및 설정 위치",
-      "mtime": "2026-09-08T22:43:58.000Z",
+      "mtime": "2026-09-08T22:43:56.000Z",
       "category": "광암",
       "href": "/광암/20-현장-시스템/03-광암-실제-연결-확인-파일-및-설정위치",
       "summary": ""
@@ -728,7 +736,7 @@
     "광암/30-데이터-분석/01-WWALMDB-AlarmDB-vs-Historian.md": {
       "hash": "dc5ae91912e0092a60da52a8e8ba658f08d2487d2615211e77f6fd9ef2f0f29a",
       "title": "WWALMDB AlarmDB와 Historian 분리",
-      "mtime": "2026-09-08T22:43:58.000Z",
+      "mtime": "2026-09-08T22:43:56.000Z",
       "category": "광암",
       "href": "/광암/30-데이터-분석/01-WWALMDB-AlarmDB-vs-Historian",
       "summary": ""
@@ -760,7 +768,7 @@
     "광암/30-데이터-분석/05-광암-2026-HMI-DDE-Historian-통합매핑-결과.md": {
       "hash": "20262bb5195d5cbba236afcd4f627ecc8c06058b37573e804748a65fd5a24cee",
       "title": "광암 2026 HMI DDE Historian 통합매핑 결과",
-      "mtime": "2026-09-08T22:43:58.000Z",
+      "mtime": "2026-09-08T22:43:56.000Z",
       "category": "광암",
       "href": "/광암/30-데이터-분석/05-광암-2026-HMI-DDE-Historian-통합매핑-결과",
       "summary": ""
@@ -768,7 +776,7 @@
     "광암/30-데이터-분석/06-광암-Historian-Runtime-DB-분석-및-AI학습데이터-확보판정.md": {
       "hash": "07da1e7a7d98a60b720285d6e9f421300d8d01194690727fb41aad4d0bec30a7",
       "title": "광암 Historian Runtime DB 분석 및 AI 학습데이터 확보 판정",
-      "mtime": "2026-09-08T22:43:58.000Z",
+      "mtime": "2026-09-08T22:43:56.000Z",
       "category": "광암",
       "href": "/광암/30-데이터-분석/06-광암-Historian-Runtime-DB-분석-및-AI학습데이터-확보판정",
       "summary": ""
@@ -776,7 +784,7 @@
     "광암/30-데이터-분석/07-광암-Historian-현장-원본확보-절차.md": {
       "hash": "aaf14faf936c4d412eb4b801e6e1965006abce014e2ba95246415fb5edf0cac1",
       "title": "광암 Historian 현장 원본확보 절차",
-      "mtime": "2026-09-08T22:43:58.000Z",
+      "mtime": "2026-09-08T22:43:56.000Z",
       "category": "광암",
       "href": "/광암/30-데이터-분석/07-광암-Historian-현장-원본확보-절차",
       "summary": ""
@@ -784,7 +792,7 @@
     "광암/30-데이터-분석/08-광암-Historian-AI학습데이터-추출전략.md": {
       "hash": "1820a919175d47120f6cad9ca476052bd14d39791bbb66d6c8c0f8900b5e1505",
       "title": "광암 Historian AI 학습데이터 추출전략",
-      "mtime": "2026-09-08T22:43:58.000Z",
+      "mtime": "2026-09-08T22:43:56.000Z",
       "category": "광암",
       "href": "/광암/30-데이터-분석/08-광암-Historian-AI학습데이터-추출전략",
       "summary": ""
@@ -848,9 +856,17 @@
     "광암/90-근거-기록/2026-09-09-Obsidian-v10-StorageLocation-AI추출전략-업데이트내역.md": {
       "hash": "be82d6c7076d96abee87ca371f6af984691e5217d67abfde6578a9eeeed7dc29",
       "title": "2026-09-09 Obsidian v10 StorageLocation 및 AI 추출전략 업데이트",
-      "mtime": "2026-09-08T22:43:58.000Z",
+      "mtime": "2026-09-08T22:43:56.000Z",
       "category": "광암",
       "href": "/광암/90-근거-기록/2026-09-09-Obsidian-v10-StorageLocation-AI추출전략-업데이트내역",
+      "summary": ""
+    },
+    "광암/90-근거-기록/2026-09-09-Obsidian-v11-프로젝트-성격-난이도-정의-업데이트내역.md": {
+      "hash": "13105b017f4c821a5a205db1c2f26687bf23e7d4d66e38ff287d006cc7c6520a",
+      "title": "Obsidian v11 업데이트 — 프로젝트 성격·난이도 및 현재 단계",
+      "mtime": "2026-09-08T23:16:40.000Z",
+      "category": "광암",
+      "href": "/광암/90-근거-기록/2026-09-09-Obsidian-v11-프로젝트-성격-난이도-정의-업데이트내역",
       "summary": ""
     },
     "광암/90-근거-기록/2026-09-09-Obsidian-v4-업데이트내역.md": {
@@ -912,7 +928,7 @@
     "광암/90-근거-기록/2026-09-09-POS11-StorageLocation-StorageNode-실조회-사진근거.md": {
       "hash": "2317e6b0af1b202057e89c6cbe5eea60e1f13e0660fef66ca00fe6554561ce8f",
       "title": "2026-09-09 POS11 StorageLocation StorageNode 실조회 사진근거",
-      "mtime": "2026-09-08T22:43:58.000Z",
+      "mtime": "2026-09-08T22:43:56.000Z",
       "category": "광암",
       "href": "/광암/90-근거-기록/2026-09-09-POS11-StorageLocation-StorageNode-실조회-사진근거",
       "summary": ""
