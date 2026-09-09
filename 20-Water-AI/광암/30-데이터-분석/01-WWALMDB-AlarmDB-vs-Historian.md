@@ -105,7 +105,7 @@ Storage: D:\Historian\Data\...
 |---|---|---|---|
 | `WWALMDB` | 확보 | Alarm/Event SQL 이력 | 이상구간/장애 이벤트 보조 |
 | `Runtime` | 확보 | Historian Tag/Storage 메타데이터 | Tag 사전/주소/주기/Storage 경로 해석 |
-| 실제 `History Storage` | **미확보** | 장기간 공정 `Timestamp/Value/Quality` | 예측·최적화 주 학습 데이터 |
+| 실제 `History Storage` | **운영 조회 확인 / 원본·장기간 Export 미인수** | 장기간 공정 `Timestamp/Value/Quality` | 예측·최적화 주 학습 데이터 |
 
 `backup2.bak`는 이름과 달리 원래 DB가 **`Runtime`**이며, 2026-07-23 백업이다. 최신 Runtime에는 Tag 2,434개, AnalogTag 2,402개가 등록돼 있다.
 
@@ -113,6 +113,22 @@ Storage: D:\Historian\Data\...
 
 따라서 **현재 확보된 DB를 “AI 학습용 Historian DB 확보 완료”로 표기하면 안 된다.** 정확한 표현은:
 
-> **Historian 설정/메타 DB 확보 완료, 실제 장기 History Storage 데이터 미확보**
+> **Historian 설정/메타 DB 확보 완료. 운영 POS11에서는 `Runtime.dbo.History`를 통한 실제 값 조회가 확인됐으나, 실제 History Storage 원본과 장기간 AI 학습용 Export는 아직 우리 측에 인수되지 않음.**
 
 상세: [[06-광암-Historian-Runtime-DB-분석-및-AI학습데이터-확보판정]]
+
+
+## 2026-09-09 POS11 실조회로 추가 확인
+
+현장 SSMS 사진에서 `POS11 / Runtime` 상태로 `FROM History` 쿼리가 실행되고 `PCS5_HV1A_2_TA`의 `DateTime / vValue / Quality` 계열 값이 실제 반환되는 것이 확인됐다.
+
+따라서 현재 구분은 다음과 같다.
+
+```text
+WWALMDB                 = Alarm/Event SQL DB
+Runtime                  = Historian 메타 + History SQL 조회 인터페이스
+운영 Historian 실제 값    = 조회 가능 확인
+장기간 AI 학습용 Export   = 아직 미인수
+```
+
+근거: [[../90-근거-기록/2026-09-09-POS11-Runtime-History-실조회-사진근거]]

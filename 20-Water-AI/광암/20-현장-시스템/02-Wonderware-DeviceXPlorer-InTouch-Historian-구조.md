@@ -214,3 +214,43 @@ History Storage
 따라서 `Runtime.bak` 또는 `backup2.bak`를 받았다는 이유만으로 “AI 학습용 Historian 데이터를 확보했다”고 기록하지 않는다.
 
 상세: [[../30-데이터-분석/06-광암-Historian-Runtime-DB-분석-및-AI학습데이터-확보판정]]
+
+
+## 2026-09-09 현장 사진 추가 확인 — POS11 Runtime History 실제 조회
+
+SSMS 현장 사진으로 다음을 직접 확인했다.
+
+```text
+SQL Server/Node : POS11
+Database        : Runtime
+Query Source    : History
+Tag             : PCS5_HV1A_2_TA
+Result          : DateTime + vValue + Quality 계열 실제 행 반환
+```
+
+사용된 Historian 조회조건에는 다음이 보인다.
+
+```text
+wwRetrievalMode = Cyclic
+wwCycleCount    = 100
+wwQualityRule   = Extended
+wwVersion       = Latest
+```
+
+따라서 `Runtime`은 단순 메타데이터 DB만이 아니라 **Wonderware Historian의 SQL 조회 인터페이스를 제공하는 운영 DB**로 확인한다.
+
+구조는 다음과 같이 갱신한다.
+
+```mermaid
+flowchart LR
+    PLC["PLC"] --> IO["GFENet / SuiteLink"]
+    IO --> HIST["Wonderware Historian"]
+    HIST --> RT["Runtime DB<br/>Tag/Storage Meta + History View"]
+    RT -->|"SELECT FROM History"| SQL["SSMS / SQL Client"]
+    HIST --> STORE["History Storage / Storage Engine<br/>물리 경로 최종확인 필요"]
+    STORE --> RT
+```
+
+**주의:** 사진은 `History`를 통해 실제 값을 조회할 수 있음을 증명하지만, 실제 장기값의 물리 저장파일 위치까지 증명하지는 않는다. 물리경로는 `StorageLocation.Path`와 POS11 파일시스템을 추가 확인한다.
+
+근거: [[../90-근거-기록/2026-09-09-POS11-Runtime-History-실조회-사진근거]]

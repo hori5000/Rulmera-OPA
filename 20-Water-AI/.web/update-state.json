@@ -1,9 +1,9 @@
 {
   "schema": 1,
   "project": "water-ai",
-  "version": "rev-71985c3c6599",
-  "generated_at": "2026-09-09T07:04:02.722Z",
-  "fingerprint": "71985c3c6599cca08afc7cc6cf0eb326a98224acf86e145d11ddbdf6e8e0e41c",
+  "version": "rev-619b6c8818eb",
+  "generated_at": "2026-09-09T07:12:18.320Z",
+  "fingerprint": "619b6c8818eb34a9b125b883d8edd5036908417a71d9c7f024b25923d829b4e4",
   "files": {
     "00-START-WBS-연동.md": {
       "hash": "5aaa1f84105ac70b757b3091e865dc2ef2716d594c66fe87e6d93982bf43ebf8",
@@ -678,25 +678,25 @@
       "summary": ""
     },
     "광암/00-광암-홈.md": {
-      "hash": "2cd50ad39c4d4d62fd2ba93896f83a0a97fba476a2c24a4f6a0bed83b282a581",
+      "hash": "8add758f3b3c507658316aef93a5bf2d1c665a773e82a65ca6fd099cea035022",
       "title": "Water AI · 광암",
-      "mtime": "2026-09-08T21:57:02.000Z",
+      "mtime": "2026-09-08T22:09:56.000Z",
       "category": "광암",
       "href": "/광암/00-광암-홈",
       "summary": ""
     },
     "광암/20-현장-시스템/01-광암-데이터흐름-및-통신구조.md": {
-      "hash": "dba456d28ae1bc74752152ca28b05489c9dd3146e97c42c331e36da81ac63eea",
+      "hash": "7667b261ea938cf53670df331526777bf4fa29d9151db64af38e9dd1f26b0b31",
       "title": "광암 데이터 흐름 및 통신 구조",
-      "mtime": "2026-09-08T21:57:02.000Z",
+      "mtime": "2026-09-08T22:10:28.000Z",
       "category": "광암",
       "href": "/광암/20-현장-시스템/01-광암-데이터흐름-및-통신구조",
       "summary": ""
     },
     "광암/20-현장-시스템/02-Wonderware-DeviceXPlorer-InTouch-Historian-구조.md": {
-      "hash": "2bbbbb22560387462e368ee82f4c6ae3bcd5b8244733f2b35c36ce11bf53fad1",
+      "hash": "8e489e0520fe04c13662c8241282f7db2b2504d3b437399acc2deab4715430aa",
       "title": "Wonderware DeviceXPlorer InTouch Historian 구조",
-      "mtime": "2026-09-08T21:57:02.000Z",
+      "mtime": "2026-09-08T22:09:56.000Z",
       "category": "광암",
       "href": "/광암/20-현장-시스템/02-Wonderware-DeviceXPlorer-InTouch-Historian-구조",
       "summary": ""
@@ -712,15 +712,15 @@
     "광암/20-현장-시스템/04-광암-PLC-XG5000-구조-및-통신맵.md": {
       "hash": "9769f204db063259db8061d1e2f6fa1e5324083367b47a45c16deb381ab73a08",
       "title": "광암 PLC XG5000 구조 및 통신 맵",
-      "mtime": "2026-09-09T07:02:04.880Z",
+      "mtime": "2026-09-08T21:54:30.000Z",
       "category": "광암",
       "href": "/광암/20-현장-시스템/04-광암-PLC-XG5000-구조-및-통신맵",
       "summary": ""
     },
     "광암/30-데이터-분석/01-WWALMDB-AlarmDB-vs-Historian.md": {
-      "hash": "e5a4a184a5e8d958ba6b378cc840070faca3aa2e0be5b5f1cbd6533d379f67f8",
+      "hash": "4515c34cb7bd43867fbf817bb0e80864a47ea3eeb55ffe10306960c4ffdd5ccd",
       "title": "WWALMDB AlarmDB와 Historian 분리",
-      "mtime": "2026-09-08T21:57:02.000Z",
+      "mtime": "2026-09-08T22:10:28.000Z",
       "category": "광암",
       "href": "/광암/30-데이터-분석/01-WWALMDB-AlarmDB-vs-Historian",
       "summary": ""
@@ -758,9 +758,9 @@
       "summary": ""
     },
     "광암/30-데이터-분석/06-광암-Historian-Runtime-DB-분석-및-AI학습데이터-확보판정.md": {
-      "hash": "3a1827a1275af37a024eb3337b05561a7afdb6d966139942f41fc079ac3aa3e1",
+      "hash": "8d446b52165ed4603e33526199fa105b7bfb0ef1b92ee80cf265eefd9c36790f",
       "title": "광암 Historian Runtime DB 분석 및 AI 학습데이터 확보 판정",
-      "mtime": "2026-09-08T21:57:02.000Z",
+      "mtime": "2026-09-08T22:09:56.000Z",
       "category": "광암",
       "href": "/광암/30-데이터-분석/06-광암-Historian-Runtime-DB-분석-및-AI학습데이터-확보판정",
       "summary": ""
@@ -851,6 +851,22 @@
       "mtime": "2026-09-08T21:57:02.000Z",
       "category": "광암",
       "href": "/광암/90-근거-기록/2026-09-09-Obsidian-v7-Historian-DB분석-업데이트내역",
+      "summary": ""
+    },
+    "광암/90-근거-기록/2026-09-09-Obsidian-v8-POS11-History-실조회-업데이트내역.md": {
+      "hash": "e6821cd29cb8f1f7bddcf3bd3913d3fb9a92fe602feb8836ae3a385f1355808d",
+      "title": "2026-09-09 Obsidian v8 POS11 Runtime History 실조회 반영",
+      "mtime": "2026-09-08T22:10:28.000Z",
+      "category": "광암",
+      "href": "/광암/90-근거-기록/2026-09-09-Obsidian-v8-POS11-History-실조회-업데이트내역",
+      "summary": ""
+    },
+    "광암/90-근거-기록/2026-09-09-POS11-Runtime-History-실조회-사진근거.md": {
+      "hash": "518ec8ec9cac36045ce448b00956275da0969185ac1e54aa7992142a907eaf79",
+      "title": "2026-09-09 POS11 Runtime History 실조회 사진근거",
+      "mtime": "2026-09-08T22:09:56.000Z",
+      "category": "광암",
+      "href": "/광암/90-근거-기록/2026-09-09-POS11-Runtime-History-실조회-사진근거",
       "summary": ""
     },
     "광암/90-근거-기록/2026-09-09-사전제공-HMI-자료-대조-기록.md": {

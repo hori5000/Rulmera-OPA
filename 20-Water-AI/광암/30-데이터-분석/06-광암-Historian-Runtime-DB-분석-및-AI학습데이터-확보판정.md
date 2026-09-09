@@ -4,7 +4,7 @@ title: 광암 Historian Runtime DB 분석 및 AI 학습데이터 확보 판정
 plant: 광암
 category: 데이터분석
 status: action-required
-revision: 1.0
+revision: 1.1
 last_updated: 2026-09-09
 source_refs:
   - GWANGAM-HISTORIAN-DB-ANALYSIS-20260909-154026
@@ -17,15 +17,16 @@ source_refs:
 
 ## 1. 결론
 
-**광암 Wonderware Historian의 설정/메타 DB는 확보됐다. 그러나 AI 학습에 필요한 장기간 공정 시계열 실데이터는 현재 확보 BAK 안에서 확인되지 않았다.**
+**광암 Wonderware Historian의 설정/메타 DB는 확보됐고, 현장 POS11에서 `Runtime.dbo.History`를 통해 실제 공정 시계열 값이 조회되는 것도 확인됐다. 다만 AI 학습에 필요한 장기간 데이터는 현재 인수한 BAK 안에 포함되지 않았으며, 장기 Export/History Storage 원본은 아직 우리 측에 확보되지 않았다.**
 
 따라서 현재 상태를 다음처럼 기록한다.
 
 ```text
-Historian 존재/구성          = 확인
-Historian Tag 메타데이터     = 확보
-Historian Storage 구조       = 확보
-AI 학습용 장기간 실데이터    = 미확보
+Historian 존재/구성                  = 확인
+Historian Tag 메타데이터             = 확보
+Runtime.dbo.History 실제 값 조회      = 확인
+Historian Storage 구조               = 확보
+AI 학습용 장기간 실데이터 우리 측 인수 = 미완료
 ```
 
 ---
@@ -107,6 +108,59 @@ Status
 
 ---
 
+
+## 2.6 2026-09-09 POS11 `History` 실조회 사진 근거
+
+현장 SSMS 사진에서 `Runtime` Database가 선택된 상태로 다음 쿼리가 실행되고 있다.
+
+```sql
+FROM History
+WHERE History.TagName IN ('PCS5_HV1A_2_TA')
+  AND wwRetrievalMode = 'Cyclic'
+  AND wwCycleCount = 100
+  AND wwQualityRule = 'Extended'
+  AND wwVersion = 'Latest'
+  AND DateTime >= @StartDate
+  AND DateTime <= @EndDate
+```
+
+결과 Grid에는 다음 컬럼이 보이며 실제 행이 반환된다.
+
+```text
+TagName
+DateTime
+vValue
+MinRaw
+MaxRaw
+MinEU
+MaxEU
+Unit
+Quality
+```
+
+### 판정
+
+**자료로 확인된 내용**
+- 서버/SQL 노드 이름 `POS11`
+- Database `Runtime`
+- `History` 조회가 실제 값 행을 반환
+- `wwRetrievalMode / wwCycleCount / wwQualityRule / wwVersion`을 사용하는 Wonderware Historian 조회 형태
+- 실제 태그 `PCS5_HV1A_2_TA`의 최근 값이 조회됨
+
+**합리적 추정**
+- `Runtime.dbo.History`는 일반 장기값 테이블이라기보다 Wonderware Historian Storage Engine/History Storage에 연결된 SQL 조회 인터페이스(View) 역할이다.
+- 기존 `StorageLocation`과 2022 Historian Export의 `D:\Historian\Data\...` 경로가 실제 값 저장영역과 연결될 가능성이 높다.
+
+**추가 확인 필요**
+- 2026 현재 `dbo.StorageLocation.Path` 실제 값
+- POS11 파일시스템의 현재 History Storage 디렉터리
+- 보존 가능한 최초/최종 DateTime
+- AI 대상 Tag 전체의 장기간 Export 가능 범위
+
+> 따라서 기존의 “실제 Historian 값 존재 여부 미확정”은 폐기하고, **“실제 값은 POS11 Historian에서 조회 가능하나 장기간 학습데이터를 아직 우리 측에 인수하지 못했다”**로 정정한다.
+
+![[99-첨부/2026-09-09-POS11-Runtime-History-실조회.jpg]]
+
 ## 3. 대표 Historian Tag 샘플
 
 최신 Runtime `Tag` 샘플에서 실제 정수공정 Tag가 확인된다.
@@ -143,7 +197,7 @@ Quality
 ...
 ```
 
-현재 BAK 분석에서는 이 형태의 **수개월~수년치 실제 공정값 저장본을 확인하지 못했다.**
+현재 BAK 분석에서는 이 형태의 **수개월~수년치 실제 공정값 본체를 확인하지 못했다.** 그러나 현장 POS11에서는 `Runtime.dbo.History` SQL 조회로 실제 값이 반환되므로, **데이터 자체는 Historian 운영계층에 존재한다. 문제는 존재 여부가 아니라 장기간 학습용으로 우리 측에 추출·인수되지 않았다는 점**이다.
 
 ---
 
@@ -231,8 +285,8 @@ DDE Item(MW주소)
 
 ## 8. 우선순위
 
-1. **실제 Historian History Storage 또는 장기간 Export 확보**
-2. 최신 Runtime `StorageLocation.Path` 실제 행 값 조회
+1. **POS11 `Runtime.dbo.History`에서 AI 대상 Tag 장기간 Export 확보**
+2. 최신 Runtime `StorageLocation.Path` 실제 행 값 및 POS11 물리 저장경로 확인
 3. 장기 데이터 최초/최종 시각, 저장간격, Quality 확인
 4. AI 핵심 Tag 후보 추출
 5. `MW주소 ↔ XG5000 Symbol/Program` JOIN
@@ -245,7 +299,7 @@ DDE Item(MW주소)
 
 보고/문서에는 다음 표현을 사용한다.
 
-> **광암 Wonderware Historian의 Tag/Storage 메타데이터와 Runtime DB는 확보되었으나, AI 학습에 필요한 장기간 공정 시계열 History Storage 데이터는 현재 확보되지 않아 추가 수집이 필요하다.**
+> **광암 POS11의 Wonderware Historian에서 `Runtime.dbo.History`를 통한 실제 공정 시계열 값 조회가 확인되었다. 다만 현재 인수한 BAK에는 장기간 값 본체가 포함되지 않았으므로, AI 학습을 위해 POS11 Historian에서 장기간 `Timestamp / TagName / Value / Quality` 데이터를 별도 Export하여 확보해야 한다.**
 
 ## 관련 문서
 
