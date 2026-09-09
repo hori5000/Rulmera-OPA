@@ -2,17 +2,27 @@
   "schema": 1,
   "project": "water-ai",
   "title": "Water-AI 프로젝트 변경사항",
-  "version": "rev-649d362beeff",
-  "generated_at": "2026-09-09T07:58:39.247Z",
+  "version": "rev-246ea08a3274",
+  "generated_at": "2026-09-09T08:09:20.878Z",
   "initial": false,
   "counts": {
-    "added": 0,
+    "added": 1,
     "modified": 0,
     "deleted": 0,
     "current": 0
   },
-  "total_changes": 0,
-  "changes": [],
+  "total_changes": 1,
+  "changes": [
+    {
+      "type": "added",
+      "category": "Rulmera-OPA",
+      "title": "Water-AI 고객용 Web 공개 정책",
+      "summary": "새 문서가 추가되었습니다.",
+      "path": "Rulmera-OPA/20-Water-AI/00-프로젝트관리/25-Web-공개정책.md",
+      "href": "/Rulmera-OPA/20-Water-AI/00-프로젝트관리/25-Web-공개정책",
+      "changed_at": "2026-09-07 09:46"
+    }
+  ],
   "history_url": "/00-프로젝트관리/00-고객-진행현황",
   "note": "브라우저별로 확인한 버전을 localStorage에 저장합니다."
 }

@@ -1,9 +1,9 @@
 {
   "schema": 1,
   "project": "water-ai",
-  "version": "rev-649d362beeff",
-  "generated_at": "2026-09-09T07:58:39.247Z",
-  "fingerprint": "649d362beeff9f47914d110db5d535c5b41251cb3977083c4adf479d729b9aee",
+  "version": "rev-246ea08a3274",
+  "generated_at": "2026-09-09T08:09:20.878Z",
+  "fingerprint": "246ea08a3274fde637796ef1e8644ff9b1e35722ea7fb5e03341bae8e777975e",
   "files": {
     "00-START-WBS-연동.md": {
       "hash": "5aaa1f84105ac70b757b3091e865dc2ef2716d594c66fe87e6d93982bf43ebf8",
@@ -675,6 +675,14 @@
       "mtime": "2026-09-07T07:06:57.904Z",
       "category": "WBS",
       "href": "/00-프로젝트관리/WBS/2.5.4 통합 모델 연계 및 데이터 입출력 시스템 아키텍처 설계",
+      "summary": ""
+    },
+    "Rulmera-OPA/20-Water-AI/00-프로젝트관리/25-Web-공개정책.md": {
+      "hash": "4d130cee841d71557a86f4ffce25a639b5ccb28a4bd8a5195ab4403a198189e3",
+      "title": "Water-AI 고객용 Web 공개 정책",
+      "mtime": "2026-09-07T09:46:48.000Z",
+      "category": "Rulmera-OPA",
+      "href": "/Rulmera-OPA/20-Water-AI/00-프로젝트관리/25-Web-공개정책",
       "summary": ""
     },
     "광암/00-광암-홈.md": {

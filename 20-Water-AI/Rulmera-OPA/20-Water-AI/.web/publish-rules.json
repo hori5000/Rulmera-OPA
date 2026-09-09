@@ -1,0 +1,14 @@
+{
+  "version": 3,
+  "publish_mode": "all-water-ai",
+  "default_publish": true,
+  "exclude_field": "web_exclude",
+  "notes": [
+    "Rulmera-OPA/20-Water-AI 아래의 모든 Markdown 문서를 고객 웹에 포함",
+    "정말 숨겨야 할 예외 문서만 web_exclude: true 사용",
+    "Dataview/DataviewJS는 웹에서 실행하지 않고 빌드 시 정적 Markdown/Mermaid로 변환",
+    "PDF/XLSX/DOCX/PPTX/ZIP/PLC/SCADA/DB 원본은 Git/Web 대상이 아님"
+  ],
+  "static_output": ".web-public",
+  "deployment_mode": "committed-static-site"
+}
