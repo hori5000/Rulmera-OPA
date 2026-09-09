@@ -2,61 +2,25 @@
   "schema": 1,
   "project": "water-ai",
   "title": "Water-AI 프로젝트 변경사항",
-  "version": "rev-619b6c8818eb",
-  "generated_at": "2026-09-09T07:12:18.320Z",
+  "version": "rev-8eaeb0279ef9",
+  "generated_at": "2026-09-09T07:33:53.972Z",
   "initial": false,
   "counts": {
     "added": 2,
-    "modified": 5,
+    "modified": 3,
     "deleted": 0,
     "current": 0
   },
-  "total_changes": 7,
+  "total_changes": 5,
   "changes": [
-    {
-      "type": "modified",
-      "category": "광암",
-      "title": "광암 데이터 흐름 및 통신 구조",
-      "summary": "문서 내용이 수정되었습니다.",
-      "path": "광암/20-현장-시스템/01-광암-데이터흐름-및-통신구조.md",
-      "href": "/광암/20-현장-시스템/01-광암-데이터흐름-및-통신구조",
-      "changed_at": "2026-09-08 22:10"
-    },
-    {
-      "type": "modified",
-      "category": "광암",
-      "title": "WWALMDB AlarmDB와 Historian 분리",
-      "summary": "문서 내용이 수정되었습니다.",
-      "path": "광암/30-데이터-분석/01-WWALMDB-AlarmDB-vs-Historian.md",
-      "href": "/광암/30-데이터-분석/01-WWALMDB-AlarmDB-vs-Historian",
-      "changed_at": "2026-09-08 22:10"
-    },
     {
       "type": "added",
       "category": "광암",
-      "title": "2026-09-09 Obsidian v8 POS11 Runtime History 실조회 반영",
+      "title": "2026-09-09 Obsidian v9 Historian 원본확보 전략 반영",
       "summary": "새 문서가 추가되었습니다.",
-      "path": "광암/90-근거-기록/2026-09-09-Obsidian-v8-POS11-History-실조회-업데이트내역.md",
-      "href": "/광암/90-근거-기록/2026-09-09-Obsidian-v8-POS11-History-실조회-업데이트내역",
-      "changed_at": "2026-09-08 22:10"
-    },
-    {
-      "type": "modified",
-      "category": "광암",
-      "title": "Water AI · 광암",
-      "summary": "문서 내용이 수정되었습니다.",
-      "path": "광암/00-광암-홈.md",
-      "href": "/광암/00-광암-홈",
-      "changed_at": "2026-09-08 22:09"
-    },
-    {
-      "type": "modified",
-      "category": "광암",
-      "title": "Wonderware DeviceXPlorer InTouch Historian 구조",
-      "summary": "문서 내용이 수정되었습니다.",
-      "path": "광암/20-현장-시스템/02-Wonderware-DeviceXPlorer-InTouch-Historian-구조.md",
-      "href": "/광암/20-현장-시스템/02-Wonderware-DeviceXPlorer-InTouch-Historian-구조",
-      "changed_at": "2026-09-08 22:09"
+      "path": "광암/90-근거-기록/2026-09-09-Obsidian-v9-Historian-원본확보전략-업데이트내역.md",
+      "href": "/광암/90-근거-기록/2026-09-09-Obsidian-v9-Historian-원본확보전략-업데이트내역",
+      "changed_at": "2026-09-09 07:33"
     },
     {
       "type": "modified",
@@ -65,16 +29,34 @@
       "summary": "문서 내용이 수정되었습니다.",
       "path": "광암/30-데이터-분석/06-광암-Historian-Runtime-DB-분석-및-AI학습데이터-확보판정.md",
       "href": "/광암/30-데이터-분석/06-광암-Historian-Runtime-DB-분석-및-AI학습데이터-확보판정",
-      "changed_at": "2026-09-08 22:09"
+      "changed_at": "2026-09-09 07:33"
+    },
+    {
+      "type": "modified",
+      "category": "광암",
+      "title": "광암 실제 연결 확인 파일 및 설정 위치",
+      "summary": "문서 내용이 수정되었습니다.",
+      "path": "광암/20-현장-시스템/03-광암-실제-연결-확인-파일-및-설정위치.md",
+      "href": "/광암/20-현장-시스템/03-광암-실제-연결-확인-파일-및-설정위치",
+      "changed_at": "2026-09-09 07:33"
+    },
+    {
+      "type": "modified",
+      "category": "광암",
+      "title": "Water AI · 광암",
+      "summary": "문서 내용이 수정되었습니다.",
+      "path": "광암/00-광암-홈.md",
+      "href": "/광암/00-광암-홈",
+      "changed_at": "2026-09-09 07:33"
     },
     {
       "type": "added",
       "category": "광암",
-      "title": "2026-09-09 POS11 Runtime History 실조회 사진근거",
+      "title": "광암 Historian 현장 원본확보 절차",
       "summary": "새 문서가 추가되었습니다.",
-      "path": "광암/90-근거-기록/2026-09-09-POS11-Runtime-History-실조회-사진근거.md",
-      "href": "/광암/90-근거-기록/2026-09-09-POS11-Runtime-History-실조회-사진근거",
-      "changed_at": "2026-09-08 22:09"
+      "path": "광암/30-데이터-분석/07-광암-Historian-현장-원본확보-절차.md",
+      "href": "/광암/30-데이터-분석/07-광암-Historian-현장-원본확보-절차",
+      "changed_at": "2026-09-09 07:33"
     }
   ],
   "history_url": "/00-프로젝트관리/00-고객-진행현황",

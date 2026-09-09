@@ -4,7 +4,7 @@ title: 광암 Historian Runtime DB 분석 및 AI 학습데이터 확보 판정
 plant: 광암
 category: 데이터분석
 status: action-required
-revision: 1.1
+revision: 1.2
 last_updated: 2026-09-09
 source_refs:
   - GWANGAM-HISTORIAN-DB-ANALYSIS-20260909-154026
@@ -308,3 +308,99 @@ DDE Item(MW주소)
 - [[05-광암-2026-HMI-DDE-Historian-통합매핑-결과]]
 - [[../20-현장-시스템/01-광암-데이터흐름-및-통신구조]]
 - [[../20-현장-시스템/03-광암-실제-연결-확인-파일-및-설정위치]]
+
+
+## 9. 현장 체류시간이 짧을 때의 현실적 확보방식 — 2026-09-09 추가
+
+### 결론
+
+현장에서 수개월~수년치 `History`를 SQL로 장시간 Export할 시간이 부족하다면, **먼저 실제 History Storage 위치와 용량만 확인한 뒤 원본 저장파일을 인수할 수 있는지 판단하는 방식**이 현실적이다.
+
+단, 현재 우리가 가진 `Runtime.bak`만으로는 장기간 공정값 본체가 복원되지 않았으므로 **MSSQL `Runtime` 백업만 다시 받아오는 것은 목적에 충분하지 않다.**
+
+### 현장에서 가장 먼저 실행할 SQL
+
+```sql
+USE Runtime;
+SELECT * FROM dbo.StorageLocation;
+SELECT * FROM dbo.StorageNode;
+```
+
+확인 목표:
+
+```text
+StorageLocation.Path
+StorageNode 명칭
+StorageType
+MaxMBSize / MaxAgeThreshold 등 보존 관련 설정
+```
+
+2022 확보자료에는 다음 경로 근거가 이미 있다.
+
+```text
+D:\Historian\Data\Circular
+D:\Historian\Data\Buffer
+D:\Historian\Data\Permanent
+```
+
+그러나 **2026 현재 서버에서도 동일한지는 아직 확인되지 않았으므로 현재 `StorageLocation.Path`를 우선한다.**
+
+### 실제 저장경로 용량 확인
+
+`StorageLocation.Path`가 확인되면 POS11 PowerShell에서 읽기 전용으로 크기를 계산한다.
+
+```powershell
+$Path = "D:\Historian\Data"
+$files = Get-ChildItem -LiteralPath $Path -File -Recurse -ErrorAction SilentlyContinue
+$bytes = ($files | Measure-Object Length -Sum).Sum
+
+[PSCustomObject]@{
+    Path  = $Path
+    GB    = [math]::Round($bytes / 1GB, 2)
+    TB    = [math]::Round($bytes / 1TB, 3)
+    Files = $files.Count
+}
+```
+
+드라이브 총용량/여유공간도 동시에 확인한다.
+
+```powershell
+Get-CimInstance Win32_LogicalDisk -Filter "DriveType=3" |
+Select-Object DeviceID,
+@{N="TotalGB";E={[math]::Round($_.Size/1GB,1)}},
+@{N="FreeGB";E={[math]::Round($_.FreeSpace/1GB,1)}}
+```
+
+### 의사결정 기준
+
+```text
+History Storage 용량 확인
+    ↓
+외장 SSD/이동매체로 감당 가능?
+    ├─ YES → History Storage 원본 인수 우선 검토
+    └─ NO  → POS11 Runtime.dbo.History에서 기간/Tag를 나눠 Export
+```
+
+AI 개발만 목적이라면 장기적으로는 `TagName / DateTime / Value / Quality` 형태 Export가 다루기 쉽다. 다만 **현장시간 절감과 원본 보존 측면에서는 Storage 원본을 우선 확보하고, 이후 사무실/분석환경에서 Export/변환 가능 여부를 검토하는 전략**이 유리할 수 있다.
+
+### 원본 인수 시 같이 확보할 것
+
+1. History Storage 전체 경로(가능한 경우)
+2. 최신 `Runtime` DB 백업
+3. `Holding` DB 백업
+4. `StorageLocation` / `StorageNode` 조회 결과
+5. Historian 버전 정보
+6. 가능하면 현재 Historian 서비스/설정 정보
+
+### 운영 안전 주의
+
+**추가 확인 필요 / 현장 승인 필요**
+
+- 운영 중 Historian Storage 파일은 계속 쓰기 중일 수 있다.
+- 단순 탐색기 복사가 일관된 백업을 보장하는지는 현재 자료만으로 확정할 수 없다.
+- Historian 서비스를 임의로 중지해서는 안 된다.
+- 정식 Backup/Snapshot 또는 운영 영향 없는 복제 절차가 있는지 현장 담당자와 먼저 확인한다.
+
+따라서 현장에서는 우선 **경로와 용량만 읽기 방식으로 확인**하고, 실제 복제 방법은 운영 승인 후 결정한다.
+
+관련 절차: [[07-광암-Historian-현장-원본확보-절차]]
