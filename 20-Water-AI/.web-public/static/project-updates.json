@@ -2,34 +2,25 @@
   "schema": 1,
   "project": "water-ai",
   "title": "Water-AI 프로젝트 변경사항",
-  "version": "rev-8eaeb0279ef9",
-  "generated_at": "2026-09-09T07:33:53.972Z",
+  "version": "rev-649d362beeff",
+  "generated_at": "2026-09-09T07:49:13.695Z",
   "initial": false,
   "counts": {
-    "added": 2,
-    "modified": 3,
+    "added": 3,
+    "modified": 6,
     "deleted": 0,
     "current": 0
   },
-  "total_changes": 5,
+  "total_changes": 9,
   "changes": [
-    {
-      "type": "added",
-      "category": "광암",
-      "title": "2026-09-09 Obsidian v9 Historian 원본확보 전략 반영",
-      "summary": "새 문서가 추가되었습니다.",
-      "path": "광암/90-근거-기록/2026-09-09-Obsidian-v9-Historian-원본확보전략-업데이트내역.md",
-      "href": "/광암/90-근거-기록/2026-09-09-Obsidian-v9-Historian-원본확보전략-업데이트내역",
-      "changed_at": "2026-09-09 07:33"
-    },
     {
       "type": "modified",
       "category": "광암",
-      "title": "광암 Historian Runtime DB 분석 및 AI 학습데이터 확보 판정",
+      "title": "Water AI · 광암",
       "summary": "문서 내용이 수정되었습니다.",
-      "path": "광암/30-데이터-분석/06-광암-Historian-Runtime-DB-분석-및-AI학습데이터-확보판정.md",
-      "href": "/광암/30-데이터-분석/06-광암-Historian-Runtime-DB-분석-및-AI학습데이터-확보판정",
-      "changed_at": "2026-09-09 07:33"
+      "path": "광암/00-광암-홈.md",
+      "href": "/광암/00-광암-홈",
+      "changed_at": "2026-09-08 22:44"
     },
     {
       "type": "modified",
@@ -38,25 +29,70 @@
       "summary": "문서 내용이 수정되었습니다.",
       "path": "광암/20-현장-시스템/03-광암-실제-연결-확인-파일-및-설정위치.md",
       "href": "/광암/20-현장-시스템/03-광암-실제-연결-확인-파일-및-설정위치",
-      "changed_at": "2026-09-09 07:33"
+      "changed_at": "2026-09-08 22:43"
     },
     {
       "type": "modified",
       "category": "광암",
-      "title": "Water AI · 광암",
+      "title": "WWALMDB AlarmDB와 Historian 분리",
       "summary": "문서 내용이 수정되었습니다.",
-      "path": "광암/00-광암-홈.md",
-      "href": "/광암/00-광암-홈",
-      "changed_at": "2026-09-09 07:33"
+      "path": "광암/30-데이터-분석/01-WWALMDB-AlarmDB-vs-Historian.md",
+      "href": "/광암/30-데이터-분석/01-WWALMDB-AlarmDB-vs-Historian",
+      "changed_at": "2026-09-08 22:43"
+    },
+    {
+      "type": "modified",
+      "category": "광암",
+      "title": "광암 2026 HMI DDE Historian 통합매핑 결과",
+      "summary": "문서 내용이 수정되었습니다.",
+      "path": "광암/30-데이터-분석/05-광암-2026-HMI-DDE-Historian-통합매핑-결과.md",
+      "href": "/광암/30-데이터-분석/05-광암-2026-HMI-DDE-Historian-통합매핑-결과",
+      "changed_at": "2026-09-08 22:43"
+    },
+    {
+      "type": "modified",
+      "category": "광암",
+      "title": "광암 Historian Runtime DB 분석 및 AI 학습데이터 확보 판정",
+      "summary": "문서 내용이 수정되었습니다.",
+      "path": "광암/30-데이터-분석/06-광암-Historian-Runtime-DB-분석-및-AI학습데이터-확보판정.md",
+      "href": "/광암/30-데이터-분석/06-광암-Historian-Runtime-DB-분석-및-AI학습데이터-확보판정",
+      "changed_at": "2026-09-08 22:43"
+    },
+    {
+      "type": "modified",
+      "category": "광암",
+      "title": "광암 Historian 현장 원본확보 절차",
+      "summary": "문서 내용이 수정되었습니다.",
+      "path": "광암/30-데이터-분석/07-광암-Historian-현장-원본확보-절차.md",
+      "href": "/광암/30-데이터-분석/07-광암-Historian-현장-원본확보-절차",
+      "changed_at": "2026-09-08 22:43"
     },
     {
       "type": "added",
       "category": "광암",
-      "title": "광암 Historian 현장 원본확보 절차",
+      "title": "광암 Historian AI 학습데이터 추출전략",
       "summary": "새 문서가 추가되었습니다.",
-      "path": "광암/30-데이터-분석/07-광암-Historian-현장-원본확보-절차.md",
-      "href": "/광암/30-데이터-분석/07-광암-Historian-현장-원본확보-절차",
-      "changed_at": "2026-09-09 07:33"
+      "path": "광암/30-데이터-분석/08-광암-Historian-AI학습데이터-추출전략.md",
+      "href": "/광암/30-데이터-분석/08-광암-Historian-AI학습데이터-추출전략",
+      "changed_at": "2026-09-08 22:43"
+    },
+    {
+      "type": "added",
+      "category": "광암",
+      "title": "2026-09-09 Obsidian v10 StorageLocation 및 AI 추출전략 업데이트",
+      "summary": "새 문서가 추가되었습니다.",
+      "path": "광암/90-근거-기록/2026-09-09-Obsidian-v10-StorageLocation-AI추출전략-업데이트내역.md",
+      "href": "/광암/90-근거-기록/2026-09-09-Obsidian-v10-StorageLocation-AI추출전략-업데이트내역",
+      "changed_at": "2026-09-08 22:43"
+    },
+    {
+      "type": "added",
+      "category": "광암",
+      "title": "2026-09-09 POS11 StorageLocation StorageNode 실조회 사진근거",
+      "summary": "새 문서가 추가되었습니다.",
+      "path": "광암/90-근거-기록/2026-09-09-POS11-StorageLocation-StorageNode-실조회-사진근거.md",
+      "href": "/광암/90-근거-기록/2026-09-09-POS11-StorageLocation-StorageNode-실조회-사진근거",
+      "changed_at": "2026-09-08 22:43"
     }
   ],
   "history_url": "/00-프로젝트관리/00-고객-진행현황",

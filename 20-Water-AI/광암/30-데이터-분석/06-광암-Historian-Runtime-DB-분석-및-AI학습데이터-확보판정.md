@@ -285,8 +285,10 @@ DDE Item(MW주소)
 
 ## 8. 우선순위
 
-1. **POS11 `Runtime.dbo.History`에서 AI 대상 Tag 장기간 Export 확보**
-2. 최신 Runtime `StorageLocation.Path` 실제 행 값 및 POS11 물리 저장경로 확인
+1. **4개 History Storage 실제 용량/파일수 측정 및 원본 확보 가능성 판단**
+2. `R:\Overflow\Data`의 물리적 정체 확인
+3. 대표 Tag 소량 `Runtime.dbo.History` Query 검증
+4. AI 대상 Tag 선정 후 장기간 Export 설계
 3. 장기 데이터 최초/최종 시각, 저장간격, Quality 확인
 4. AI 핵심 Tag 후보 추출
 5. `MW주소 ↔ XG5000 Symbol/Program` JOIN
@@ -343,14 +345,23 @@ D:\Historian\Data\Buffer
 D:\Historian\Data\Permanent
 ```
 
-그러나 **2026 현재 서버에서도 동일한지는 아직 확인되지 않았으므로 현재 `StorageLocation.Path`를 우선한다.**
+2026-09-09 POS11에서 현재 `StorageLocation`을 직접 조회하여 다음 4개 경로가 **현재값으로 확인됐다**.
+
+```text
+D:\Historian\Data\Circular
+R:\Overflow\Data
+D:\Historian\Data\Buffer
+D:\Historian\Data\Permanent
+```
+
+`StorageNodeKey=1 / ComputerName=POS11`도 확인됐다. 따라서 Path 확인 항목은 해소되었고, 다음 확인은 실제 용량/파일수와 `R:`의 정체다.
 
 ### 실제 저장경로 용량 확인
 
 `StorageLocation.Path`가 확인되면 POS11 PowerShell에서 읽기 전용으로 크기를 계산한다.
 
 ```powershell
-$Path = "D:\Historian\Data"
+$Path = "D:\Historian\Data\Circular" # 나머지 3개 경로도 각각 측정
 $files = Get-ChildItem -LiteralPath $Path -File -Recurse -ErrorAction SilentlyContinue
 $bytes = ($files | Measure-Object Length -Sum).Sum
 
@@ -404,3 +415,10 @@ AI 개발만 목적이라면 장기적으로는 `TagName / DateTime / Value / Qu
 따라서 현장에서는 우선 **경로와 용량만 읽기 방식으로 확인**하고, 실제 복제 방법은 운영 승인 후 결정한다.
 
 관련 절차: [[07-광암-Historian-현장-원본확보-절차]]
+
+
+## 10. 2026-09-09 StorageLocation 현재값 및 추출전략 확정
+
+현재 POS11 직접조회로 Storage 경로가 확정되었다. 현장시간이 짧으므로 **Storage 원본은 재방문 위험을 줄이는 보험성 원본으로 확보하고, AI 학습용 정식 데이터는 이후 `Runtime.dbo.History` Query Export로 만드는 2단계 전략**을 채택한다.
+
+상세: [[07-광암-Historian-현장-원본확보-절차]], [[08-광암-Historian-AI학습데이터-추출전략]]

@@ -66,9 +66,9 @@ flowchart LR
 
 ## 다음 확인
 
-1. **Historian 실제 History Storage/History Block 확보**
-2. 최신 Runtime의 `StorageLocation.Path` 및 StorageNode 확인
-3. 장기간 `Timestamp/TagName/Value/Quality` Export
+1. **4개 History Storage 용량/파일수 확인**
+2. 용량 가능 시 원본 Storage + 최신 Runtime BAK 확보
+3. AI 대상 Tag 선정 후 장기간 `Timestamp/TagName/Value/Quality` Query Export
 4. 실제 최초/최종 Timestamp와 보존기간 확인
 5. Historian 데이터와 WWALMDB Event를 Timestamp로 결합 가능한지 검증
 
@@ -89,7 +89,7 @@ flowchart LR
 ```text
 IOServer: 192.9.211.120 / GFENet / SuiteLink
 Historian Tag: 2,235
-Storage: D:\Historian\Data\...
+Storage(2026 현재 직접확인): `D:\Historian\Data\Circular`, `R:\Overflow\Data`, `D:\Historian\Data\Buffer`, `D:\Historian\Data\Permanent`
 ```
 
 따라서 광암에는 최소 2022 시점 **공정 시계열 Historian 계층이 실제 구성돼 있었음**을 추가 확정한다.

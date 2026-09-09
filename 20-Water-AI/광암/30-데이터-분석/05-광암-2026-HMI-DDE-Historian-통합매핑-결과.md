@@ -216,6 +216,7 @@ Storage Location도 직접 정의돼 있다.
 
 ```text
 D:\Historian\Data\Circular
+R:\Overflow\Data
 D:\Historian\Data\Buffer
 D:\Historian\Data\Permanent
 ```
@@ -428,6 +429,6 @@ Historian Storage 구조 = 확보
 Quality 포함 실데이터   = 미확보
 ```
 
-다음 1순위는 `StorageLocation.Path` 현재값을 직접 조회하고, 해당 경로의 **History Storage 원본** 또는 Historian 장기간 Export를 확보하는 것이다.
+2026-09-09 `StorageLocation.Path` 현재값 4개는 직접 확인됐다. 다음 1순위는 **각 경로의 실제 용량/파일수 확인 → 원본 확보 가능성 판단 → AI 대상 Tag 장기간 Query Export 설계**다.
 
 상세: [[06-광암-Historian-Runtime-DB-분석-및-AI학습데이터-확보판정]]
