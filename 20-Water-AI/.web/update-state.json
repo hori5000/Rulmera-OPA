@@ -1,9 +1,9 @@
 {
   "schema": 1,
   "project": "water-ai",
-  "version": "rev-0dfc22079e71",
-  "generated_at": "2026-09-09T03:37:10.166Z",
-  "fingerprint": "0dfc22079e715c5ac015a606aa8a80e210c83c5dcf992518fa990ae2861dbe22",
+  "version": "rev-ebcfcd52f4db",
+  "generated_at": "2026-09-09T05:10:29.166Z",
+  "fingerprint": "ebcfcd52f4dbc9de1b31d1899c2fc795d28ededf30e13b6a18c69707140515b9",
   "files": {
     "00-START-WBS-연동.md": {
       "hash": "5aaa1f84105ac70b757b3091e865dc2ef2716d594c66fe87e6d93982bf43ebf8",
@@ -686,41 +686,41 @@
       "summary": ""
     },
     "광암/00-광암-홈.md": {
-      "hash": "034aff3493399c34f396e7646a25f49e9ef2c8e6ce228668beb6ea25782c720a",
+      "hash": "1c4e4645f14677792bcdb2a0036bbed55126fd7473e1a5d372cc53ce1d8c07fd",
       "title": "Water AI · 광암",
-      "mtime": "2026-09-09T03:35:53.935Z",
+      "mtime": "2026-09-09T05:10:08.601Z",
       "category": "광암",
       "href": "/광암/00-광암-홈",
       "summary": ""
     },
     "광암/20-현장-시스템/01-광암-데이터흐름-및-통신구조.md": {
-      "hash": "c60c57f0ec0a8b7c4a83b95acc48befca2f9c429f871b1c7f960cee682c7bc11",
+      "hash": "e04a7f34df0a3115cc1351348baa7ed4501637fa076c6675ef65fd3e10f86923",
       "title": "광암 데이터 흐름 및 통신 구조",
-      "mtime": "2026-09-09T03:35:53.938Z",
+      "mtime": "2026-09-09T05:10:08.612Z",
       "category": "광암",
       "href": "/광암/20-현장-시스템/01-광암-데이터흐름-및-통신구조",
       "summary": ""
     },
     "광암/20-현장-시스템/02-Wonderware-DeviceXPlorer-InTouch-Historian-구조.md": {
-      "hash": "b7899947501d44ba08eec3f9596ec2f7017d0a7fa32f6fa6280db22c7f9a70ef",
+      "hash": "9c182cfbe4afbc8e22729eb7ecb6a579fb3cdd037ac161ddd43d22a0cfc1eb83",
       "title": "Wonderware DeviceXPlorer InTouch Historian 구조",
-      "mtime": "2026-09-09T03:35:53.937Z",
+      "mtime": "2026-09-09T05:10:08.612Z",
       "category": "광암",
       "href": "/광암/20-현장-시스템/02-Wonderware-DeviceXPlorer-InTouch-Historian-구조",
       "summary": ""
     },
     "광암/20-현장-시스템/03-광암-실제-연결-확인-파일-및-설정위치.md": {
-      "hash": "f4003e213503070338af99b269b95eddf57cc2441aba44c6c9f93070e629af43",
+      "hash": "c0a7e31bf18d258123ff6f9e7acdd00995d89abb34c63522d4ec5a060da06f30",
       "title": "광암 실제 연결 확인 파일 및 설정 위치",
-      "mtime": "2026-09-09T03:35:53.937Z",
+      "mtime": "2026-09-09T05:10:08.612Z",
       "category": "광암",
       "href": "/광암/20-현장-시스템/03-광암-실제-연결-확인-파일-및-설정위치",
       "summary": ""
     },
     "광암/20-현장-시스템/04-광암-PLC-XG5000-구조-및-통신맵.md": {
-      "hash": "1a4d49bc57d9b7517ef47c211862734ff2b94e9d8e75d6568c097c63126f5b35",
+      "hash": "f00dc9ad102649d4ce752a1f86dd10f485ff6a733b506eacacc886fce94f8837",
       "title": "광암 PLC XG5000 구조 및 통신 맵",
-      "mtime": "2026-09-09T03:35:53.936Z",
+      "mtime": "2026-09-09T05:10:08.615Z",
       "category": "광암",
       "href": "/광암/20-현장-시스템/04-광암-PLC-XG5000-구조-및-통신맵",
       "summary": ""
@@ -728,15 +728,15 @@
     "광암/30-데이터-분석/01-WWALMDB-AlarmDB-vs-Historian.md": {
       "hash": "d942ee9e46e43468112a96a9711bbe6ea9bac957b85d45501a8b4befd330438e",
       "title": "WWALMDB AlarmDB와 Historian 분리",
-      "mtime": "2026-09-09T03:35:53.936Z",
+      "mtime": "2026-09-09T05:10:08.602Z",
       "category": "광암",
       "href": "/광암/30-데이터-분석/01-WWALMDB-AlarmDB-vs-Historian",
       "summary": ""
     },
     "광암/30-데이터-분석/02-광암-PLC-태그-Historian-데이터계보-구축.md": {
-      "hash": "b750af24b8e0816454fa56bfdd402d5ef6073d26a02c8b66894c84277a22c97f",
+      "hash": "0073d055f479c9d3cf21d24dac70c94c5356a5c7cdf9b8cc7396217f7cc96efc",
       "title": "광암 PLC-Tag-Historian 데이터계보 구축",
-      "mtime": "2026-09-09T03:35:53.937Z",
+      "mtime": "2026-09-09T05:10:08.602Z",
       "category": "광암",
       "href": "/광암/30-데이터-분석/02-광암-PLC-태그-Historian-데이터계보-구축",
       "summary": ""
@@ -744,15 +744,23 @@
     "광암/30-데이터-분석/03-광암-InTouch-dde-cfg-통신매핑-분석.md": {
       "hash": "1596e95493f547d794df3bc928c7d6ea273e8a240294cfe28c3adf09b2ee2dca",
       "title": "광암 InTouch dde.cfg 통신매핑 분석",
-      "mtime": "2026-09-09T03:35:51.466Z",
+      "mtime": "2026-09-09T05:10:08.601Z",
       "category": "광암",
       "href": "/광암/30-데이터-분석/03-광암-InTouch-dde-cfg-통신매핑-분석",
+      "summary": ""
+    },
+    "광암/30-데이터-분석/04-광암-HMI-TagDB-및-IP맵-교차분석.md": {
+      "hash": "c3ddb1d48189db8eba53a738825191aa434cd0c72052ac752a6a5983bd7398cb",
+      "title": "광암 HMI Tag DB 및 제어망 IP 맵 교차분석",
+      "mtime": "2026-09-09T05:10:06.631Z",
+      "category": "광암",
+      "href": "/광암/30-데이터-분석/04-광암-HMI-TagDB-및-IP맵-교차분석",
       "summary": ""
     },
     "광암/90-근거-기록/2026-09-07-광암-현장방문-확인기록.md": {
       "hash": "da9d451e646032830f387e46763dc51f98ade274008f599c983c0e9cb0b16ed2",
       "title": "2026-09-07 광암 현장방문 확인기록",
-      "mtime": "2026-09-09T03:35:53.938Z",
+      "mtime": "2026-09-09T05:10:08.609Z",
       "category": "광암",
       "href": "/광암/90-근거-기록/2026-09-07-광암-현장방문-확인기록",
       "summary": ""
@@ -760,7 +768,7 @@
     "광암/90-근거-기록/2026-09-08-Obsidian-v3-업데이트내역.md": {
       "hash": "d463eae913555db732ff4aa85f53217cdb85f864d1b2dfa90c78a7318b25d84e",
       "title": "광암 Obsidian v3 업데이트 내역",
-      "mtime": "2026-09-09T03:35:53.936Z",
+      "mtime": "2026-09-09T05:10:08.603Z",
       "category": "광암",
       "href": "/광암/90-근거-기록/2026-09-08-Obsidian-v3-업데이트내역",
       "summary": ""
@@ -768,7 +776,7 @@
     "광암/90-근거-기록/2026-09-08-Wonderware-자료분석-기록.md": {
       "hash": "32faf9aa1f0f60d5ed6a8c9b58f188b365fe66ee4ca012bcfa19a213c6f8bbed",
       "title": "2026-09-08 Wonderware 자료분석 기록",
-      "mtime": "2026-09-09T03:35:53.939Z",
+      "mtime": "2026-09-09T05:10:08.602Z",
       "category": "광암",
       "href": "/광암/90-근거-기록/2026-09-08-Wonderware-자료분석-기록",
       "summary": ""
@@ -776,15 +784,15 @@
     "광암/90-근거-기록/2026-09-08-XG5000-PLC원본-분석-기록.md": {
       "hash": "52b90c5c3d0d704dabeb1afd5ce0a99d6afabf72c4d70b640ec64da27463db82",
       "title": "2026-09-08 광암 XG5000 PLC 원본 분석 기록",
-      "mtime": "2026-09-09T03:35:53.939Z",
+      "mtime": "2026-09-09T05:10:08.610Z",
       "category": "광암",
       "href": "/광암/90-근거-기록/2026-09-08-XG5000-PLC원본-분석-기록",
       "summary": ""
     },
     "광암/90-근거-기록/2026-09-08-광암-Wonderware-추가확보-체크리스트.md": {
-      "hash": "265c5217f1c0c955b5b8c05f6f0f7fb23887ab34ab041af8d6d58475354f7050",
+      "hash": "9f73592c9b1b15dc808b05d860523c5ec94b98512a16ad185bbfbfbed0d2cd07",
       "title": "광암 Wonderware 추가 확보 체크리스트",
-      "mtime": "2026-09-09T03:35:53.942Z",
+      "mtime": "2026-09-09T05:10:08.601Z",
       "category": "광암",
       "href": "/광암/90-근거-기록/2026-09-08-광암-Wonderware-추가확보-체크리스트",
       "summary": ""
@@ -792,17 +800,33 @@
     "광암/90-근거-기록/2026-09-09-Obsidian-v4-업데이트내역.md": {
       "hash": "3f9883ece414c4eff4368558e7c5695b8c908b84cf3d9d528e5c1a246f7585c5",
       "title": "광암 Obsidian v4 업데이트 내역",
-      "mtime": "2026-09-09T03:35:53.939Z",
+      "mtime": "2026-09-09T05:10:08.610Z",
       "category": "광암",
       "href": "/광암/90-근거-기록/2026-09-09-Obsidian-v4-업데이트내역",
       "summary": ""
     },
+    "광암/90-근거-기록/2026-09-09-Obsidian-v5-업데이트내역.md": {
+      "hash": "9f35f9fdd85d0c285b9dd3a1fd0b1f6c77d77bb850925e99536f14617db54c24",
+      "title": "광암 Obsidian v5 업데이트내역",
+      "mtime": "2026-09-09T05:10:08.609Z",
+      "category": "광암",
+      "href": "/광암/90-근거-기록/2026-09-09-Obsidian-v5-업데이트내역",
+      "summary": ""
+    },
     "광암/90-근거-기록/2026-09-09-사전제공-HMI-자료-대조-기록.md": {
-      "hash": "f40df7b23762be8238487d00bf5efd00004e4e54dd14e59f80b4867e8d094c8a",
+      "hash": "1d135093f79e6fe80c97989e571b02da6ac5c225facb8faa5534c936b895e000",
       "title": "2026-09-09 사전 제공 HMI 자료 대조 기록",
-      "mtime": "2026-09-09T03:35:53.943Z",
+      "mtime": "2026-09-09T05:10:08.602Z",
       "category": "광암",
       "href": "/광암/90-근거-기록/2026-09-09-사전제공-HMI-자료-대조-기록",
+      "summary": ""
+    },
+    "광암/90-근거-기록/2026-09-09-제어설비-IP-HMI자료정리-대조-기록.md": {
+      "hash": "49a7488c12655afd649ba2d1bb8279e257b92fa254d6fa9c4ad49521316d3df4",
+      "title": "2026-09-09 제어설비 IP 및 HMI 자료정리 대조 기록",
+      "mtime": "2026-09-09T05:10:08.601Z",
+      "category": "광암",
+      "href": "/광암/90-근거-기록/2026-09-09-제어설비-IP-HMI자료정리-대조-기록",
       "summary": ""
     },
     "명장/00-명장-홈.md": {

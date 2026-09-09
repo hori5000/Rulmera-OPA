@@ -22,26 +22,36 @@ last_updated: 2026-09-09
 - [x] **GFENet Point Mapping 추출** — 14,983개
 - [x] **FSGateway Source 정의 확인** — `\\localhost\FSGateway / OPC_DeviceGroup`, Point 0
 - [x] **211/212 VIEW Primary/Secondary 확인**
-- [x] **HistData ViewStream Source 확인** — 13 Point
+- [x] **HistData ViewStream Source 확인** — 조회구성 확인. 단 자료별 주소 `211.120` / `192.168.0.120` 불일치
+- [x] **제어망 LINE A/B 명칭** — `211.x=LINE A`, `212.x=LINE B`
+- [x] **POS11 IP 식별** — `211.120/212.120 = 감시제어 OS POS11`
+- [x] **InTouch Tag DB 메타데이터** — IODisc 10,146 + IOReal 4,724 확보
+- [x] **Logging/Alarm 1차 집계** — IOReal Logged=Yes 4,214 / IODisc AlarmState=On 3,498
 
 ---
 
-## 1순위 — 기존 제공자료에서 선택 재수집
+## 1순위 — 바로 진행 가능한 내부 분석
+
+- [ ] **14,870개 HMI Tag Master ↔ 14,983개 dde.cfg Point 결합**
+- [ ] **HMI Tag/Item ↔ XG5000 Address Dictionary JOIN**
+- [ ] P8 `.18` 역할 재확인
+- [ ] P52/P56 실제 Source/PLC 확인
+
+## 2순위 — 기존 제공자료에서 선택 재수집
 
 Upload-Lite `00_ALL_FILES.csv`에서 원본 트리에 존재가 확인됐다.
 
-- [ ] **`tagname.x`** — 최신 2024 Project Root 우선
-- [ ] **`tagnames.ndx`**
 - [ ] **`dhistcfg.ini`**
-- [ ] **`alarm.cfg`**
 - [ ] **`HMi backup\historian.txt`**
+- [ ] **`alarm.cfg`**
+- [ ] `tagname.x / tagnames.ndx` — 원본 검증/보강
 - [ ] 2023 `dde.cfg` — 2024와 비교해 구성 변경 이력 확인
 
 > 이 항목들은 우선 현장 재방문/재요청 항목이 아니라 **기존 제공자료에서 다시 수집할 항목**이다.
 
 ---
 
-## 2순위 — 현재 2026 런타임 확인
+## 3순위 — 현재 2026 런타임 확인
 
 - [ ] **DeviceXPlorer `Tools → Options → DDE/SuiteLink` Application Name**
 - [ ] DeviceXPlorer 각 Device의 `DDE/SuiteLink Enable`, `Topic Name`, Update Cycle
@@ -62,21 +72,17 @@ Upload-Lite `00_ALL_FILES.csv`에서 원본 트리에 존재가 확인됐다.
 
 ---
 
-## 3순위 — InTouch 전체 Tag 메타데이터
+## 4순위 — InTouch 현재 Tag 메타데이터 변경분
 
-- [ ] **InTouch DBDump CSV**
-- [ ] Tag Type
-- [ ] Access/Source
-- [ ] Item Name
-- [ ] Log Data
-- [ ] Alarm 설정
-- [ ] Description / Unit
+- [ ] **2026 현재 InTouch DBDump CSV**
+- [ ] 2024 HMI Tag Master와 Added/Removed/Changed 비교
+- [ ] Logged/Alarm/AccessName/ItemName 변경 추적
 
-> `dde.cfg`에서 통신 Source/Topic/Item은 이미 대량 추출했으므로, DBDump는 이제 **전체 Tag 메타데이터 보강용**이다.
+> 2024 기준 IODisc/IOReal 메타데이터는 이미 확보했으므로 현재 DBDump의 목적은 **변경분 확인**이다.
 
 ---
 
-## 4순위 — Historian 실제 저장구조
+## 5순위 — Historian 실제 저장구조
 
 - [ ] Historian SMC `Storage → Imported Nodes`
 - [ ] Historian SMC `Public Groups → InTouch Nodes`
@@ -90,7 +96,7 @@ Upload-Lite `00_ALL_FILES.csv`에서 원본 트리에 존재가 확인됐다.
 
 ---
 
-## 5순위 — Alarm DB 최종 확정
+## 6순위 — Alarm DB 최종 확정
 
 - [ ] `alarm.cfg` 분석
 - [ ] Alarm DB Logger Manager `Server Name`
@@ -107,8 +113,9 @@ Upload-Lite `00_ALL_FILES.csv`에서 원본 트리에 존재가 확인됐다.
 - [ ] PLC 통신 Matrix 작성 — 211/212망, 모듈, Station, 송수신 메모리
 - [ ] PLC Address Dictionary 작성 — 주소/심볼/주석/프로그램
 - [ ] PCS2 Station 1~24 ↔ FCC 24개 매핑 검증
-- [ ] **14,983개 GFENet Point ↔ PLC Address Dictionary JOIN**
+- [ ] **14,870개 HMI Tag Master + 14,983개 GFENet Point ↔ PLC Address Dictionary JOIN**
 - [ ] `P52/P56/PLC3`의 실제 대상 확인
+- [ ] `211=LINE A / 212=LINE B` 기준 설비별 Master/Slave/듀얼NIC 구조 분류
 
 ---
 
@@ -135,3 +142,6 @@ Upload-Lite `00_ALL_FILES.csv`에서 원본 트리에 존재가 확인됐다.
 - [[../20-현장-시스템/03-광암-실제-연결-확인-파일-및-설정위치]]
 - [[../30-데이터-분석/03-광암-InTouch-dde-cfg-통신매핑-분석]]
 - [[../20-현장-시스템/04-광암-PLC-XG5000-구조-및-통신맵]]
+
+
+신규 근거: [[2026-09-09-제어설비-IP-HMI자료정리-대조-기록]]

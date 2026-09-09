@@ -4,12 +4,14 @@ title: 광암 PLC-Tag-Historian 데이터계보 구축
 plant: 광암
 category: 데이터분석
 status: action-required
-revision: 0.2
+revision: 0.3
 last_updated: 2026-09-09
 source_refs:
   - SRC-XG5000-GW-20260908
   - SRC-WONDERWARE-GW-20260908
   - SRC-PREVISIT-HMI-GW-20260909
+  - SRC-GW-HUB-IPMAP-201609
+  - SRC-GW-HMI-DATA-20240502
   - SRC-WWALMDB-BAK-ANALYSIS
 ---
 
@@ -107,17 +109,19 @@ Physical Signal
 
 2024 GFENet의 13개 주요 Topic과 이름이 완전히 일치한다.
 
-### Tagname.x / DBDump
+### HMI Tag DB / DBDump 계열
+
+`광암정수센터_HMI자료정리.xlsx`의 `광암_태그` Sheet에서 이미 다음을 확보했다.
 
 ```text
-- Tag Type
-- Logged
-- Alarm 설정
-- Description
-- Access/Source 메타데이터 보강
+IODisc 10,146
+IOReal 4,724
+Tag Type / Comment / Logged / EventLogged
+AccessName / ItemName / ReadOnly
+Alarm 설정 / EU 일부
 ```
 
-`tagname.x`는 기존 제공자료 트리에 존재가 확인됐지만 Upload-Lite에 미포함이다.
+따라서 기본 데이터계보 구축은 바로 시작할 수 있다. `tagname.x`는 원본 검증/2026 변경분 보강용으로 활용한다.
 
 ### Historian
 
@@ -181,14 +185,15 @@ CO2
 6. Topic 13개 ↔ 2026 DeviceXPlorer 13개 Device 연결
 7. MW Item ↔ XG5000 PLC Address 대조
 
-8. 기존 제공자료에서 tagname.x / dhistcfg.ini / alarm.cfg / historian.txt 재수집
-9. 현재 2026 DeviceXPlorer Application Name 확인
-10. GFENet ↔ DeviceXPlorer 관계 확정
+8. 2024 HMI Tag Master 14,870개를 dde.cfg Point와 결합
+9. `211=LINE A / 212=LINE B`, POS11 `211.120/212.120` 네트워크 근거 반영
+10. 현재 2026 InTouch DBDump / DeviceXPlorer Application Name 확인
+11. GFENet ↔ DeviceXPlorer 관계 확정
 
-11. Historian Tag Export 연결
-12. 샘플 시계열 값 시간대조
-13. AI Canonical Feature 부여
-14. Master DB 컬럼/ETL 명세 확정
+12. dhistcfg.ini / historian.txt / Historian Tag Export 연결
+13. 샘플 시계열 값 시간대조
+14. AI Canonical Feature 부여
+15. Master DB 컬럼/ETL 명세 확정
 ```
 
 ---
@@ -198,6 +203,10 @@ CO2
 ```text
 광암-InTouch-DDE-Point-Mapping-20240329.csv
 광암-InTouch-DDE-Source-Summary-20240329.csv
+광암-HUB-IP-Map-201609_20210917.csv
+광암-HMI-IOAccess-Summary-20240502.csv
+광암-HMI-Tag-Master-Disc-Real-20240502.csv
+광암-HMI-Tag-Logging-Summary-20240502.csv
 ```
 
 Point Mapping 컬럼:
@@ -213,7 +222,7 @@ internal_id
 item_name
 ```
 
-이 CSV를 PLC Address Dictionary와 JOIN하는 것이 다음 핵심 작업이다.
+이제 `dde.cfg Point Mapping`과 `HMI Tag Master`를 먼저 결합한 뒤 PLC Address Dictionary와 JOIN하는 것이 다음 핵심 작업이다.
 
 ---
 
@@ -253,3 +262,6 @@ item_name
 - [[03-광암-InTouch-dde-cfg-통신매핑-분석]]
 - [[01-WWALMDB-AlarmDB-vs-Historian]]
 - [[../90-근거-기록/2026-09-09-사전제공-HMI-자료-대조-기록]]
+
+
+상세 교차분석: [[04-광암-HMI-TagDB-및-IP맵-교차분석]]

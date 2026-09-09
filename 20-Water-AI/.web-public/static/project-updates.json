@@ -2,52 +2,25 @@
   "schema": 1,
   "project": "water-ai",
   "title": "Water-AI 프로젝트 변경사항",
-  "version": "rev-0dfc22079e71",
-  "generated_at": "2026-09-09T03:37:10.166Z",
+  "version": "rev-ebcfcd52f4db",
+  "generated_at": "2026-09-09T05:10:29.166Z",
   "initial": false,
   "counts": {
     "added": 3,
-    "modified": 9,
+    "modified": 8,
     "deleted": 0,
     "current": 0
   },
-  "total_changes": 12,
+  "total_changes": 11,
   "changes": [
     {
-      "type": "added",
-      "category": "광암",
-      "title": "2026-09-09 사전 제공 HMI 자료 대조 기록",
-      "summary": "새 문서가 추가되었습니다.",
-      "path": "광암/90-근거-기록/2026-09-09-사전제공-HMI-자료-대조-기록.md",
-      "href": "/광암/90-근거-기록/2026-09-09-사전제공-HMI-자료-대조-기록",
-      "changed_at": "2026-09-09 03:35"
-    },
-    {
       "type": "modified",
       "category": "광암",
-      "title": "광암 Wonderware 추가 확보 체크리스트",
+      "title": "광암 PLC XG5000 구조 및 통신 맵",
       "summary": "문서 내용이 수정되었습니다.",
-      "path": "광암/90-근거-기록/2026-09-08-광암-Wonderware-추가확보-체크리스트.md",
-      "href": "/광암/90-근거-기록/2026-09-08-광암-Wonderware-추가확보-체크리스트",
-      "changed_at": "2026-09-09 03:35"
-    },
-    {
-      "type": "modified",
-      "category": "광암",
-      "title": "2026-09-08 Wonderware 자료분석 기록",
-      "summary": "문서 내용이 수정되었습니다.",
-      "path": "광암/90-근거-기록/2026-09-08-Wonderware-자료분석-기록.md",
-      "href": "/광암/90-근거-기록/2026-09-08-Wonderware-자료분석-기록",
-      "changed_at": "2026-09-09 03:35"
-    },
-    {
-      "type": "added",
-      "category": "광암",
-      "title": "광암 Obsidian v4 업데이트 내역",
-      "summary": "새 문서가 추가되었습니다.",
-      "path": "광암/90-근거-기록/2026-09-09-Obsidian-v4-업데이트내역.md",
-      "href": "/광암/90-근거-기록/2026-09-09-Obsidian-v4-업데이트내역",
-      "changed_at": "2026-09-09 03:35"
+      "path": "광암/20-현장-시스템/04-광암-PLC-XG5000-구조-및-통신맵.md",
+      "href": "/광암/20-현장-시스템/04-광암-PLC-XG5000-구조-및-통신맵",
+      "changed_at": "2026-09-09 05:10"
     },
     {
       "type": "modified",
@@ -56,7 +29,7 @@
       "summary": "문서 내용이 수정되었습니다.",
       "path": "광암/20-현장-시스템/01-광암-데이터흐름-및-통신구조.md",
       "href": "/광암/20-현장-시스템/01-광암-데이터흐름-및-통신구조",
-      "changed_at": "2026-09-09 03:35"
+      "changed_at": "2026-09-09 05:10"
     },
     {
       "type": "modified",
@@ -65,7 +38,7 @@
       "summary": "문서 내용이 수정되었습니다.",
       "path": "광암/20-현장-시스템/02-Wonderware-DeviceXPlorer-InTouch-Historian-구조.md",
       "href": "/광암/20-현장-시스템/02-Wonderware-DeviceXPlorer-InTouch-Historian-구조",
-      "changed_at": "2026-09-09 03:35"
+      "changed_at": "2026-09-09 05:10"
     },
     {
       "type": "modified",
@@ -74,7 +47,16 @@
       "summary": "문서 내용이 수정되었습니다.",
       "path": "광암/20-현장-시스템/03-광암-실제-연결-확인-파일-및-설정위치.md",
       "href": "/광암/20-현장-시스템/03-광암-실제-연결-확인-파일-및-설정위치",
-      "changed_at": "2026-09-09 03:35"
+      "changed_at": "2026-09-09 05:10"
+    },
+    {
+      "type": "added",
+      "category": "광암",
+      "title": "광암 Obsidian v5 업데이트내역",
+      "summary": "새 문서가 추가되었습니다.",
+      "path": "광암/90-근거-기록/2026-09-09-Obsidian-v5-업데이트내역.md",
+      "href": "/광암/90-근거-기록/2026-09-09-Obsidian-v5-업데이트내역",
+      "changed_at": "2026-09-09 05:10"
     },
     {
       "type": "modified",
@@ -83,25 +65,16 @@
       "summary": "문서 내용이 수정되었습니다.",
       "path": "광암/30-데이터-분석/02-광암-PLC-태그-Historian-데이터계보-구축.md",
       "href": "/광암/30-데이터-분석/02-광암-PLC-태그-Historian-데이터계보-구축",
-      "changed_at": "2026-09-09 03:35"
+      "changed_at": "2026-09-09 05:10"
     },
     {
       "type": "modified",
       "category": "광암",
-      "title": "광암 PLC XG5000 구조 및 통신 맵",
+      "title": "2026-09-09 사전 제공 HMI 자료 대조 기록",
       "summary": "문서 내용이 수정되었습니다.",
-      "path": "광암/20-현장-시스템/04-광암-PLC-XG5000-구조-및-통신맵.md",
-      "href": "/광암/20-현장-시스템/04-광암-PLC-XG5000-구조-및-통신맵",
-      "changed_at": "2026-09-09 03:35"
-    },
-    {
-      "type": "modified",
-      "category": "광암",
-      "title": "WWALMDB AlarmDB와 Historian 분리",
-      "summary": "문서 내용이 수정되었습니다.",
-      "path": "광암/30-데이터-분석/01-WWALMDB-AlarmDB-vs-Historian.md",
-      "href": "/광암/30-데이터-분석/01-WWALMDB-AlarmDB-vs-Historian",
-      "changed_at": "2026-09-09 03:35"
+      "path": "광암/90-근거-기록/2026-09-09-사전제공-HMI-자료-대조-기록.md",
+      "href": "/광암/90-근거-기록/2026-09-09-사전제공-HMI-자료-대조-기록",
+      "changed_at": "2026-09-09 05:10"
     },
     {
       "type": "modified",
@@ -110,16 +83,34 @@
       "summary": "문서 내용이 수정되었습니다.",
       "path": "광암/00-광암-홈.md",
       "href": "/광암/00-광암-홈",
-      "changed_at": "2026-09-09 03:35"
+      "changed_at": "2026-09-09 05:10"
+    },
+    {
+      "type": "modified",
+      "category": "광암",
+      "title": "광암 Wonderware 추가 확보 체크리스트",
+      "summary": "문서 내용이 수정되었습니다.",
+      "path": "광암/90-근거-기록/2026-09-08-광암-Wonderware-추가확보-체크리스트.md",
+      "href": "/광암/90-근거-기록/2026-09-08-광암-Wonderware-추가확보-체크리스트",
+      "changed_at": "2026-09-09 05:10"
     },
     {
       "type": "added",
       "category": "광암",
-      "title": "광암 InTouch dde.cfg 통신매핑 분석",
+      "title": "2026-09-09 제어설비 IP 및 HMI 자료정리 대조 기록",
       "summary": "새 문서가 추가되었습니다.",
-      "path": "광암/30-데이터-분석/03-광암-InTouch-dde-cfg-통신매핑-분석.md",
-      "href": "/광암/30-데이터-분석/03-광암-InTouch-dde-cfg-통신매핑-분석",
-      "changed_at": "2026-09-09 03:35"
+      "path": "광암/90-근거-기록/2026-09-09-제어설비-IP-HMI자료정리-대조-기록.md",
+      "href": "/광암/90-근거-기록/2026-09-09-제어설비-IP-HMI자료정리-대조-기록",
+      "changed_at": "2026-09-09 05:10"
+    },
+    {
+      "type": "added",
+      "category": "광암",
+      "title": "광암 HMI Tag DB 및 제어망 IP 맵 교차분석",
+      "summary": "새 문서가 추가되었습니다.",
+      "path": "광암/30-데이터-분석/04-광암-HMI-TagDB-및-IP맵-교차분석.md",
+      "href": "/광암/30-데이터-분석/04-광암-HMI-TagDB-및-IP맵-교차분석",
+      "changed_at": "2026-09-09 05:10"
     }
   ],
   "history_url": "/00-프로젝트관리/00-고객-진행현황",

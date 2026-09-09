@@ -4,11 +4,13 @@ title: Wonderware DeviceXPlorer InTouch Historian 구조
 plant: 광암
 category: 시스템분석
 status: review
-revision: 0.3
+revision: 0.4
 last_updated: 2026-09-09
 source_refs:
   - SRC-WONDERWARE-GW-20260908
   - SRC-PREVISIT-HMI-GW-20260909
+  - SRC-GW-HUB-IPMAP-201609
+  - SRC-GW-HMI-DATA-20240502
 ---
 
 # Wonderware · DeviceXPlorer · InTouch · Historian 구조
@@ -78,6 +80,7 @@ SuiteLink = 1
 | Wonderware Historian | 2014 R2 SP1 v11.6.13100 | 장기 공정 시계열 저장/조회 | **제품 구성 확인, 실제 광암 Tag/Storage 미확정** |
 | Alarm DB Logger | InTouch 구성요소 | SQL Alarm/Event 기록 | `WWALMDB`와 연결되는 계층으로 판단 |
 | InTouch VIEW | Primary `211.120`, Secondary `212.120` | HMI Node 간 Tag Source | **2024 이중 Source 구성 확인** |
+| POS11 | `211.120 / 212.120` | 감시제어 OS POS11 LINE A/B | **과거 HUB/IP 문서에서 직접 식별** |
 
 ---
 
@@ -140,19 +143,39 @@ P21, P22, P23, P25, P26, P27, P30
 
 ---
 
-## `P52`, `P56`, `PLC3`는 새로 발견된 항목
+## `P52`, `P56`, `PLC3`는 보조 Topic 성격이 더 구체화됨
 
 2024 HMI에는 현재 13개 Device 목록에 없는 Source가 추가로 존재한다.
 
 | Source | Point 수 | Tag 성격에서 보이는 내용 | 현재 판단 |
 |---|---:|---|---|
-| P52 | 417 | PCS2/FCC/여과 관련 항목 다수 | P2 보조/별도 Topic 가능성, 추가 확인 |
-| P56 | 72 | PCS6/활성탄 계열 항목 | P6 보조/별도 Topic 가능성, 추가 확인 |
-| PLC3 | 1 | `GA_YU1_TBD123 → MW2600` | 과거/시험/보조 Source 가능성, 추가 확인 |
+| P52 | 417 IOReal / Logged=No 417 | `여과지동_P2P52`에 P2와 함께 분류 | **P2/여과지 계열 보조 Analog Topic 근거 강함** |
+| P56 | 72 IOReal / Logged=No 72 | `활성탄여과지_P6P56`에 P6와 함께 분류 | **P6/활성탄 계열 보조 Analog Topic 근거 강함** |
+| PLC3 | 1 | `GA_YU1_TBD123 / 침전지 대표탁도 / MW2600` | 보조 Source 가능성 우선, 별도 PLC 대수로 해석하지 않음 |
 
 이 3개를 바로 별도 PLC 3대로 해석하지 않는다.
 
 ---
+
+
+## HMI Tag DB에서 직접 확인된 Logging / Alarm 성격
+
+`광암정수센터_HMI자료정리.xlsx`의 `광암_태그` Sheet는 `:IOAccess / :IODisc / :IOReal` 구조를 갖는다.
+
+직접 집계:
+
+```text
+IODisc = 10,146
+IOReal = 4,724
+
+IOReal Logged=Yes = 4,214
+IODisc Logged=Yes = 12
+IODisc AlarmState=On = 3,498
+```
+
+따라서 광암 HMI Tag 구성은 **Analog 값은 History Logging 중심, Digital 값은 Alarm/Event 중심** 성격이 강하게 보인다.
+
+단 `Logged=Yes`는 InTouch Historical Logging 설정을 의미할 수 있으므로 **Wonderware Historian Server 저장 확정 근거로 사용하지 않는다.**
 
 ## FSGateway에 대한 판정은 오히려 더 명확해졌다
 
@@ -196,7 +219,9 @@ Application Name = \\192.9.212.120\VIEW
 Topic Name = TAGNAME
 ```
 
-따라서 `192.9.211.x / 192.9.212.x` 두 대역이 단순 우연히 같이 존재하는 것이 아니라, **적어도 HMI Source 이중화 또는 이중 경로에 실제로 사용된 흔적**이 있다.
+과거 HUB/IP 문서에서는 `211.x=LINE A`, `212.x=LINE B`로 직접 명명되어 있고 `211.120/212.120` 모두 `감시제어 OS POS11`로 적혀 있다.
+
+따라서 두 대역이 단순 우연히 같이 존재하는 것이 아니라, **POS11과 PLC 계층을 포함하는 LINE A/B 이중망으로 관리된 직접 근거**가 생겼다.
 
 다만 이것만으로:
 
@@ -257,7 +282,7 @@ historian.txt
 
 다만 Upload-Lite에서는 용량 제한/선별 규칙으로 포함되지 않았다.
 
-따라서 **현장에 다시 가기 전에 이 파일들을 기존 제공자료에서 선택 재수집**해야 한다.
+다만 기본 Tag Type/Comment/AccessName/Item/Logged/Alarm 정보는 이번 `광암_태그` Sheet에서 14,870개를 이미 확보했다. 따라서 `tagname.x`를 기다리지 않고 PLC 주소 JOIN을 시작할 수 있다. `dhistcfg.ini / historian.txt`는 실제 History 저장계층 확정을 위해 여전히 우선 확보한다.
 
 ---
 
@@ -280,19 +305,21 @@ flowchart LR
 
 ## AI 관점 우선순위
 
-1. `dde.cfg`에서 추출한 14,983개 GFENet Point를 PLC Address Dictionary와 연결한다.
-2. 기존 제공자료에서 `tagname.x`, `dhistcfg.ini`, `alarm.cfg`, `historian.txt`를 다시 뽑는다.
+1. **14,870개 HMI Tag Master + 14,983개 dde.cfg Point를 PLC Address Dictionary와 연결한다.**
+2. 현재 2026 InTouch DBDump와 비교해 2024→2026 Tag 변경을 확인한다.
 3. 현재 2026 DeviceXPlorer GUI에서 실제 SuiteLink Application Name을 확인한다.
 4. `GFENet ↔ DeviceXPlorer` 관계를 확정한다.
-5. Historian 실제 저장 Tag/보존기간/Export를 확인한다.
-6. `WWALMDB` Alarm/Event를 동일 시간축에 결합한다.
-7. Historian 누락 항목만 별도 실시간 Collector를 검토한다.
+5. `dhistcfg.ini / historian.txt / Historian Tag Export`로 실제 저장 Tag/보존기간을 확인한다.
+6. `HistData`의 `211.120` vs `192.168.0.120` 주소 차이를 해소한다.
+7. `WWALMDB` Alarm/Event를 동일 시간축에 결합한다.
+8. Historian 누락 항목만 별도 실시간 Collector를 검토한다.
 
 ## 관련 문서
 
 - [[01-광암-데이터흐름-및-통신구조]]
 - [[03-광암-실제-연결-확인-파일-및-설정위치]]
 - [[../30-데이터-분석/03-광암-InTouch-dde-cfg-통신매핑-분석]]
+- [[../30-데이터-분석/04-광암-HMI-TagDB-및-IP맵-교차분석]]
 - [[../30-데이터-분석/01-WWALMDB-AlarmDB-vs-Historian]]
 - [[../90-근거-기록/2026-09-09-사전제공-HMI-자료-대조-기록]]
 - [[../90-근거-기록/2026-09-08-Wonderware-자료분석-기록]]
