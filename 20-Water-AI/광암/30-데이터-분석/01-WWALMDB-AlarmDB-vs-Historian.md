@@ -1,4 +1,4 @@
----
+﻿---
 doc_id: GW-DATA-001
 title: WWALMDB AlarmDB와 Historian 분리
 plant: 광암
@@ -9,7 +9,6 @@ last_updated: 2026-09-09
 source_refs:
   - SRC-WONDERWARE-GW-20260908
   - SRC-WWALMDB-BAK-ANALYSIS
-  - SRC-PREVISIT-HMI-GW-20260909
 ---
 
 # WWALMDB AlarmDB와 Historian 분리
@@ -23,10 +22,8 @@ source_refs:
 ```mermaid
 flowchart LR
     IT["InTouch"] -->|"Alarm/Event"| ADB["WWALMDB<br/>SQL Server"]
-    IT -->|"History 조회 구성"| HD["InTouch HistData / HistClient"]
-    IT -.->|"장기 공정 History 후보"| HIST["Wonderware Historian"]
+    IT -->|"Process Tag History"| HIST["Wonderware Historian"]
     ADB --> EVENT["AI용 이벤트/장애 보조 데이터"]
-    HD -.-> HIST
     HIST --> PV["AI용 공정 시계열 주 데이터"]
 ```
 
@@ -42,13 +39,7 @@ flowchart LR
 
 이전 WWALMDB 재분석에서 `$System` 계열과 Alarm/State 성격의 데이터가 다수 확인된 것도 이 구조와 일치한다.
 
-## History/Historian에서 기대할 데이터
-
-2024 사전 HMI 백업에서는 `HistdataViewstr → \\192.9.211.120\HistData / ViewStream1` 13개 Point가 직접 확인됐다. 따라서 **과거값 조회 기능이 HMI에 구성돼 있었던 것은 확인**된다.
-
-다만 이 `HistData` Source를 곧바로 Wonderware Historian Server의 실제 저장소라고 동일시하지 않는다. `dhistcfg.ini`, `historian.txt`, Historian SMC/Tag Export를 추가 대조해 실제 장기 저장계층을 확정한다.
-
-### 장기 저장계층에서 기대할 데이터
+## Historian에서 기대할 데이터
 
 - 유량/수량
 - 탁도 등 수질 PV
@@ -75,19 +66,53 @@ flowchart LR
 
 ## 다음 확인
 
-1. Historian 실제 서버/Instance 확인
-2. Historian Tag 수와 Tag 목록 Export
-3. 최초/최종 Timestamp 확인
-4. Historian Tag ↔ InTouch Tag 매핑
-5. 2024 `dde.cfg` 14,983개 GFENet Tag/Item ↔ PLC Address 대조
-6. `dhistcfg.ini` / `historian.txt` 재수집
-7. 현재 DeviceXPlorer Application Name 및 `GFENet` 관계 확인
-8. Historian 데이터와 WWALMDB Event를 Timestamp로 결합 가능한지 검증
+1. **Historian 실제 History Storage/History Block 확보**
+2. 최신 Runtime의 `StorageLocation.Path` 및 StorageNode 확인
+3. 장기간 `Timestamp/TagName/Value/Quality` Export
+4. 실제 최초/최종 Timestamp와 보존기간 확인
+5. Historian 데이터와 WWALMDB Event를 Timestamp로 결합 가능한지 검증
 
 ## 관련 문서
 
 - [[../20-현장-시스템/01-광암-데이터흐름-및-통신구조]]
 - [[../20-현장-시스템/02-Wonderware-DeviceXPlorer-InTouch-Historian-구조]]
-- [[03-광암-InTouch-dde-cfg-통신매핑-분석]]
-- [[../90-근거-기록/2026-09-09-사전제공-HMI-자료-대조-기록]]
 - [[../90-근거-기록/2026-09-08-Wonderware-자료분석-기록]]
+
+
+
+## 2026-09-09 Historian 직접 근거 추가
+
+`WWALMDB ≠ Historian` 판단은 그대로 유지된다.
+
+이번에는 `historian.txt`에서 실제 Wonderware Historian 구성을 직접 확인했다.
+
+```text
+IOServer: 192.9.211.120 / GFENet / SuiteLink
+Historian Tag: 2,235
+Storage: D:\Historian\Data\...
+```
+
+따라서 광암에는 최소 2022 시점 **공정 시계열 Historian 계층이 실제 구성돼 있었음**을 추가 확정한다.
+
+`WWALMDB`는 Alarm/Event SQL 이력, Historian은 공정 시계열 Tag 저장으로 분리한다.
+
+
+## 2026-09-09 Runtime/Holding/backup2 BAK 분석으로 추가 확정
+
+이제 저장소를 세 계층으로 구분한다.
+
+| 계층 | 확보 여부 | 역할 | AI 용도 |
+|---|---|---|---|
+| `WWALMDB` | 확보 | Alarm/Event SQL 이력 | 이상구간/장애 이벤트 보조 |
+| `Runtime` | 확보 | Historian Tag/Storage 메타데이터 | Tag 사전/주소/주기/Storage 경로 해석 |
+| 실제 `History Storage` | **미확보** | 장기간 공정 `Timestamp/Value/Quality` | 예측·최적화 주 학습 데이터 |
+
+`backup2.bak`는 이름과 달리 원래 DB가 **`Runtime`**이며, 2026-07-23 백업이다. 최신 Runtime에는 Tag 2,434개, AnalogTag 2,402개가 등록돼 있다.
+
+그러나 `ManualAnalogHistory`, `ManualDiscreteHistory`, `ManualStringHistory`는 0건이고, 실제 장기간 공정값을 포함하는 저장본은 이 BAK들에서 확인되지 않았다.
+
+따라서 **현재 확보된 DB를 “AI 학습용 Historian DB 확보 완료”로 표기하면 안 된다.** 정확한 표현은:
+
+> **Historian 설정/메타 DB 확보 완료, 실제 장기 History Storage 데이터 미확보**
+
+상세: [[06-광암-Historian-Runtime-DB-분석-및-AI학습데이터-확보판정]]
