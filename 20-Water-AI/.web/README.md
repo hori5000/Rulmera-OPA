@@ -54,3 +54,12 @@ PDF/XLSX/DOCX/PPTX/HWP/HWPX/ZIP/PLC/SCADA/DB 원본은 Git/Web에 올리지 않�
 - 자동 생성 문서(`auto_generated: true`)와 `web_exclude: true` 문서는 변경 판정에서 제외
 
 변경 비교 기준 상태는 `.web/update-state.json`에 저장한다. 이 파일은 다음 게시 시 비교 기준으로 사용하므로 삭제하지 않는다.
+
+
+## 배포별 주요 변경사항 고정 표시
+
+`.web/release-update.json`이 있으면 해당 `release_id`를 아직 게시하지 않은 첫 빌드에서 자동 SHA 비교보다 우선하여 사람이 읽기 쉬운 주요 변경사항을 팝업에 표시합니다.
+
+- 같은 `release_id`는 한 번 게시된 뒤 반복해서 신규 팝업으로 생성되지 않습니다.
+- 다음 주요 배포에서는 `release_id`를 변경하고 `changes`를 갱신합니다.
+- 일반 문서 수정은 release가 새로 대기 중이지 않을 때 기존 SHA-256 비교 방식으로 계속 감지됩니다.

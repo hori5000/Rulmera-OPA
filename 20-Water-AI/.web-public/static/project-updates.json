@@ -1,127 +1,92 @@
 {
   "schema": 1,
   "project": "water-ai",
-  "title": "Water-AI 프로젝트 변경사항",
-  "version": "rev-ce9b268b7745",
-  "generated_at": "2026-09-11T01:40:18.854Z",
+  "title": "중랑 M203 PLC 제어분석 업데이트",
+  "version": "rev-80695e7f3594",
+  "generated_at": "2026-09-11T03:44:34.047Z",
   "initial": false,
   "counts": {
-    "added": 0,
-    "modified": 12,
+    "added": 2,
+    "modified": 6,
     "deleted": 0,
     "current": 0
   },
-  "total_changes": 12,
+  "total_changes": 8,
   "changes": [
     {
+      "type": "added",
+      "category": "중랑",
+      "title": "M203 PLC 제어 Cause Tree 작성",
+      "summary": "DO 상태·AUTO/MANUAL·간헐운전·Fault/Interlock·A/B 선택에서 최종 Hz 출력까지 제어 판단 흐름을 PLC 원본 기준으로 정리했습니다.",
+      "path": "중랑/20-현장-시스템/08-M203-PLC-Cause-Tree.md",
+      "href": "/중랑/20-현장-시스템/08-M203-PLC-Cause-Tree",
+      "changed_at": "2026-09-11 03:44"
+    },
+    {
       "type": "modified",
-      "category": "프로젝트관리",
-      "title": "Water-AI PM 대시보드",
-      "summary": "문서 내용이 수정되었습니다.",
-      "path": "00-프로젝트관리/00-PM-대시보드.md",
-      "href": "/00-프로젝트관리/00-PM-대시보드",
-      "changed_at": "2026-09-10 16:36"
+      "category": "중랑",
+      "title": "A2 PILOT PLC Rule Book 보강",
+      "summary": "M203의 DO High/Middle/Low, 운전모드, 교번·간헐운전, Fault/Interlock, Hz Set/Output 관계를 실제 PLC 제어소스 기준으로 반영했습니다.",
+      "path": "중랑/20-현장-시스템/07-A2-PILOT-PLC-Rule-Book.md",
+      "href": "/중랑/20-현장-시스템/07-A2-PILOT-PLC-Rule-Book",
+      "changed_at": "2026-09-11 03:44"
+    },
+    {
+      "type": "added",
+      "category": "중랑",
+      "title": "M203 Master Dataset 정의",
+      "summary": "장기 SCADA Logger와 PLC Rule을 결합해 DO·RUN·Hz·전력뿐 아니라 운전모드와 운전사유까지 포함하는 학습 데이터 구조를 정의했습니다.",
+      "path": "중랑/30-데이터-분석/05-M203-Master-Dataset-정의.md",
+      "href": "/중랑/30-데이터-분석/05-M203-Master-Dataset-정의",
+      "changed_at": "2026-09-11 03:44"
+    },
+    {
+      "type": "modified",
+      "category": "중랑",
+      "title": "장기 SCADA Logger 확보상태 정정",
+      "summary": "장기 운전데이터는 이미 확보·샘플링·검증된 상태로 정정했습니다. SQL/운영 DB 확인은 AI 착수조건이 아니라 향후 실시간 연계 확인사항으로 분리했습니다.",
+      "path": "중랑/30-데이터-분석/03-장기-SCADA-Logger-데이터-확보현황.md",
+      "href": "/중랑/30-데이터-분석/03-장기-SCADA-Logger-데이터-확보현황",
+      "changed_at": "2026-09-11 03:44"
     },
     {
       "type": "modified",
       "category": "프로젝트관리",
-      "title": "프로젝트관리계획",
-      "summary": "문서 내용이 수정되었습니다.",
-      "path": "00-프로젝트관리/02-프로젝트관리계획.md",
-      "href": "/00-프로젝트관리/02-프로젝트관리계획",
-      "changed_at": "2026-09-10 16:36"
-    },
-    {
-      "type": "modified",
-      "category": "프로젝트관리",
-      "title": "마일스톤계획",
-      "summary": "문서 내용이 수정되었습니다.",
-      "path": "00-프로젝트관리/08-마일스톤계획.md",
-      "href": "/00-프로젝트관리/08-마일스톤계획",
-      "changed_at": "2026-09-10 16:36"
-    },
-    {
-      "type": "modified",
-      "category": "프로젝트관리",
-      "title": "리스크등록부",
-      "summary": "문서 내용이 수정되었습니다.",
-      "path": "00-프로젝트관리/09-리스크등록부.md",
-      "href": "/00-프로젝트관리/09-리스크등록부",
-      "changed_at": "2026-09-10 16:36"
-    },
-    {
-      "type": "modified",
-      "category": "프로젝트관리",
-      "title": "이슈로그",
-      "summary": "문서 내용이 수정되었습니다.",
+      "title": "이슈로그 갱신",
+      "summary": "'중랑 장기데이터 미확보' 판단을 해결·정정하고, 운영 DB/SQL 경로 확인은 별도 실시간 연계 이슈로 재분류했습니다.",
       "path": "00-프로젝트관리/10-이슈로그.md",
       "href": "/00-프로젝트관리/10-이슈로그",
-      "changed_at": "2026-09-10 16:36"
+      "changed_at": "2026-09-11 03:44"
     },
     {
       "type": "modified",
       "category": "프로젝트관리",
-      "title": "의사결정로그",
-      "summary": "문서 내용이 수정되었습니다.",
+      "title": "리스크등록부 갱신",
+      "summary": "M203 AI 개발은 기존 장기 Logger로 진행 가능하며, SQL/DB 적재 문제는 향후 실시간 연계 및 이력 보강 리스크로 관리하도록 조정했습니다.",
+      "path": "00-프로젝트관리/09-리스크등록부.md",
+      "href": "/00-프로젝트관리/09-리스크등록부",
+      "changed_at": "2026-09-11 03:44"
+    },
+    {
+      "type": "modified",
+      "category": "프로젝트관리",
+      "title": "PM 대시보드·마일스톤 갱신",
+      "summary": "다음 실행단계를 M203 전체 장기데이터 Master Dataset 생성 → Baseline 분석 → 머신러닝 회귀모델 비교 → Shadow Replay 순서로 반영했습니다.",
+      "path": "00-프로젝트관리/00-PM-대시보드.md",
+      "href": "/00-프로젝트관리/00-PM-대시보드",
+      "changed_at": "2026-09-11 03:44"
+    },
+    {
+      "type": "modified",
+      "category": "프로젝트관리",
+      "title": "의사결정·변경 이력 반영",
+      "summary": "PLC 제어소스에서 운전 Rule을 복원하고 Logger로 당시 상태를 확인하는 원칙과 장기데이터/SQL DB 구분 정정을 변경·의사결정 이력에 남겼습니다.",
       "path": "00-프로젝트관리/11-의사결정로그.md",
       "href": "/00-프로젝트관리/11-의사결정로그",
-      "changed_at": "2026-09-10 16:36"
-    },
-    {
-      "type": "modified",
-      "category": "프로젝트관리",
-      "title": "현장방문 기록",
-      "summary": "문서 내용이 수정되었습니다.",
-      "path": "00-프로젝트관리/12-현장방문기록.md",
-      "href": "/00-프로젝트관리/12-현장방문기록",
-      "changed_at": "2026-09-10 16:36"
-    },
-    {
-      "type": "modified",
-      "category": "프로젝트관리",
-      "title": "변경로그",
-      "summary": "문서 내용이 수정되었습니다.",
-      "path": "00-프로젝트관리/13-변경로그.md",
-      "href": "/00-프로젝트관리/13-변경로그",
-      "changed_at": "2026-09-10 16:36"
-    },
-    {
-      "type": "modified",
-      "category": "프로젝트관리",
-      "title": "액션아이템로그",
-      "summary": "문서 내용이 수정되었습니다.",
-      "path": "00-프로젝트관리/14-액션아이템로그.md",
-      "href": "/00-프로젝트관리/14-액션아이템로그",
-      "changed_at": "2026-09-10 16:36"
-    },
-    {
-      "type": "modified",
-      "category": "프로젝트관리",
-      "title": "품질·인수기준",
-      "summary": "문서 내용이 수정되었습니다.",
-      "path": "00-프로젝트관리/16-품질-인수기준.md",
-      "href": "/00-프로젝트관리/16-품질-인수기준",
-      "changed_at": "2026-09-10 16:36"
-    },
-    {
-      "type": "modified",
-      "category": "프로젝트관리",
-      "title": "근거·소스 맵",
-      "summary": "문서 내용이 수정되었습니다.",
-      "path": "00-프로젝트관리/22-근거-소스맵.md",
-      "href": "/00-프로젝트관리/22-근거-소스맵",
-      "changed_at": "2026-09-10 16:36"
-    },
-    {
-      "type": "modified",
-      "category": "WBS",
-      "title": "중소형 하수처리시설 운영 데이터 수집 체계 구축",
-      "summary": "문서 내용이 수정되었습니다.",
-      "path": "00-프로젝트관리/WBS/1.1.1 중소형 하수처리시설 운영 데이터 수집 체계 구축.md",
-      "href": "/00-프로젝트관리/WBS/1.1.1 중소형 하수처리시설 운영 데이터 수집 체계 구축",
-      "changed_at": "2026-09-10 16:36"
+      "changed_at": "2026-09-11 03:44"
     }
   ],
   "history_url": "/00-프로젝트관리/00-고객-진행현황",
-  "note": "브라우저별로 확인한 버전을 localStorage에 저장합니다."
+  "note": "9/7 현장 수집자료와 기존 장기 SCADA Logger를 연결하여 M203 제어 Rule과 AI 학습 준비상태를 갱신했습니다.",
+  "release_id": "2026-09-11-jungnang-m203-rulemapping-v5"
 }

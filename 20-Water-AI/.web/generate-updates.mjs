@@ -12,6 +12,7 @@ const sourceRoot = path.resolve(arg("--source", "."))
 const destFile = path.resolve(arg("--dest", "./static/project-updates.json"))
 const stateFile = path.resolve(arg("--state", path.join(sourceRoot, ".web", "update-state.json")))
 const maxChanges = Math.max(1, Number(arg("--max", "12")) || 12)
+const releaseFile = path.resolve(arg("--release", path.join(sourceRoot, ".web", "release-update.json")))
 
 const EXCLUDED_DIRS = new Set([
   ".git", ".web", ".web-public", ".obsidian", "node_modules", "_IMPORT", "_publish",
@@ -106,6 +107,34 @@ function parseRecentFromStatus(fileMap) {
   return rows
 }
 
+function readReleaseManifest() {
+  try {
+    const x = JSON.parse(fs.readFileSync(releaseFile, "utf8"))
+    if (!x || !x.release_id || !Array.isArray(x.changes)) return null
+    return x
+  } catch {
+    return null
+  }
+}
+
+function releaseChanges(manifest, fileMap) {
+  const now = new Date().toISOString().replace("T", " ").slice(0, 16)
+  return manifest.changes.map((c, idx) => {
+    const rel = String(c.path || "").replaceAll("\\", "/")
+    const meta = fileMap[rel] || {}
+    return {
+      type: c.type || (meta.hash ? "modified" : "current"),
+      category: c.category || meta.category || categoryFor(rel),
+      title: c.title || meta.title || path.basename(rel || `update-${idx+1}`, ".md"),
+      summary: c.summary || meta.summary || "문서 내용이 갱신되었습니다.",
+      rel,
+      href: c.href !== undefined ? c.href : (meta.href || ""),
+      display_time: c.changed_at || now,
+      mtime: meta.mtime || new Date().toISOString(),
+    }
+  })
+}
+
 const files = {}
 for (const f of walk(sourceRoot)) {
   const raw = fs.readFileSync(f.abs)
@@ -126,12 +155,18 @@ for (const f of walk(sourceRoot)) {
 const fingerprint = sha256(Buffer.from(
   Object.keys(files).sort().map(k => `${k}\0${files[k].hash}`).join("\n"), "utf8"
 ))
-const version = `rev-${fingerprint.slice(0, 12)}`
 const previous = readPreviousState()
+const release = readReleaseManifest()
+const releasePending = !!(release && previous?.release_id !== release.release_id)
+const activeReleaseId = release?.release_id || previous?.release_id || ""
+const versionFingerprint = sha256(Buffer.from(`${fingerprint}\0${activeReleaseId}`, "utf8"))
+const version = `rev-${versionFingerprint.slice(0, 12)}`
 let changes = []
 let initial = false
 
-if (previous) {
+if (releasePending) {
+  changes = releaseChanges(release, files)
+} else if (previous) {
   const prevFiles = previous.files || {}
   for (const rel of Object.keys(files)) {
     if (!prevFiles[rel]) {
@@ -184,7 +219,7 @@ for (const c of changes) counts[c.type] = (counts[c.type] || 0) + 1
 const output = {
   schema: 1,
   project: "water-ai",
-  title: "Water-AI 프로젝트 변경사항",
+  title: releasePending ? (release.title || "Water-AI 프로젝트 변경사항") : "Water-AI 프로젝트 변경사항",
   version,
   generated_at: new Date().toISOString(),
   initial,
@@ -192,7 +227,8 @@ const output = {
   total_changes: changes.length,
   changes,
   history_url: "/00-프로젝트관리/00-고객-진행현황",
-  note: "브라우저별로 확인한 버전을 localStorage에 저장합니다.",
+  note: releasePending ? (release.note || "이번 배포의 주요 변경사항입니다.") : "브라우저별로 확인한 버전을 localStorage에 저장합니다.",
+  release_id: activeReleaseId || null,
 }
 
 fs.mkdirSync(path.dirname(destFile), { recursive: true })
@@ -204,6 +240,7 @@ const state = {
   version,
   generated_at: output.generated_at,
   fingerprint,
+  release_id: activeReleaseId || null,
   files,
 }
 fs.mkdirSync(path.dirname(stateFile), { recursive: true })
@@ -217,6 +254,8 @@ console.log(JSON.stringify({
   modified: counts.modified,
   deleted: counts.deleted,
   current: counts.current,
+  releasePending,
+  releaseId: activeReleaseId || null,
   destFile,
   stateFile,
 }, null, 2))
