@@ -5,7 +5,7 @@ plant: 중랑
 category: SignalMaster
 status: review
 revision: 0.1
-last_updated: 2026-09-07
+last_updated: 2026-09-11
 source_refs:
   - SRC-FIELD-03
 related_wbs:
@@ -96,4 +96,4 @@ related_wbs:
 
 ## 추가 확인 필요
 
-ETHERFOS 분석기에서 A2 PILOT PLC로 들어오는 **실제 통신방식과 PLC 내부 수신 로직**은 A2 PILOT XG5000 원본에서 추가 확인해야 한다.
+ETHERFOS 분석기에서 A2 PILOT PLC로 들어오는 **실제 통신방식과 PLC 내부 수신 로직**은 이제 확보한 A2 PILOT XG5000 원본에서 추적할 수 있다. 다만 해당 수신 프로그램/메모리 갱신 로직의 상세 교차검토는 아직 완료되지 않았으므로 확정하지 않는다.
