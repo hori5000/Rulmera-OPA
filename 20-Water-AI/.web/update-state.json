@@ -1,23 +1,23 @@
 {
   "schema": 1,
   "project": "water-ai",
-  "version": "rev-64e10a628aba",
-  "generated_at": "2026-09-11T04:08:00.025Z",
-  "fingerprint": "01e5ae298ceee3b31cca92428c1d27a3b495e803fff2382c566a72c603477116",
-  "release_id": "2026-09-11-jungnang-m203-data-collection-handoff-v6",
+  "version": "rev-b5ec8b705cf2",
+  "generated_at": "2026-09-11T05:24:27.771Z",
+  "fingerprint": "19f0b8ea2be0d001bf07b8f95f9ad0a5d890e0bc8e04669a7704265fc8d844da",
+  "release_id": "2026-09-11-source-db-design-guide-v7",
   "files": {
     "00-START-WBS-연동.md": {
-      "hash": "5aaa1f84105ac70b757b3091e865dc2ef2716d594c66fe87e6d93982bf43ebf8",
+      "hash": "2fe56df039953cef48a741f76ba31f8c3f349de73c1d1a0ffdb7701373742fe6",
       "title": "Water-AI WBS · PM 통합 시작",
-      "mtime": "2026-09-10T17:46:20.000Z",
+      "mtime": "2026-09-10T19:34:32.000Z",
       "category": "00-START-WBS-연동.md",
       "href": "/00-START-WBS-연동",
       "summary": ""
     },
     "00-공통/00-Water-AI-공통-홈.md": {
-      "hash": "379e4a865916574ccfb115b8a1ce428026dbca2efead5224e32363f04767cbcb",
+      "hash": "2d925ecab46a8e9458ba7071b292676d017b0e4a9b4029eb65f4fc4d2188c284",
       "title": "Water AI 공통",
-      "mtime": "2026-09-10T17:46:08.000Z",
+      "mtime": "2026-09-10T19:34:06.000Z",
       "category": "공통",
       "href": "/00-공통/00-Water-AI-공통-홈",
       "summary": ""
@@ -46,6 +46,70 @@
       "href": "/00-공통/20-공정-기술/10-하수장-정수장-AI-모델-적용-원칙",
       "summary": ""
     },
+    "00-공통/30-데이터-표준/00-원천데이터-DB-구축-가이드.md": {
+      "hash": "e6ebb17478892a011ca171c5f7808cf002b4b9b6a2167ef273eb6541bb67a5c6",
+      "title": "원천 데이터 DB 구축 가이드",
+      "mtime": "2026-09-10T19:35:24.000Z",
+      "category": "공통",
+      "href": "/00-공통/30-데이터-표준/00-원천데이터-DB-구축-가이드",
+      "summary": ""
+    },
+    "00-공통/30-데이터-표준/01-원천DB-논리ERD-DDL-초안.md": {
+      "hash": "0fed93ff97b0c31b07d1cc49e1300dea4bd0e68ab4a8ce18c94bd3a7d7fbde7c",
+      "title": "원천 DB 논리 ERD·DDL 초안",
+      "mtime": "2026-09-10T19:35:04.000Z",
+      "category": "공통",
+      "href": "/00-공통/30-데이터-표준/01-원천DB-논리ERD-DDL-초안",
+      "summary": ""
+    },
+    "00-공통/30-데이터-표준/10-중랑-원천DB-적용가이드.md": {
+      "hash": "14dc15b1bdc790915537ce8e94ee7e63fd54b7babc1e740bea981fb8f9ddb421",
+      "title": "중랑 원천 DB 적용 가이드",
+      "mtime": "2026-09-10T19:33:06.000Z",
+      "category": "공통",
+      "href": "/00-공통/30-데이터-표준/10-중랑-원천DB-적용가이드",
+      "summary": ""
+    },
+    "00-공통/30-데이터-표준/11-용인-원천DB-적용가이드.md": {
+      "hash": "5ed74f54e33e9de964f5f573652a716308ff5b943ca80dcc1c421d7a242d2eb8",
+      "title": "용인 원천 DB 적용 가이드",
+      "mtime": "2026-09-10T19:33:06.000Z",
+      "category": "공통",
+      "href": "/00-공통/30-데이터-표준/11-용인-원천DB-적용가이드",
+      "summary": ""
+    },
+    "00-공통/30-데이터-표준/20-광암-원천DB-적용가이드.md": {
+      "hash": "7230b4fbd0d442581da1c077e2864d63bce5deb23443760e1261c0bcca762d04",
+      "title": "광암 원천 DB 적용 가이드",
+      "mtime": "2026-09-10T19:33:06.000Z",
+      "category": "공통",
+      "href": "/00-공통/30-데이터-표준/20-광암-원천DB-적용가이드",
+      "summary": ""
+    },
+    "00-공통/30-데이터-표준/21-명장-원천DB-적용가이드.md": {
+      "hash": "5cd1b3cd0be6ba8bcd61e6f0167f1f8a61ef068e643dd56dfa140fa7bef9bbe7",
+      "title": "명장 원천 DB 적용 가이드",
+      "mtime": "2026-09-10T19:33:06.000Z",
+      "category": "공통",
+      "href": "/00-공통/30-데이터-표준/21-명장-원천DB-적용가이드",
+      "summary": ""
+    },
+    "00-공통/30-데이터-표준/90-현장별-설계안-선택현황.md": {
+      "hash": "28e0810d42eca8efda7e48e9fbf4acecd5673ff61de2af9b1dee5fb2493e664b",
+      "title": "현장별 원천 DB 설계안 선택현황",
+      "mtime": "2026-09-10T19:33:26.000Z",
+      "category": "공통",
+      "href": "/00-공통/30-데이터-표준/90-현장별-설계안-선택현황",
+      "summary": ""
+    },
+    "00-공통/30-데이터-표준/index.md": {
+      "hash": "b2f15b7ff967a7fe5e5e121c7a69a5141f989e4f0d34ec12b032faa7ad4df441",
+      "title": "데이터 표준",
+      "mtime": "2026-09-10T19:35:06.000Z",
+      "category": "공통",
+      "href": "/00-공통/30-데이터-표준/index",
+      "summary": ""
+    },
     "00-프로젝트관리/00-OpenProject-연결.md": {
       "hash": "3d1a3f6fbe9e278745d2532e218a5a938ae91089f1d8ec20ce72f42682fa0eec",
       "title": "OpenProject 연결",
@@ -55,9 +119,9 @@
       "summary": ""
     },
     "00-프로젝트관리/00-PM-대시보드.md": {
-      "hash": "999d2383589d959f7a5e506f569bf5e9bb2093fa8d37e59c403b11b66f9fc7dc",
+      "hash": "cf45b4a3c4506f14caf727231eb51e3f10baeccfd96874410d4c099878bdb443",
       "title": "Water-AI PM 대시보드",
-      "mtime": "2026-09-10T17:50:40.000Z",
+      "mtime": "2026-09-10T19:34:06.000Z",
       "category": "프로젝트관리",
       "href": "/00-프로젝트관리/00-PM-대시보드",
       "summary": ""
@@ -87,9 +151,9 @@
       "summary": ""
     },
     "00-프로젝트관리/04-RACI.md": {
-      "hash": "67c7be96fc55961e3d6cb0aa0e147c080ff38f22f3fd83844d2b86b8595be016",
+      "hash": "bf376ce065e0606c6cf9d8dd5208c2aaa0c87ff2ead0f178e459525115b2f580",
       "title": "역할·책임 RACI / 조직·개인 배분",
-      "mtime": "2026-09-10T18:56:10.000Z",
+      "mtime": "2026-09-10T19:35:24.000Z",
       "category": "프로젝트관리",
       "href": "/00-프로젝트관리/04-RACI",
       "summary": ""
@@ -111,9 +175,9 @@
       "summary": ""
     },
     "00-프로젝트관리/06-요구사항추적표.md": {
-      "hash": "f95e1fcbb771b523b1f5fab5940543dd5f46e4ee67faabb7bbc25f5ce9a4be23",
+      "hash": "e7e25c8d00924b514320e00ebf35af142986190b2793453b4414c56351b37e67",
       "title": "요구사항추적표",
-      "mtime": "2026-09-10T17:46:08.000Z",
+      "mtime": "2026-09-10T19:34:06.000Z",
       "category": "프로젝트관리",
       "href": "/00-프로젝트관리/06-요구사항추적표",
       "summary": ""
@@ -135,9 +199,9 @@
       "summary": ""
     },
     "00-프로젝트관리/09-리스크등록부.md": {
-      "hash": "2b6295ec11b957b01508a52d89ae10b2f8e19cee31b8ee1f9331583f928c1f2f",
+      "hash": "a4ce9166ee77e27853fbd2153e8d4681143196002c1a29b9636905f0bb2cbc1f",
       "title": "리스크등록부",
-      "mtime": "2026-09-10T17:50:40.000Z",
+      "mtime": "2026-09-10T19:36:20.000Z",
       "category": "프로젝트관리",
       "href": "/00-프로젝트관리/09-리스크등록부",
       "summary": ""
@@ -151,17 +215,17 @@
       "summary": ""
     },
     "00-프로젝트관리/10-이슈로그.md": {
-      "hash": "40a6204ed1cb45e15f73bc5f5199c95f00843fefefe3618710eec91c514a3479",
+      "hash": "6e2c74ed0af1801572e6b8cf972a691ca7c2ce94007b4bff23d0d4c41914de19",
       "title": "이슈로그",
-      "mtime": "2026-09-10T17:51:10.000Z",
+      "mtime": "2026-09-10T19:36:20.000Z",
       "category": "프로젝트관리",
       "href": "/00-프로젝트관리/10-이슈로그",
       "summary": ""
     },
     "00-프로젝트관리/11-의사결정로그.md": {
-      "hash": "b4d8bb8f359e1dfcdf6f714d5fdee988e94335b28fc6ba0eb30be2c4de7546ef",
+      "hash": "8be85b5b0e0b514df802bea7793726dc5db1eb7bda2dbd1b9e270d44930fd656",
       "title": "의사결정로그",
-      "mtime": "2026-09-10T18:56:10.000Z",
+      "mtime": "2026-09-10T19:36:20.000Z",
       "category": "프로젝트관리",
       "href": "/00-프로젝트관리/11-의사결정로그",
       "summary": ""
@@ -175,17 +239,17 @@
       "summary": ""
     },
     "00-프로젝트관리/13-변경로그.md": {
-      "hash": "15b81c7a44a0b42d2342a62fd21813c020f4e0ad7b1ba77eb3e519d0b1f88c30",
+      "hash": "f2621733c834c9d593f18670997458c4aa269a13aaa275cc8b7fc3f1aee1aaa9",
       "title": "변경로그",
-      "mtime": "2026-09-10T18:56:10.000Z",
+      "mtime": "2026-09-10T19:36:20.000Z",
       "category": "프로젝트관리",
       "href": "/00-프로젝트관리/13-변경로그",
       "summary": ""
     },
     "00-프로젝트관리/14-액션아이템로그.md": {
-      "hash": "da8eb366a4002f92e474c60cadf579ddd5751087a62f948278bde16a39379144",
+      "hash": "b7a23ce53de00879d61ad1c8797c8276923aeecd25e9e5020f4195b0144ef0b5",
       "title": "액션아이템로그",
-      "mtime": "2026-09-10T18:56:10.000Z",
+      "mtime": "2026-09-10T19:36:20.000Z",
       "category": "프로젝트관리",
       "href": "/00-프로젝트관리/14-액션아이템로그",
       "summary": ""
@@ -207,9 +271,9 @@
       "summary": ""
     },
     "00-프로젝트관리/17-산출물등록부.md": {
-      "hash": "55ada9ebbbc6fab60d0d99c5902d96882a33fa82c4d4d4412a73ef66626c9b2e",
+      "hash": "2219c1422c41717f482f51a068f2d5b0a0e7f84c2fc0996b0eecd896785d2960",
       "title": "산출물등록부",
-      "mtime": "2026-09-10T17:50:40.000Z",
+      "mtime": "2026-09-10T19:34:06.000Z",
       "category": "프로젝트관리",
       "href": "/00-프로젝트관리/17-산출물등록부",
       "summary": ""
@@ -247,17 +311,17 @@
       "summary": ""
     },
     "00-프로젝트관리/22-근거-소스맵.md": {
-      "hash": "e6d4531b268f89f18d69d8aeec5ba502a7089792060787dff8fcf0150a0ad03c",
+      "hash": "87e7d5ac2cd3e9456739231312d0e9a4294e146c07278b985952757cced1cdbb",
       "title": "근거·소스 맵",
-      "mtime": "2026-09-10T17:50:40.000Z",
+      "mtime": "2026-09-10T19:34:06.000Z",
       "category": "프로젝트관리",
       "href": "/00-프로젝트관리/22-근거-소스맵",
       "summary": ""
     },
     "00-프로젝트관리/23-기관간-인터페이스-합의항목.md": {
-      "hash": "cd4a6b8206addcf1e0a28d3ee51fcee7fb94b25594434a829c16fdfd727e16f5",
+      "hash": "e75bd27f295952f4342c6538dda9f3be615b63b1b5bedc84dbf69e72acf1d5da",
       "title": "기관 간 인터페이스 합의항목",
-      "mtime": "2026-09-10T17:46:08.000Z",
+      "mtime": "2026-09-10T19:35:24.000Z",
       "category": "프로젝트관리",
       "href": "/00-프로젝트관리/23-기관간-인터페이스-합의항목",
       "summary": ""
@@ -351,9 +415,9 @@
       "summary": ""
     },
     "00-프로젝트관리/WBS/1.1.2 인공지능 학습용 빅데이터 DB 설계 및 구축.md": {
-      "hash": "6ccf527e22d511d4613138f27a656acb260e8da81f485f10493caa9d5875e62f",
+      "hash": "79076471b92bb9b6abf641e3f6363ed4808429b0d81bf60911d4d60247ea9d30",
       "title": "인공지능 학습용 빅데이터 DB 설계 및 구축",
-      "mtime": "2026-09-10T17:46:08.000Z",
+      "mtime": "2026-09-10T19:34:06.000Z",
       "category": "WBS",
       "href": "/00-프로젝트관리/WBS/1.1.2 인공지능 학습용 빅데이터 DB 설계 및 구축",
       "summary": ""
@@ -391,9 +455,9 @@
       "summary": ""
     },
     "00-프로젝트관리/WBS/1.2.2 인공지능 학습용 빅데이터 DB 설계 및 구축.md": {
-      "hash": "90490a3d9adbb1cbe720c28cf052946e7e9f521bb92c748d264a0a769ad1d49b",
+      "hash": "bff833f47de6652c0fcc43a26c66ec3bb3ace2d2a3ad1e689c2ea9900622bdfa",
       "title": "인공지능 학습용 빅데이터 DB 설계 및 구축",
-      "mtime": "2026-09-10T17:46:08.000Z",
+      "mtime": "2026-09-10T19:34:06.000Z",
       "category": "WBS",
       "href": "/00-프로젝트관리/WBS/1.2.2 인공지능 학습용 빅데이터 DB 설계 및 구축",
       "summary": ""
@@ -439,9 +503,9 @@
       "summary": ""
     },
     "00-프로젝트관리/WBS/1.3.2 인공지능 학습용 빅데이터 DB 설계 및 구축.md": {
-      "hash": "50b9f483e0f390cefc43ede78b21c408f4e775c630b18e6da7e33d467d51597c",
+      "hash": "f989ad084226bead6a1bdf12f0f995dbd02a9b1a04204f33e361cbcf1258deeb",
       "title": "인공지능 학습용 빅데이터 DB 설계 및 구축",
-      "mtime": "2026-09-10T17:46:08.000Z",
+      "mtime": "2026-09-10T19:34:06.000Z",
       "category": "WBS",
       "href": "/00-프로젝트관리/WBS/1.3.2 인공지능 학습용 빅데이터 DB 설계 및 구축",
       "summary": ""
@@ -692,6 +756,14 @@
       "mtime": "2026-09-10T18:56:10.000Z",
       "category": "2026-09-11-데이터수집팀-작업지시-적용안내.md",
       "href": "/2026-09-11-데이터수집팀-작업지시-적용안내",
+      "summary": ""
+    },
+    "2026-09-11-원천DB-구축가이드-업데이트-README.md": {
+      "hash": "582dbf5a3a491b06eb407d3504ca7706bbcf5b62ce4d2337750824bb8420f073",
+      "title": "2026-09-11 원천 데이터 DB 구축 가이드 업데이트",
+      "mtime": "2026-09-10T19:36:06.000Z",
+      "category": "2026-09-11-원천DB-구축가이드-업데이트-README.md",
+      "href": "/2026-09-11-원천DB-구축가이드-업데이트-README",
       "summary": ""
     },
     "Rulmera-OPA/20-Water-AI/00-프로젝트관리/25-Web-공개정책.md": {

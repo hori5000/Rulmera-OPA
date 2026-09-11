@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr"><head><title>원천 데이터 DB 구축 가이드 · Read Only</title><meta charset="utf-8"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto Sans KR:wght@400;700&amp;family=Noto Sans KR:ital,wght@0,400;0,600;1,400;1,600&amp;family=IBM Plex Mono:wght@400;600&amp;display=swap"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="og:site_name" content="Water-AI Project"/><meta property="og:title" content="원천 데이터 DB 구축 가이드 · Read Only"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="원천 데이터 DB 구축 가이드 · Read Only"/><meta name="twitter:description" content="원천 데이터 DB 구축 가이드 이 문서의 목적 에이치코비·서울시립대·경기대·KTC 등 과제 연관기관이 같은 원천을 참조할 수 있도록, 실증지별 원천 데이터 DB를 어떤 구조로 구축할지 선택하고 실행하기 위한 기준서다. 1."/><meta property="og:description" content="원천 데이터 DB 구축 가이드 이 문서의 목적 에이치코비·서울시립대·경기대·KTC 등 과제 연관기관이 같은 원천을 참조할 수 있도록, 실증지별 원천 데이터 DB를 어떤 구조로 구축할지 선택하고 실행하기 위한 기준서다. 1."/><meta property="og:image:alt" content="원천 데이터 DB 구축 가이드 이 문서의 목적 에이치코비·서울시립대·경기대·KTC 등 과제 연관기관이 같은 원천을 참조할 수 있도록, 실증지별 원천 데이터 DB를 어떤 구조로 구축할지 선택하고 실행하기 위한 기준서다. 1."/><meta property="og:image" content="https://water-ai.pages.dev/static/og-image.png"/><meta property="og:image:url" content="https://water-ai.pages.dev/static/og-image.png"/><meta name="twitter:image" content="https://water-ai.pages.dev/static/og-image.png"/><meta property="og:image:type" content="image/.png"/><meta property="twitter:domain" content="water-ai.pages.dev"/><meta property="og:url" content="https://water-ai.pages.dev/00-공통/30-데이터-표준/00-원천데이터-DB-구축-가이드"/><meta property="twitter:url" content="https://water-ai.pages.dev/00-공통/30-데이터-표준/00-원천데이터-DB-구축-가이드"/><link rel="icon" href="../../static/icon.png"/><meta name="description" content="원천 데이터 DB 구축 가이드 이 문서의 목적 에이치코비·서울시립대·경기대·KTC 등 과제 연관기관이 같은 원천을 참조할 수 있도록, 실증지별 원천 데이터 DB를 어떤 구조로 구축할지 선택하고 실행하기 위한 기준서다. 1."/><meta name="generator" content="Quartz"/><link href="../../index.css" rel="stylesheet" type="text/css" data-persist="true"/><style>.expand-button {
+  position: absolute;
+  display: flex;
+  float: right;
+  padding: 0.4rem;
+  margin: 0.3rem;
+  right: 0;
+  color: var(--gray);
+  border-color: var(--dark);
+  background-color: var(--light);
+  border: 1px solid;
+  border-radius: 5px;
+  opacity: 0;
+  transition: 0.2s;
+}
+.expand-button > svg {
+  fill: var(--light);
+  filter: contrast(0.3);
+}
+.expand-button:hover {
+  cursor: pointer;
+  border-color: var(--secondary);
+}
+.expand-button:focus {
+  outline: 0;
+}
+
+pre:hover > .expand-button {
+  opacity: 1;
+  transition: 0.2s;
+}
+
+#mermaid-container {
+  position: fixed;
+  contain: layout;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: none;
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.5);
+}
+#mermaid-container.active {
+  display: inline-block;
+}
+#mermaid-container > #mermaid-space {
+  border: 1px solid var(--lightgray);
+  background-color: var(--light);
+  border-radius: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 80vh;
+  width: 80vw;
+  overflow: hidden;
+}
+#mermaid-container > #mermaid-space > .mermaid-content {
+  position: relative;
+  transform-origin: 0 0;
+  transition: transform 0.1s ease;
+  overflow: visible;
+  min-height: 200px;
+  min-width: 200px;
+}
+#mermaid-container > #mermaid-space > .mermaid-content pre {
+  margin: 0;
+  border: none;
+}
+#mermaid-container > #mermaid-space > .mermaid-content svg {
+  max-width: none;
+  height: auto;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  background: var(--light);
+  border: 1px solid var(--lightgray);
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--lightgray);
+  background: var(--light);
+  color: var(--dark);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: var(--bodyFont);
+  transition: all 0.2s ease;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:hover {
+  background: var(--lightgray);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:active {
+  transform: translateY(1px);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:nth-child(2) {
+  width: auto;
+  padding: 0 12px;
+  font-size: 14px;
+}
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiQzpcXFdPUktcXE9CU0lESUFOXFwuV2F0ZXItQUktV2ViLUxvY2FsXFxxdWFydHpcXHF1YXJ0elxcY29tcG9uZW50c1xcc3R5bGVzIiwic291cmNlcyI6WyJtZXJtYWlkLmlubGluZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBOztBQUdGO0VBQ0U7RUFDQTs7QUFHRjtFQUNFOzs7QUFLRjtFQUNFO0VBQ0E7OztBQUlKO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFOztBQUdGO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBOztBQUdGO0VBQ0U7RUFDQTs7QUFJSjtFQUNFO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7O0FBRUE7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBOztBQUVBO0VBQ0U7O0FBR0Y7RUFDRTs7QUFJRjtFQUNFO0VBQ0E7RUFDQSIsInNvdXJjZXNDb250ZW50IjpbIi5leHBhbmQtYnV0dG9uIHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbG9hdDogcmlnaHQ7XG4gIHBhZGRpbmc6IDAuNHJlbTtcbiAgbWFyZ2luOiAwLjNyZW07XG4gIHJpZ2h0OiAwOyAvLyBOT1RFOiByaWdodCB3aWxsIGJlIHNldCBpbiBtZXJtYWlkLmlubGluZS50c1xuICBjb2xvcjogdmFyKC0tZ3JheSk7XG4gIGJvcmRlci1jb2xvcjogdmFyKC0tZGFyayk7XG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWxpZ2h0KTtcbiAgYm9yZGVyOiAxcHggc29saWQ7XG4gIGJvcmRlci1yYWRpdXM6IDVweDtcbiAgb3BhY2l0eTogMDtcbiAgdHJhbnNpdGlvbjogMC4ycztcblxuICAmID4gc3ZnIHtcbiAgICBmaWxsOiB2YXIoLS1saWdodCk7XG4gICAgZmlsdGVyOiBjb250cmFzdCgwLjMpO1xuICB9XG5cbiAgJjpob3ZlciB7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xuICAgIGJvcmRlci1jb2xvcjogdmFyKC0tc2Vjb25kYXJ5KTtcbiAgfVxuXG4gICY6Zm9jdXMge1xuICAgIG91dGxpbmU6IDA7XG4gIH1cbn1cblxucHJlIHtcbiAgJjpob3ZlciA+IC5leHBhbmQtYnV0dG9uIHtcbiAgICBvcGFjaXR5OiAxO1xuICAgIHRyYW5zaXRpb246IDAuMnM7XG4gIH1cbn1cblxuI21lcm1haWQtY29udGFpbmVyIHtcbiAgcG9zaXRpb246IGZpeGVkO1xuICBjb250YWluOiBsYXlvdXQ7XG4gIHotaW5kZXg6IDk5OTtcbiAgbGVmdDogMDtcbiAgdG9wOiAwO1xuICB3aWR0aDogMTAwdnc7XG4gIGhlaWdodDogMTAwdmg7XG4gIG92ZXJmbG93OiBoaWRkZW47XG4gIGRpc3BsYXk6IG5vbmU7XG4gIGJhY2tkcm9wLWZpbHRlcjogYmx1cig0cHgpO1xuICBiYWNrZ3JvdW5kOiByZ2JhKDAsIDAsIDAsIDAuNSk7XG5cbiAgJi5hY3RpdmUge1xuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgfVxuXG4gICYgPiAjbWVybWFpZC1zcGFjZSB7XG4gICAgYm9yZGVyOiAxcHggc29saWQgdmFyKC0tbGlnaHRncmF5KTtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1saWdodCk7XG4gICAgYm9yZGVyLXJhZGl1czogNXB4O1xuICAgIHBvc2l0aW9uOiBmaXhlZDtcbiAgICB0b3A6IDUwJTtcbiAgICBsZWZ0OiA1MCU7XG4gICAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTUwJSwgLTUwJSk7XG4gICAgaGVpZ2h0OiA4MHZoO1xuICAgIHdpZHRoOiA4MHZ3O1xuICAgIG92ZXJmbG93OiBoaWRkZW47XG5cbiAgICAmID4gLm1lcm1haWQtY29udGVudCB7XG4gICAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgICB0cmFuc2Zvcm0tb3JpZ2luOiAwIDA7XG4gICAgICB0cmFuc2l0aW9uOiB0cmFuc2Zvcm0gMC4xcyBlYXNlO1xuICAgICAgb3ZlcmZsb3c6IHZpc2libGU7XG4gICAgICBtaW4taGVpZ2h0OiAyMDBweDtcbiAgICAgIG1pbi13aWR0aDogMjAwcHg7XG5cbiAgICAgIHByZSB7XG4gICAgICAgIG1hcmdpbjogMDtcbiAgICAgICAgYm9yZGVyOiBub25lO1xuICAgICAgfVxuXG4gICAgICBzdmcge1xuICAgICAgICBtYXgtd2lkdGg6IG5vbmU7XG4gICAgICAgIGhlaWdodDogYXV0bztcbiAgICAgIH1cbiAgICB9XG5cbiAgICAmID4gLm1lcm1haWQtY29udHJvbHMge1xuICAgICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgICAgYm90dG9tOiAyMHB4O1xuICAgICAgcmlnaHQ6IDIwcHg7XG4gICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgZ2FwOiA4cHg7XG4gICAgICBwYWRkaW5nOiA4cHg7XG4gICAgICBiYWNrZ3JvdW5kOiB2YXIoLS1saWdodCk7XG4gICAgICBib3JkZXI6IDFweCBzb2xpZCB2YXIoLS1saWdodGdyYXkpO1xuICAgICAgYm9yZGVyLXJhZGl1czogNnB4O1xuICAgICAgYm94LXNoYWRvdzogMCAycHggNHB4IHJnYmEoMCwgMCwgMCwgMC4xKTtcbiAgICAgIHotaW5kZXg6IDI7XG5cbiAgICAgIC5tZXJtYWlkLWNvbnRyb2wtYnV0dG9uIHtcbiAgICAgICAgZGlzcGxheTogZmxleDtcbiAgICAgICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICAgICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgICAgIHdpZHRoOiAzMnB4O1xuICAgICAgICBoZWlnaHQ6IDMycHg7XG4gICAgICAgIHBhZGRpbmc6IDA7XG4gICAgICAgIGJvcmRlcjogMXB4IHNvbGlkIHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0KTtcbiAgICAgICAgY29sb3I6IHZhcigtLWRhcmspO1xuICAgICAgICBib3JkZXItcmFkaXVzOiA0cHg7XG4gICAgICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgICAgICAgZm9udC1zaXplOiAxNnB4O1xuICAgICAgICBmb250LWZhbWlseTogdmFyKC0tYm9keUZvbnQpO1xuICAgICAgICB0cmFuc2l0aW9uOiBhbGwgMC4ycyBlYXNlO1xuXG4gICAgICAgICY6aG92ZXIge1xuICAgICAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICAgIH1cblxuICAgICAgICAmOmFjdGl2ZSB7XG4gICAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDFweCk7XG4gICAgICAgIH1cblxuICAgICAgICAvLyBTdHlsZSB0aGUgcmVzZXQgYnV0dG9uIGRpZmZlcmVudGx5XG4gICAgICAgICY6bnRoLWNoaWxkKDIpIHtcbiAgICAgICAgICB3aWR0aDogYXV0bztcbiAgICAgICAgICBwYWRkaW5nOiAwIDEycHg7XG4gICAgICAgICAgZm9udC1zaXplOiAxNHB4O1xuICAgICAgICB9XG4gICAgICB9XG4gICAgfVxuICB9XG59XG4iXX0= */</style><link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet" type="text/css" data-persist="true"/><script src="../../prescript.js" type="application/javascript" data-persist="true"></script><script type="application/javascript" data-persist="true">const fetchData = fetch("../../static/contentIndex.json").then(data => data.json())</script></head><body data-slug="00-공통/30-데이터-표준/00-원천데이터-DB-구축-가이드"><div id="quartz-root" class="page"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href="../..">Water-AI Project</a></h2><div class="spacer mobile-only"></div><div class="flex-component" style="flex-direction: row; flex-wrap: nowrap; gap: 1rem;"><div style="flex-grow: 1; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><div class="search"><button class="search-button"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg><p>검색</p></button><div class="search-container"><div class="search-space"><input autocomplete="off" class="search-bar" name="search" type="text" aria-label="검색어를 입력하세요" placeholder="검색어를 입력하세요"/><div class="search-layout" data-preview="true"></div></div></div></div></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="darkmode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="다크 모드"><title>다크 모드</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="라이트 모드"><title>라이트 모드</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="readermode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="readerIcon" fill="currentColor" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round" width="64px" height="64px" viewBox="0 0 24 24" aria-label="리더 모드"><title>리더 모드</title><g transform="translate(-1.8, -1.8) scale(1.15, 1.2)"><path d="M8.9891247,2.5 C10.1384702,2.5 11.2209868,2.96705384 12.0049645,3.76669482 C12.7883914,2.96705384 13.8709081,2.5 15.0202536,2.5 L18.7549359,2.5 C19.1691495,2.5 19.5049359,2.83578644 19.5049359,3.25 L19.5046891,4.004 L21.2546891,4.00457396 C21.6343849,4.00457396 21.9481801,4.28672784 21.9978425,4.6528034 L22.0046891,4.75457396 L22.0046891,20.25 C22.0046891,20.6296958 21.7225353,20.943491 21.3564597,20.9931534 L21.2546891,21 L2.75468914,21 C2.37499337,21 2.06119817,20.7178461 2.01153575,20.3517706 L2.00468914,20.25 L2.00468914,4.75457396 C2.00468914,4.37487819 2.28684302,4.061083 2.65291858,4.01142057 L2.75468914,4.00457396 L4.50368914,4.004 L4.50444233,3.25 C4.50444233,2.87030423 4.78659621,2.55650904 5.15267177,2.50684662 L5.25444233,2.5 L8.9891247,2.5 Z M4.50368914,5.504 L3.50468914,5.504 L3.50468914,19.5 L10.9478955,19.4998273 C10.4513189,18.9207296 9.73864328,18.5588115 8.96709342,18.5065584 L8.77307039,18.5 L5.25444233,18.5 C4.87474657,18.5 4.56095137,18.2178461 4.51128895,17.8517706 L4.50444233,17.75 L4.50368914,5.504 Z M19.5049359,17.75 C19.5049359,18.1642136 19.1691495,18.5 18.7549359,18.5 L15.2363079,18.5 C14.3910149,18.5 13.5994408,18.8724714 13.0614828,19.4998273 L20.5046891,19.5 L20.5046891,5.504 L19.5046891,5.504 L19.5049359,17.75 Z M18.0059359,3.999 L15.0202536,4 L14.8259077,4.00692283 C13.9889509,4.06666544 13.2254227,4.50975805 12.7549359,5.212 L12.7549359,17.777 L12.7782651,17.7601316 C13.4923805,17.2719483 14.3447024,17 15.2363079,17 L18.0059359,16.999 L18.0056891,4.798 L18.0033792,4.75457396 L18.0056891,4.71 L18.0059359,3.999 Z M8.9891247,4 L6.00368914,3.999 L6.00599909,4.75457396 L6.00599909,4.75457396 L6.00368914,4.783 L6.00368914,16.999 L8.77307039,17 C9.57551536,17 10.3461406,17.2202781 11.0128313,17.6202194 L11.2536891,17.776 L11.2536891,5.211 C10.8200889,4.56369974 10.1361548,4.13636104 9.37521067,4.02745763 L9.18347055,4.00692283 L8.9891247,4 Z"></path></g></svg></button></div></div><div class="explorer" data-behavior="link" data-collapsed="collapsed" data-savestate="true" data-data-fns="{&quot;order&quot;:[&quot;filter&quot;,&quot;map&quot;,&quot;sort&quot;],&quot;sortFn&quot;:&quot;(a,b)=>!a.isFolder&amp;&amp;!b.isFolder||a.isFolder&amp;&amp;b.isFolder?a.displayName.localeCompare(b.displayName,void 0,{numeric:!0,sensitivity:\&quot;base\&quot;}):!a.isFolder&amp;&amp;b.isFolder?1:-1&quot;,&quot;filterFn&quot;:&quot;node=>node.slugSegment!==\&quot;tags\&quot;&quot;,&quot;mapFn&quot;:&quot;node=>node&quot;}"><button type="button" class="explorer-toggle mobile-explorer hide-until-loaded" data-mobile="true" aria-controls="explorer-16"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button><button type="button" class="title-button explorer-toggle desktop-explorer" data-mobile="false" aria-expanded="true"><h2>탐색기</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-16" class="explorer-content" aria-expanded="false" role="group"><ul class="explorer-ul overflow" id="list-0"><li class="overflow-end"></li></ul></div><template id="template-file"><li><a href="#"></a></li></template><template id="template-folder"><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><button class="folder-button"><span class="folder-title"></span></button></div></div><div class="folder-outer"><ul class="content"></ul></div></li></template></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../00-공통/">00 공통</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../00-공통/30-데이터-표준/">30 데이터 표준</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>원천 데이터 DB 구축 가이드</a></div></nav><h1 class="article-title">원천 데이터 DB 구축 가이드</h1><p show-comma="true" class="content-meta"><time datetime="2026-09-11T05:24:20.570Z">2026년 9월 11일</time><span>11 min read</span></p></div></div><article class="popover-hint"><h1 id="원천-데이터-db-구축-가이드">원천 데이터 DB 구축 가이드<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#원천-데이터-db-구축-가이드" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<blockquote>
+<p><strong>이 문서의 목적</strong><br/>
+에이치코비·서울시립대·경기대·KTC 등 과제 연관기관이 같은 원천을 참조할 수 있도록, <strong>실증지별 원천 데이터 DB를 어떤 구조로 구축할지 선택하고 실행하기 위한 기준서</strong>다.</p>
+</blockquote>
+<h2 id="1-먼저-결론">1. 먼저 결론<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#1-먼저-결론" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>원천 데이터 DB는 <strong>코이넷이 구축 수행</strong>한다. 다만 한 사람이 임의로 설계하지 않고 아래 4명이 각 관점에서 확인한 뒤 기준선을 고정한다.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>확인자</th><th>확인 관점</th></tr></thead><tbody><tr><td>김광민</td><td>PLC/통신/현장 상호운용, 접근·보안·장애복구</td></tr><tr><td>홍효헌</td><td>과업범위, 백엔드/연계, 대외기관 제공·수용 기준</td></tr><tr><td>정교석</td><td>수집기, PLC/SCADA/Logger/DB Source Mapping, 수집주기</td></tr><tr><td>윤석훈</td><td>AI 학습 적합성, Timestamp/Feature/Target/Quality, Dataset 재현성</td></tr></tbody></table></div>
+<p><strong>4인 확인 전에는 현장 공통 기준선으로 확정하지 않는다.</strong></p>
+<blockquote>
+<p><strong>구분 원칙</strong></p>
+<ul>
+<li>중랑/광암의 기존 DB·Table·Logger/Historian 명칭은 현재 확보자료에서 확인된 내용이다.</li>
+<li><code>waterai_*</code>, <code>meta/raw/core/mart/audit</code>, A안/B안은 <strong>우리가 제안하는 구축 방향</strong>이며 4인 검토 후 확정한다.</li>
+<li>용인/명장은 실제 DB/Table 원본 분석이 부족하므로 Source Inventory 전에는 테이블명을 확정하지 않는다.</li>
+</ul>
+</blockquote>
+<h2 id="2-반드시-지킬-원칙">2. 반드시 지킬 원칙<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#2-반드시-지킬-원칙" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ol>
+<li><strong>실증지별 원천 DB는 분리한다.</strong> 중랑·용인·광암·명장을 하나의 물리 테이블에 억지로 합치지 않는다.</li>
+<li><strong>현장 원본 DB/SCADA/Historian은 수정하지 않는다.</strong> 원본은 읽기 전용 Source로 본다.</li>
+<li><strong>원본 이름을 버리지 않는다.</strong> <code>source_database / source_schema / source_table / source_column / source_tag / source_address</code>를 메타데이터로 보존한다.</li>
+<li><strong>기관에는 운영 DB 직접접속보다 읽기전용 View/API를 제공한다.</strong></li>
+<li><strong>공통 Canonical 구조는 동일하게 유지하되 현장별 Mapping은 별도 관리한다.</strong></li>
+<li><code>sample_time</code>과 <code>received_at</code>을 구분하고 원본 Timestamp도 보존한다.</li>
+<li>수질·운전·전력·제어값뿐 아니라 <code>AUTO/MANUAL</code>, <code>RUN</code>, <code>Fault</code>, <code>Interlock</code>, <code>Set Point</code>, <code>실제 적용값</code>, <code>Quality</code>를 가능한 범위에서 함께 저장한다.</li>
+<li>적재 데이터는 반드시 <strong>어디서 왔는지 역추적(Lineage)</strong> 할 수 있어야 한다.</li>
+</ol>
+<h2 id="3-현재까지-확인된-원천-db저장구조-요약">3. 현재까지 확인된 원천 DB/저장구조 요약<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#3-현재까지-확인된-원천-db저장구조-요약" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>현장</th><th>확인된 원천</th><th>현재 성격</th><th>상세 링크</th></tr></thead><tbody><tr><td>중랑</td><td><code>suyo.tb_suyo</code>, CIMON AI/DI/DI2 Logger, <code>ELECTRIC_DATA</code>/<code>OPERATOR_DATA</code> 등 SQL 설정</td><td>Long Tag History + Logger + Wide SQL 설정이 혼재</td><td><a href="../../00-공통/30-데이터-표준/10-중랑-원천DB-적용가이드" class="internal alias" data-slug="00-공통/30-데이터-표준/10-중랑-원천DB-적용가이드">중랑 상세</a></td></tr><tr><td>광암</td><td><code>WWALMDB</code>, <code>Runtime</code>, <code>Runtime.dbo.History</code>, Historian Storage, InTouch DBDump/<code>dde.cfg</code></td><td>Alarm/Event와 Historian 시계열/메타가 분리</td><td><a href="../../00-공통/30-데이터-표준/20-광암-원천DB-적용가이드" class="internal alias" data-slug="00-공통/30-데이터-표준/20-광암-원천DB-적용가이드">광암 상세</a></td></tr><tr><td>용인</td><td>중앙 시계열 저장/DX 인프라 방향은 확인, 실제 Database/Schema/Table명은 미확보</td><td>상세 Source Inventory 필요</td><td><a href="../../00-공통/30-데이터-표준/11-용인-원천DB-적용가이드" class="internal alias" data-slug="00-공통/30-데이터-표준/11-용인-원천DB-적용가이드">용인 상세</a></td></tr><tr><td>명장</td><td>최종 정수 적용/실증 대상, 실제 Database/Schema/Table명은 미확보</td><td>광암 표준을 참조하되 현장 Source 별도 확인</td><td><a href="../../00-공통/30-데이터-표준/21-명장-원천DB-적용가이드" class="internal alias" data-slug="00-공통/30-데이터-표준/21-명장-원천DB-적용가이드">명장 상세</a></td></tr></tbody></table></div>
+<h2 id="4-선택-가능한-설계안">4. 선택 가능한 설계안<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#4-선택-가능한-설계안" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="설계안-a--원본-보존--canonical-master-db-분리형-권고">설계안 A — 원본 보존 + Canonical Master DB 분리형 <strong>[권고]</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#설계안-a--원본-보존--canonical-master-db-분리형-권고" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<pre><button class="expand-button" aria-label="Expand mermaid diagram" data-view-component="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M3.72 3.72a.75.75 0 011.06 1.06L2.56 7h10.88l-2.22-2.22a.75.75 0 011.06-1.06l3.5 3.5a.75.75 0 010 1.06l-3.5 3.5a.75.75 0 11-1.06-1.06l2.22-2.22H2.56l2.22 2.22a.75.75 0 11-1.06 1.06l-3.5-3.5a.75.75 0 010-1.06l3.5-3.5z"></path></svg></button><code class="mermaid" data-clipboard="&quot;flowchart LR\n    SRC[현장 원본\\nPLC/SCADA/Logger/Historian/DB] --> RAW[현장별 RAW/Replica\\n원본명·원본값 보존]\n    RAW --> META[Source/Signal/Equipment Mapping]\n    RAW --> CORE[Canonical Time-Series / Event / Control]\n    META --> CORE\n    CORE --> VIEW[기관공유 Read-only View/API]\n    CORE --> MART[AI/DT/MRV Dataset Mart]&quot;">flowchart LR
+    SRC[현장 원본\nPLC/SCADA/Logger/Historian/DB] --> RAW[현장별 RAW/Replica\n원본명·원본값 보존]
+    RAW --> META[Source/Signal/Equipment Mapping]
+    RAW --> CORE[Canonical Time-Series / Event / Control]
+    META --> CORE
+    CORE --> VIEW[기관공유 Read-only View/API]
+    CORE --> MART[AI/DT/MRV Dataset Mart]
+</code><div id="mermaid-container" role="dialog"><div id="mermaid-space"><div class="mermaid-content"></div></div></div></pre>
+<p><strong>핵심</strong></p>
+<ul>
+<li>기존 DB 이름·테이블을 원본 Source로 보존한다.</li>
+<li>새 DB에서는 원본 테이블 자체를 메인 모델로 삼지 않고, <code>source_id / signal_id / equipment_id</code> 외래키로 참조한다.</li>
+<li>공통 시계열/이벤트/제어 구조로 정리한 뒤 기관별 View를 제공한다.</li>
+</ul>
+<p><strong>장점</strong></p>
+<ul>
+<li>중랑 <code>tb_suyo</code> Long 구조와 광암 Historian 구조처럼 서로 완전히 다른 원천을 같은 방식으로 참조할 수 있다.</li>
+<li>원본 변경에 대한 결합도가 낮다.</li>
+<li>AI/DT/MRV/대학 연구에서 같은 Signal ID를 재사용할 수 있다.</li>
+<li>데이터 Lineage와 감사 추적이 가장 좋다.</li>
+</ul>
+<p><strong>단점</strong></p>
+<ul>
+<li>초기 Metadata/Mapping 설계가 필요하다.</li>
+<li>처음 1개 현장을 만들 때 설계 시간이 더 든다.</li>
+</ul>
+<p><strong>권고 사용처</strong>: 본 과제 정식 원천 데이터 DB.</p>
+<hr/>
+<h3 id="설계안-b--원본-테이블-replica--mappingview-중심형-신속-이행안">설계안 B — 원본 테이블 Replica + Mapping/View 중심형 <strong>[신속 이행안]</strong><a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#설계안-b--원본-테이블-replica--mappingview-중심형-신속-이행안" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<pre><button class="expand-button" aria-label="Expand mermaid diagram" data-view-component="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M3.72 3.72a.75.75 0 011.06 1.06L2.56 7h10.88l-2.22-2.22a.75.75 0 011.06-1.06l3.5 3.5a.75.75 0 010 1.06l-3.5 3.5a.75.75 0 11-1.06-1.06l2.22-2.22H2.56l2.22 2.22a.75.75 0 11-1.06 1.06l-3.5-3.5a.75.75 0 010-1.06l3.5-3.5z"></path></svg></button><code class="mermaid" data-clipboard="&quot;flowchart LR\n    SRC[현장 원본 DB/Logger] --> REP[원본 테이블명 최대한 유지한 Replica]\n    REP --> MAP[Tag/Column Mapping Table]\n    REP --> VIEW[공통 View]\n    MAP --> VIEW\n    VIEW --> USER[AI/대학/DT/MRV]&quot;">flowchart LR
+    SRC[현장 원본 DB/Logger] --> REP[원본 테이블명 최대한 유지한 Replica]
+    REP --> MAP[Tag/Column Mapping Table]
+    REP --> VIEW[공통 View]
+    MAP --> VIEW
+    VIEW --> USER[AI/대학/DT/MRV]
+</code><div id="mermaid-container" role="dialog"><div id="mermaid-space"><div class="mermaid-content"></div></div></div></pre>
+<p><strong>핵심</strong></p>
+<ul>
+<li>현재 테이블 구조와 이름을 최대한 그대로 복제한다.</li>
+<li>별도의 Mapping Table과 View로 공통 필드명을 제공한다.</li>
+</ul>
+<p><strong>장점</strong></p>
+<ul>
+<li>구현이 빠르다.</li>
+<li>기존 운영자/개발자가 원본 구조를 그대로 찾아보기 쉽다.</li>
+</ul>
+<p><strong>단점</strong></p>
+<ul>
+<li>현장마다 구조가 달라질수록 View와 Mapping 유지비용이 증가한다.</li>
+<li>중랑/광암처럼 저장철학이 다른 현장을 장기적으로 통합하기 어렵다.</li>
+<li>원본 Schema가 바뀌면 연쇄 영향이 크다.</li>
+</ul>
+<p><strong>권고 사용처</strong>: 일정이 매우 촉박한 현장의 1차 이행 또는 A안 구축 전 임시 Staging.</p>
+<h2 id="5-선택-기준">5. 선택 기준<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#5-선택-기준" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>판단기준</th><th style="text-align:right;">A안</th><th style="text-align:right;">B안</th></tr></thead><tbody><tr><td>장기 표준화</td><td style="text-align:right;">★★★★★</td><td style="text-align:right;">★★</td></tr><tr><td>기관 공동참조</td><td style="text-align:right;">★★★★★</td><td style="text-align:right;">★★★</td></tr><tr><td>데이터 추적성</td><td style="text-align:right;">★★★★★</td><td style="text-align:right;">★★★</td></tr><tr><td>초기 구축속도</td><td style="text-align:right;">★★★</td><td style="text-align:right;">★★★★★</td></tr><tr><td>현장별 이질성 대응</td><td style="text-align:right;">★★★★★</td><td style="text-align:right;">★★</td></tr><tr><td>AI/DT/MRV 확장성</td><td style="text-align:right;">★★★★★</td><td style="text-align:right;">★★★</td></tr><tr><td>유지보수</td><td style="text-align:right;">★★★★★</td><td style="text-align:right;">★★</td></tr></tbody></table></div>
+<blockquote>
+<p><strong>기본 선택은 A안</strong>으로 한다. B안을 선택하려면 일정·인프라 제약 때문에 A안을 즉시 적용하기 어려운 이유를 기록한다.</p>
+</blockquote>
+<h2 id="6-a안-권고-논리구조">6. A안 권고 논리구조<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#6-a안-권고-논리구조" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="데이터베이스-단위">데이터베이스 단위<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#데이터베이스-단위" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>실증지별 분리 예시(명칭은 제안이며 실제 구축 전 확정):</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>waterai_jungnang</span></span>
+<span data-line><span>waterai_yongin</span></span>
+<span data-line><span>waterai_gwangam</span></span>
+<span data-line><span>waterai_myeongjang</span></span></code></pre></figure>
+<p>각 DB 내부 공통 Schema 예시:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>meta   : Source/Signal/Equipment/Mapping 기준정보</span></span>
+<span data-line><span>raw    : 원천값/원천이벤트/수집로그 보존</span></span>
+<span data-line><span>core   : 공통 시계열·이벤트·제어 상태</span></span>
+<span data-line><span>mart   : AI/DT/MRV/기관별 Dataset·View</span></span>
+<span data-line><span>audit  : 품질·스키마버전·적재이력·변경추적</span></span></code></pre></figure>
+<h3 id="최소-공통-테이블">최소 공통 테이블<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#최소-공통-테이블" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Schema.Table</th><th>목적</th><th>핵심키/필드</th></tr></thead><tbody><tr><td><code>meta.source_system</code></td><td>PLC/SCADA/Logger/Historian/DB Source 등록</td><td><code>source_id</code>, type, host, db_name</td></tr><tr><td><code>meta.source_object</code></td><td>원본 DB/Schema/Table/File 등록</td><td><code>source_object_id</code>, <code>source_id</code>, object_name</td></tr><tr><td><code>meta.equipment</code></td><td>설비 Master</td><td><code>equipment_id</code>, plant_id, equipment_code</td></tr><tr><td><code>meta.signal</code></td><td>Canonical Signal Master</td><td><code>signal_id</code>, name, unit, data_type</td></tr><tr><td><code>meta.signal_mapping</code></td><td>원본주소↔Canonical ID</td><td><code>mapping_id</code>, <code>signal_id</code>, <code>source_object_id</code>, source_tag/address</td></tr><tr><td><code>raw.timeseries</code></td><td>원본 시계열 보존</td><td><code>source_object_id</code>, source_tag, source_time, raw_value</td></tr><tr><td><code>raw.event</code></td><td>Alarm/Fault/Event 원천</td><td>event_time, source_tag, state/message</td></tr><tr><td><code>raw.ingest_log</code></td><td>수집/적재 실행이력</td><td>batch_id, row_count, error_count, started_at</td></tr><tr><td><code>core.timeseries</code></td><td>기관/AI 공통 시계열</td><td><code>signal_id</code>, <code>sample_time</code>, value, quality</td></tr><tr><td><code>core.control_state</code></td><td>Mode/Set Point/Run/Interlock 등</td><td>equipment_id, sample_time, mode, setpoint, applied_value</td></tr><tr><td><code>core.event</code></td><td>정규화 Event</td><td>equipment_id/signal_id, event_time, event_type</td></tr><tr><td><code>mart.dataset_manifest</code></td><td>Dataset 버전/기간/Feature 목록</td><td>dataset_id, version, start/end, schema_version</td></tr><tr><td><code>audit.data_quality</code></td><td>결측/중복/범위/품질 결과</td><td>signal_id, period, metric, result</td></tr><tr><td><code>audit.schema_version</code></td><td>DDL/Mapping 버전</td><td>version, changed_at, change_ref</td></tr></tbody></table></div>
+<h3 id="핵심-외래키-방향">핵심 외래키 방향<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#핵심-외래키-방향" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<pre><button class="expand-button" aria-label="Expand mermaid diagram" data-view-component="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M3.72 3.72a.75.75 0 011.06 1.06L2.56 7h10.88l-2.22-2.22a.75.75 0 011.06-1.06l3.5 3.5a.75.75 0 010 1.06l-3.5 3.5a.75.75 0 11-1.06-1.06l2.22-2.22H2.56l2.22 2.22a.75.75 0 11-1.06 1.06l-3.5-3.5a.75.75 0 010-1.06l3.5-3.5z"></path></svg></button><code class="mermaid" data-clipboard="&quot;flowchart TD\n    S[meta.source_system] --> O[meta.source_object]\n    O --> M[meta.signal_mapping]\n    SIG[meta.signal] --> M\n    EQ[meta.equipment] --> SIG\n    M --> RAW[raw.timeseries]\n    SIG --> CORE[core.timeseries]\n    EQ --> CTRL[core.control_state]\n    CORE --> MART[mart.dataset_manifest / Views]&quot;">flowchart TD
+    S[meta.source_system] --> O[meta.source_object]
+    O --> M[meta.signal_mapping]
+    SIG[meta.signal] --> M
+    EQ[meta.equipment] --> SIG
+    M --> RAW[raw.timeseries]
+    SIG --> CORE[core.timeseries]
+    EQ --> CTRL[core.control_state]
+    CORE --> MART[mart.dataset_manifest / Views]
+</code><div id="mermaid-container" role="dialog"><div id="mermaid-space"><div class="mermaid-content"></div></div></div></pre>
+<p><strong>중요:</strong> 원본 <code>TAGNAME</code>, Historian <code>TagName</code>, PLC <code>MW주소</code>를 지우고 새 이름만 남기는 방식은 금지한다. Canonical ID와 원본 식별자를 함께 보존한다.</p>
+<h2 id="7-기관이-참조하는-방식">7. 기관이 참조하는 방식<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#7-기관이-참조하는-방식" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>기관에 운영 Source DB 계정을 직접 주는 구조를 기본안으로 하지 않는다.</p>
+<h3 id="공통-제공-viewapi-권고">공통 제공 View/API 권고<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#공통-제공-viewapi-권고" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>v_signal_dictionary</span></span>
+<span data-line><span>v_equipment</span></span>
+<span data-line><span>v_timeseries_common</span></span>
+<span data-line><span>v_control_state</span></span>
+<span data-line><span>v_event_common</span></span>
+<span data-line><span>v_data_quality</span></span>
+<span data-line><span>v_dataset_catalog</span></span></code></pre></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>기관/사용자</th><th>권고 접근범위</th></tr></thead><tbody><tr><td>서울시립대/경기대</td><td><code>mart</code> 읽기전용 View + Dataset Manifest</td></tr><tr><td>에이치코비 DT</td><td>설비/Signal/실시간·준실시간 View 또는 API</td></tr><tr><td>KTC</td><td>Dataset Manifest + 품질/버전/Audit View</td></tr><tr><td>파이브텍</td><td>통합검토·수용·대외 인터페이스</td></tr><tr><td>코이넷</td><td>수집/적재/Mapping/Core DB 구축·운영</td></tr></tbody></table></div>
+<h2 id="8-구현용-논리-erdddl">8. 구현용 논리 ERD·DDL<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#8-구현용-논리-erdddl" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li><a href="../../00-공통/30-데이터-표준/01-원천DB-논리ERD-DDL-초안" class="internal alias" data-slug="00-공통/30-데이터-표준/01-원천DB-논리ERD-DDL-초안">원천 DB 논리 ERD·DDL 초안</a></li>
+</ul>
+<h2 id="9-현장별-가이드">9. 현장별 가이드<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#9-현장별-가이드" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li><a href="../../00-공통/30-데이터-표준/10-중랑-원천DB-적용가이드" class="internal alias" data-slug="00-공통/30-데이터-표준/10-중랑-원천DB-적용가이드">중랑 원천 DB 적용 가이드</a></li>
+<li><a href="../../00-공통/30-데이터-표준/11-용인-원천DB-적용가이드" class="internal alias" data-slug="00-공통/30-데이터-표준/11-용인-원천DB-적용가이드">용인 원천 DB 적용 가이드</a></li>
+<li><a href="../../00-공통/30-데이터-표준/20-광암-원천DB-적용가이드" class="internal alias" data-slug="00-공통/30-데이터-표준/20-광암-원천DB-적용가이드">광암 원천 DB 적용 가이드</a></li>
+<li><a href="../../00-공통/30-데이터-표준/21-명장-원천DB-적용가이드" class="internal alias" data-slug="00-공통/30-데이터-표준/21-명장-원천DB-적용가이드">명장 원천 DB 적용 가이드</a></li>
+<li><a href="../../00-공통/30-데이터-표준/90-현장별-설계안-선택현황" class="internal alias" data-slug="00-공통/30-데이터-표준/90-현장별-설계안-선택현황">현장별 설계안 선택현황</a></li>
+</ul>
+<h2 id="10-설계안-선택착수-절차">10. 설계안 선택·착수 절차<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#10-설계안-선택착수-절차" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ol>
+<li>해당 현장 가이드의 <strong>현재 Source 현황</strong>을 확인한다.</li>
+<li>실제 DB/Logger/Historian에서 Source Object 목록을 채운다.</li>
+<li>A안/B안 중 하나를 선택한다.</li>
+<li>ERD와 DDL 초안을 만든다.</li>
+<li>대표 1일 또는 1주 데이터로 적재시험한다.</li>
+<li><code>원본행 → raw → core → 기관 View</code>를 역추적해본다.</li>
+<li>4인 검토 후 Schema v1.0을 고정한다.</li>
+<li>외부기관에는 읽기전용 View/API와 데이터사전을 전달한다.</li>
+</ol>
+<h2 id="11-4인-검토-gate">11. 4인 검토 Gate<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#11-4인-검토-gate" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>현장별 설계문서에 아래 항목을 남긴다.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>현장:</span></span>
+<span data-line><span>선택안: [ ] A안(권고)   [ ] B안(신속)</span></span>
+<span data-line><span>선택사유:</span></span>
+<span data-line><span>DB/Schema 명칭:</span></span>
+<span data-line><span>Source 목록 확인: [ ]</span></span>
+<span data-line><span>ERD 확인: [ ]</span></span>
+<span data-line><span>FK/Mapping 확인: [ ]</span></span>
+<span data-line><span>Timestamp/Quality 확인: [ ]</span></span>
+<span data-line><span>기관 공유 View 확인: [ ]</span></span>
+<span data-line><span>적재/조회 시험: [ ]</span></span>
+<span data-line> </span>
+<span data-line><span>김광민 확인: ________  일자: ________</span></span>
+<span data-line><span>홍효헌 확인: ________  일자: ________</span></span>
+<span data-line><span>정교석 확인: ________  일자: ________</span></span>
+<span data-line><span>윤석훈 확인: ________  일자: ________</span></span></code></pre></figure>
+<h2 id="12-관련-wbs">12. 관련 WBS<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#12-관련-wbs" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li><a href="../../00-프로젝트관리/WBS/1.1.2-인공지능-학습용-빅데이터-DB-설계-및-구축" class="internal alias" data-slug="00-프로젝트관리/WBS/1.1.2-인공지능-학습용-빅데이터-DB-설계-및-구축">WBS 1.1.2</a></li>
+<li><a href="../../00-프로젝트관리/WBS/1.2.2-인공지능-학습용-빅데이터-DB-설계-및-구축" class="internal alias" data-slug="00-프로젝트관리/WBS/1.2.2-인공지능-학습용-빅데이터-DB-설계-및-구축">WBS 1.2.2</a></li>
+<li><a href="../../00-프로젝트관리/WBS/1.3.2-인공지능-학습용-빅데이터-DB-설계-및-구축" class="internal alias" data-slug="00-프로젝트관리/WBS/1.3.2-인공지능-학습용-빅데이터-DB-설계-및-구축">WBS 1.3.2</a></li>
+<li><a href="../../00-프로젝트관리/04-RACI" class="internal alias" data-slug="00-프로젝트관리/04-RACI">RACI</a></li>
+<li><a href="../../00-프로젝트관리/23-기관간-인터페이스-합의항목" class="internal alias" data-slug="00-프로젝트관리/23-기관간-인터페이스-합의항목">기관 간 인터페이스</a></li>
+</ul></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="graph"><h3>그래프 뷰</h3><div class="graph-outer"><div class="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:false,&quot;enableRadial&quot;:false}"></div><button class="global-graph-icon" aria-label="Global Graph"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+                s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+                c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+                C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+                c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+                v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+                s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+                C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+                S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+                s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+                s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></button></div><div class="global-graph-outer"><div class="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.9,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.2,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:true,&quot;enableRadial&quot;:true}"></div></div></div><div class="toc desktop-only"><button type="button" class="toc-header" aria-controls="toc-5" aria-expanded="true"><h3>목차</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul id="list-1" class="toc-content overflow"><li class="depth-0"><a href="#원천-데이터-db-구축-가이드" data-for="원천-데이터-db-구축-가이드">원천 데이터 DB 구축 가이드</a></li><li class="depth-1"><a href="#1-먼저-결론" data-for="1-먼저-결론">1. 먼저 결론</a></li><li class="depth-1"><a href="#2-반드시-지킬-원칙" data-for="2-반드시-지킬-원칙">2. 반드시 지킬 원칙</a></li><li class="depth-1"><a href="#3-현재까지-확인된-원천-db저장구조-요약" data-for="3-현재까지-확인된-원천-db저장구조-요약">3. 현재까지 확인된 원천 DB/저장구조 요약</a></li><li class="depth-1"><a href="#4-선택-가능한-설계안" data-for="4-선택-가능한-설계안">4. 선택 가능한 설계안</a></li><li class="depth-2"><a href="#설계안-a--원본-보존--canonical-master-db-분리형-권고" data-for="설계안-a--원본-보존--canonical-master-db-분리형-권고">설계안 A — 원본 보존 + Canonical Master DB 분리형 [권고]</a></li><li class="depth-2"><a href="#설계안-b--원본-테이블-replica--mappingview-중심형-신속-이행안" data-for="설계안-b--원본-테이블-replica--mappingview-중심형-신속-이행안">설계안 B — 원본 테이블 Replica + Mapping/View 중심형 [신속 이행안]</a></li><li class="depth-1"><a href="#5-선택-기준" data-for="5-선택-기준">5. 선택 기준</a></li><li class="depth-1"><a href="#6-a안-권고-논리구조" data-for="6-a안-권고-논리구조">6. A안 권고 논리구조</a></li><li class="depth-2"><a href="#데이터베이스-단위" data-for="데이터베이스-단위">데이터베이스 단위</a></li><li class="depth-2"><a href="#최소-공통-테이블" data-for="최소-공통-테이블">최소 공통 테이블</a></li><li class="depth-2"><a href="#핵심-외래키-방향" data-for="핵심-외래키-방향">핵심 외래키 방향</a></li><li class="depth-1"><a href="#7-기관이-참조하는-방식" data-for="7-기관이-참조하는-방식">7. 기관이 참조하는 방식</a></li><li class="depth-2"><a href="#공통-제공-viewapi-권고" data-for="공통-제공-viewapi-권고">공통 제공 View/API 권고</a></li><li class="depth-1"><a href="#8-구현용-논리-erdddl" data-for="8-구현용-논리-erdddl">8. 구현용 논리 ERD·DDL</a></li><li class="depth-1"><a href="#9-현장별-가이드" data-for="9-현장별-가이드">9. 현장별 가이드</a></li><li class="depth-1"><a href="#10-설계안-선택착수-절차" data-for="10-설계안-선택착수-절차">10. 설계안 선택·착수 절차</a></li><li class="depth-1"><a href="#11-4인-검토-gate" data-for="11-4인-검토-gate">11. 4인 검토 Gate</a></li><li class="depth-1"><a href="#12-관련-wbs" data-for="12-관련-wbs">12. 관련 WBS</a></li><li class="overflow-end"></li></ul></div><div class="backlinks"><h3>백링크</h3><ul id="list-2" class="overflow"><li><a href="../../00-START-WBS-연동" class="internal">00-START-WBS-연동</a></li><li><a href="../../00-공통/00-Water-AI-공통-홈" class="internal">00-Water-AI-공통-홈</a></li><li><a href="../../00-공통/30-데이터-표준/01-원천DB-논리ERD-DDL-초안" class="internal">원천 DB 논리 ERD·DDL 초안</a></li><li><a href="../../00-공통/30-데이터-표준/11-용인-원천DB-적용가이드" class="internal">용인 원천 DB 적용 가이드</a></li><li><a href="../../00-공통/30-데이터-표준/21-명장-원천DB-적용가이드" class="internal">명장 원천 DB 적용 가이드</a></li><li><a href="../../00-공통/30-데이터-표준/90-현장별-설계안-선택현황" class="internal">현장별 원천 DB 설계안 선택현황</a></li><li><a href="../../00-공통/30-데이터-표준/" class="internal">index</a></li><li><a href="../../00-프로젝트관리/00-PM-대시보드" class="internal">00-PM-대시보드</a></li><li><a href="../../00-프로젝트관리/04-RACI" class="internal">04-RACI</a></li><li><a href="../../00-프로젝트관리/WBS/1.1.2-인공지능-학습용-빅데이터-DB-설계-및-구축" class="internal">인공지능 학습용 빅데이터 DB 설계 및 구축</a></li><li><a href="../../00-프로젝트관리/WBS/1.2.2-인공지능-학습용-빅데이터-DB-설계-및-구축" class="internal">인공지능 학습용 빅데이터 DB 설계 및 구축</a></li><li><a href="../../00-프로젝트관리/WBS/1.3.2-인공지능-학습용-빅데이터-DB-설계-및-구축" class="internal">인공지능 학습용 빅데이터 DB 설계 및 구축</a></li><li><a href="../../" class="internal">Water-AI 프로젝트 공유 포털</a></li><li class="overflow-end"></li></ul></div></div><footer class><p>Created with <a href="https://quartz.jzhao.xyz/">Quartz v4.5.2</a> © 2026</p><ul><li><a href="https://github.com/jackyzha0/quartz">GitHub</a></li><li><a href="https://discord.gg/cRFFHYye7t">Discord Community</a></li></ul></footer></div></div></body><script type="application/javascript" data-persist="true">function n(){let t=this.parentElement;t.classList.toggle("is-collapsed");let e=t.getElementsByClassName("callout-content")[0];if(!e)return;let l=t.classList.contains("is-collapsed");e.style.gridTemplateRows=l?"0fr":"1fr"}function c(){let t=document.getElementsByClassName("callout is-collapsible");for(let e of t){let l=e.getElementsByClassName("callout-title")[0],s=e.getElementsByClassName("callout-content")[0];if(!l||!s)continue;l.addEventListener("click",n),window.addCleanup(()=>l.removeEventListener("click",n));let o=e.classList.contains("is-collapsed");s.style.gridTemplateRows=o?"0fr":"1fr"}}document.addEventListener("nav",c);
+</script><script type="module" data-persist="true">function E(a,e){if(!a)return;function t(o){o.target===this&&(o.preventDefault(),o.stopPropagation(),e())}function n(o){o.key.startsWith("Esc")&&(o.preventDefault(),e())}a?.addEventListener("click",t),window.addCleanup(()=>a?.removeEventListener("click",t)),document.addEventListener("keydown",n),window.addCleanup(()=>document.removeEventListener("keydown",n))}function f(a){for(;a.firstChild;)a.removeChild(a.firstChild)}var m=class{constructor(e,t){this.container=e;this.content=t;this.setupEventListeners(),this.setupNavigationControls(),this.resetTransform()}isDragging=!1;startPan={x:0,y:0};currentPan={x:0,y:0};scale=1;MIN_SCALE=.5;MAX_SCALE=3;cleanups=[];setupEventListeners(){let e=this.onMouseDown.bind(this),t=this.onMouseMove.bind(this),n=this.onMouseUp.bind(this),o=this.onTouchStart.bind(this),r=this.onTouchMove.bind(this),i=this.onTouchEnd.bind(this),s=this.resetTransform.bind(this);this.container.addEventListener("mousedown",e),document.addEventListener("mousemove",t),document.addEventListener("mouseup",n),this.container.addEventListener("touchstart",o,{passive:!1}),document.addEventListener("touchmove",r,{passive:!1}),document.addEventListener("touchend",i),window.addEventListener("resize",s),this.cleanups.push(()=>this.container.removeEventListener("mousedown",e),()=>document.removeEventListener("mousemove",t),()=>document.removeEventListener("mouseup",n),()=>this.container.removeEventListener("touchstart",o),()=>document.removeEventListener("touchmove",r),()=>document.removeEventListener("touchend",i),()=>window.removeEventListener("resize",s))}cleanup(){for(let e of this.cleanups)e()}setupNavigationControls(){let e=document.createElement("div");e.className="mermaid-controls";let t=this.createButton("+",()=>this.zoom(.1)),n=this.createButton("-",()=>this.zoom(-.1)),o=this.createButton("Reset",()=>this.resetTransform());e.appendChild(n),e.appendChild(o),e.appendChild(t),this.container.appendChild(e)}createButton(e,t){let n=document.createElement("button");return n.textContent=e,n.className="mermaid-control-button",n.addEventListener("click",t),window.addCleanup(()=>n.removeEventListener("click",t)),n}onMouseDown(e){e.button===0&&(this.isDragging=!0,this.startPan={x:e.clientX-this.currentPan.x,y:e.clientY-this.currentPan.y},this.container.style.cursor="grabbing")}onMouseMove(e){this.isDragging&&(e.preventDefault(),this.currentPan={x:e.clientX-this.startPan.x,y:e.clientY-this.startPan.y},this.updateTransform())}onMouseUp(){this.isDragging=!1,this.container.style.cursor="grab"}onTouchStart(e){if(e.touches.length!==1)return;this.isDragging=!0;let t=e.touches[0];this.startPan={x:t.clientX-this.currentPan.x,y:t.clientY-this.currentPan.y}}onTouchMove(e){if(!this.isDragging||e.touches.length!==1)return;e.preventDefault();let t=e.touches[0];this.currentPan={x:t.clientX-this.startPan.x,y:t.clientY-this.startPan.y},this.updateTransform()}onTouchEnd(){this.isDragging=!1}zoom(e){let t=Math.min(Math.max(this.scale+e,this.MIN_SCALE),this.MAX_SCALE),n=this.content.getBoundingClientRect(),o=n.width/2,r=n.height/2,i=t-this.scale;this.currentPan.x-=o*i,this.currentPan.y-=r*i,this.scale=t,this.updateTransform()}updateTransform(){this.content.style.transform=`translate(${this.currentPan.x}px, ${this.currentPan.y}px) scale(${this.scale})`}resetTransform(){let t=this.content.querySelector("svg").getBoundingClientRect(),n=t.width/this.scale,o=t.height/this.scale;this.scale=1,this.currentPan={x:(this.container.clientWidth-n)/2,y:(this.container.clientHeight-o)/2},this.updateTransform()}},T=["--secondary","--tertiary","--gray","--light","--lightgray","--highlight","--dark","--darkgray","--codeFont"],y;document.addEventListener("nav",async()=>{let e=document.querySelector(".center").querySelectorAll("code.mermaid");if(e.length===0)return;y||=await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.esm.min.mjs");let t=y.default,n=new WeakMap;for(let r of e)n.set(r,r.innerText);async function o(){for(let s of e){s.removeAttribute("data-processed");let c=n.get(s);c&&(s.innerHTML=c)}let r=T.reduce((s,c)=>(s[c]=window.getComputedStyle(document.documentElement).getPropertyValue(c),s),{}),i=document.documentElement.getAttribute("saved-theme")==="dark";t.initialize({startOnLoad:!1,securityLevel:"loose",theme:i?"dark":"base",themeVariables:{fontFamily:r["--codeFont"],primaryColor:r["--light"],primaryTextColor:r["--darkgray"],primaryBorderColor:r["--tertiary"],lineColor:r["--darkgray"],secondaryColor:r["--secondary"],tertiaryColor:r["--tertiary"],clusterBkg:r["--light"],edgeLabelBackground:r["--highlight"]}}),await t.run({nodes:e})}await o(),document.addEventListener("themechange",o),window.addCleanup(()=>document.removeEventListener("themechange",o));for(let r=0;r<e.length;r++){let v=function(){let g=l.querySelector("#mermaid-space"),h=l.querySelector(".mermaid-content");if(!h)return;f(h);let w=i.querySelector("svg").cloneNode(!0);h.appendChild(w),l.classList.add("active"),g.style.cursor="grab",u=new m(g,h)},M=function(){l.classList.remove("active"),u?.cleanup(),u=null},i=e[r],s=i.parentElement,c=s.querySelector(".clipboard-button"),d=s.querySelector(".expand-button"),p=window.getComputedStyle(c),L=c.offsetWidth+parseFloat(p.marginLeft||"0")+parseFloat(p.marginRight||"0");d.style.right=`calc(${L}px + 0.3rem)`,s.prepend(d);let l=s.querySelector("#mermaid-container");if(!l)return;let u=null;d.addEventListener("click",v),E(l,M),window.addCleanup(()=>{u?.cleanup(),d.removeEventListener("click",v)})}});
+</script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js" type="application/javascript" data-persist="true"></script><script src="../../postscript.js" type="module" data-persist="true"></script></html>
