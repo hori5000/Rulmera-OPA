@@ -1,10 +1,10 @@
 {
   "schema": 1,
   "project": "water-ai",
-  "version": "rev-80695e7f3594",
-  "generated_at": "2026-09-11T03:44:34.047Z",
-  "fingerprint": "9934c527e2631f3137852447ce4859e9ca852b69d48eaca00d3efc02f0cac520",
-  "release_id": "2026-09-11-jungnang-m203-rulemapping-v5",
+  "version": "rev-64e10a628aba",
+  "generated_at": "2026-09-11T04:08:00.025Z",
+  "fingerprint": "01e5ae298ceee3b31cca92428c1d27a3b495e803fff2382c566a72c603477116",
+  "release_id": "2026-09-11-jungnang-m203-data-collection-handoff-v6",
   "files": {
     "00-START-WBS-연동.md": {
       "hash": "5aaa1f84105ac70b757b3091e865dc2ef2716d594c66fe87e6d93982bf43ebf8",
@@ -87,9 +87,9 @@
       "summary": ""
     },
     "00-프로젝트관리/04-RACI.md": {
-      "hash": "2386e7c341d3da9dad1d5c5b2166e5efbc6e6b73dbf4f8fc6dafbe04ddb6681a",
+      "hash": "67c7be96fc55961e3d6cb0aa0e147c080ff38f22f3fd83844d2b86b8595be016",
       "title": "역할·책임 RACI / 조직·개인 배분",
-      "mtime": "2026-09-10T17:46:08.000Z",
+      "mtime": "2026-09-10T18:56:10.000Z",
       "category": "프로젝트관리",
       "href": "/00-프로젝트관리/04-RACI",
       "summary": ""
@@ -159,9 +159,9 @@
       "summary": ""
     },
     "00-프로젝트관리/11-의사결정로그.md": {
-      "hash": "9404124dc5f427b8fcb3b4d71dc6d4cba23c6ea334d26803e210c59d9c748318",
+      "hash": "b4d8bb8f359e1dfcdf6f714d5fdee988e94335b28fc6ba0eb30be2c4de7546ef",
       "title": "의사결정로그",
-      "mtime": "2026-09-10T17:50:40.000Z",
+      "mtime": "2026-09-10T18:56:10.000Z",
       "category": "프로젝트관리",
       "href": "/00-프로젝트관리/11-의사결정로그",
       "summary": ""
@@ -175,25 +175,25 @@
       "summary": ""
     },
     "00-프로젝트관리/13-변경로그.md": {
-      "hash": "25a5cf72578e9c9f6c88e0a6332355a6cdcc3e028dabe994a262ca479b0a5793",
+      "hash": "15b81c7a44a0b42d2342a62fd21813c020f4e0ad7b1ba77eb3e519d0b1f88c30",
       "title": "변경로그",
-      "mtime": "2026-09-10T17:50:40.000Z",
+      "mtime": "2026-09-10T18:56:10.000Z",
       "category": "프로젝트관리",
       "href": "/00-프로젝트관리/13-변경로그",
       "summary": ""
     },
     "00-프로젝트관리/14-액션아이템로그.md": {
-      "hash": "63efd885de4f5afcf9c85cf11b6f75047926cfb17f4c7744674deaa4649dd549",
+      "hash": "da8eb366a4002f92e474c60cadf579ddd5751087a62f948278bde16a39379144",
       "title": "액션아이템로그",
-      "mtime": "2026-09-10T17:50:40.000Z",
+      "mtime": "2026-09-10T18:56:10.000Z",
       "category": "프로젝트관리",
       "href": "/00-프로젝트관리/14-액션아이템로그",
       "summary": ""
     },
     "00-프로젝트관리/15-커뮤니케이션계획.md": {
-      "hash": "0ecc10c119f5a322bf8d443c6fdbc50bc275b5a7805458f36f64b94e1efa1d32",
+      "hash": "4a12138c5d62f58cdeffb587b8053de969808a34a98b263bc89e534f2934f612",
       "title": "커뮤니케이션계획",
-      "mtime": "2026-09-10T17:46:08.000Z",
+      "mtime": "2026-09-10T18:56:10.000Z",
       "category": "프로젝트관리",
       "href": "/00-프로젝트관리/15-커뮤니케이션계획",
       "summary": ""
@@ -343,9 +343,9 @@
       "summary": ""
     },
     "00-프로젝트관리/WBS/1.1.1 중소형 하수처리시설 운영 데이터 수집 체계 구축.md": {
-      "hash": "93006372380e0a0f7d3a3b7369b8644d1ef60b247ac258802f88549b754e90bf",
+      "hash": "fde508e489b3e1639d01394b108af7addaae4f2b6f422f63c89e4ee4cf4cee9d",
       "title": "중소형 하수처리시설 운영 데이터 수집 체계 구축",
-      "mtime": "2026-09-10T17:46:08.000Z",
+      "mtime": "2026-09-10T18:56:10.000Z",
       "category": "WBS",
       "href": "/00-프로젝트관리/WBS/1.1.1 중소형 하수처리시설 운영 데이터 수집 체계 구축",
       "summary": ""
@@ -527,9 +527,9 @@
       "summary": ""
     },
     "00-프로젝트관리/WBS/2.2.1 하수처리시설 에너지 소비 분석 입력 변수 정의 및 운영 데이터 수집 체계 구축.md": {
-      "hash": "c2216755d670d79929fd4afe8c4e0821a8e40a60d88494a6660d9c8715d0ad03",
+      "hash": "63dfd8589fe82e619c3a91e53169b98d374328430deceec2281c2cb4876913a8",
       "title": "하수처리시설 에너지 소비 분석 입력 변수 정의 및 운영 데이터 수집 체계 구축",
-      "mtime": "2026-09-10T17:46:08.000Z",
+      "mtime": "2026-09-10T18:56:10.000Z",
       "category": "WBS",
       "href": "/00-프로젝트관리/WBS/2.2.1 하수처리시설 에너지 소비 분석 입력 변수 정의 및 운영 데이터 수집 체계 구축",
       "summary": ""
@@ -679,11 +679,19 @@
       "summary": ""
     },
     "2026-09-11-M203-업데이트-README.md": {
-      "hash": "da30d731b8a4b905681d2f78b5d458f4b373465e2fb9b4dd7ea9694b46b71e1f",
+      "hash": "fa9f0f58a034690fd6cf3ed7ecbf55eac27b60aed6883a4c79731e8ed685a793",
       "title": "2026-09-11 중랑 M203 업데이트",
-      "mtime": "2026-09-10T17:50:40.000Z",
+      "mtime": "2026-09-10T18:56:10.000Z",
       "category": "2026-09-11-M203-업데이트-README.md",
       "href": "/2026-09-11-M203-업데이트-README",
+      "summary": ""
+    },
+    "2026-09-11-데이터수집팀-작업지시-적용안내.md": {
+      "hash": "3bf2148ded5a8ae0f85c07f9c53f8137f0114f673667e6399828d80a0d25d5aa",
+      "title": "데이터수집팀 작업지시 적용안내",
+      "mtime": "2026-09-10T18:56:10.000Z",
+      "category": "2026-09-11-데이터수집팀-작업지시-적용안내.md",
+      "href": "/2026-09-11-데이터수집팀-작업지시-적용안내",
       "summary": ""
     },
     "Rulmera-OPA/20-Water-AI/00-프로젝트관리/25-Web-공개정책.md": {
@@ -967,9 +975,9 @@
       "summary": ""
     },
     "중랑/00-중랑-홈.md": {
-      "hash": "84aba307b11ad3e1150209e39f3c8a8e81fddcf1875c7be1e2e14acf10361305",
+      "hash": "65d5c657a5e1e066ddcac1f4800fc9cf71f09cac37de52a770505a3a5d465f78",
       "title": "Water AI · 중랑",
-      "mtime": "2026-09-10T17:50:40.000Z",
+      "mtime": "2026-09-10T18:56:10.000Z",
       "category": "중랑",
       "href": "/중랑/00-중랑-홈",
       "summary": ""
@@ -1068,6 +1076,14 @@
       "mtime": "2026-09-10T17:50:40.000Z",
       "category": "중랑",
       "href": "/중랑/30-데이터-분석/05-M203-Master-Dataset-정의",
+      "summary": ""
+    },
+    "중랑/30-데이터-분석/06-데이터수집팀-작업지시서.md": {
+      "hash": "332586a773cbb03ca305bdf797725cd10e30de961d56b4117442d74d6a982d78",
+      "title": "중랑 M203 데이터수집팀 작업지시서",
+      "mtime": "2026-09-10T18:56:10.000Z",
+      "category": "중랑",
+      "href": "/중랑/30-데이터-분석/06-데이터수집팀-작업지시서",
       "summary": ""
     },
     "중랑/60-문제해결/01-CIMON-junglang-SQL-연결실패.md": {

@@ -2,7 +2,7 @@
 type: responsibility-matrix
 project: Water AI
 status: active
-last_updated: 2026-09-06
+last_updated: 2026-09-11
 ---
 
 # 역할·책임 RACI / 조직·개인 배분
@@ -52,3 +52,9 @@ FROM "20-Water-AI/00-프로젝트관리/WBS"
 WHERE wbs
 SORT wbs ASC
 ```
+
+## 5. 중랑 M203 수집 실행 기준
+
+- PLC/SCADA/Logger 데이터 확인·매핑의 **R(주수행)**은 수집기 담당이다.
+- AI 담당은 필요한 컬럼·품질·시간축 기준을 제공하고 결과를 받아 Master Dataset/모델을 구성한다.
+- 세부 작업은 [[../중랑/30-데이터-분석/06-데이터수집팀-작업지시서|중랑 M203 데이터수집팀 작업지시서]]를 단일 시작점으로 사용한다.
