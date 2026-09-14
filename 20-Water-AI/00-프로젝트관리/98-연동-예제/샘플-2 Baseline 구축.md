@@ -13,6 +13,8 @@ after:
 tags:
   - water-ai
   - wbs-demo
+web_exclude: true
+last_updated: 2026-09-14
 ---
 
 # Baseline 구축

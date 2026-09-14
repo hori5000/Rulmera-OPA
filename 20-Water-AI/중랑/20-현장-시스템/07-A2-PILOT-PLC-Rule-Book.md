@@ -3,8 +3,8 @@ doc_id: JN-M203-RULE-001
 title: M203 송풍기 PLC Rule Book
 plant: 중랑
 status: source-confirmed-with-open-items
-revision: 1.0
-last_updated: 2026-09-11
+revision: 1.1
+last_updated: 2026-09-14
 source_refs:
   - SRC-JN-A2PILOT-20260907
   - SRC-JN-CIMON-20260907
@@ -15,7 +15,7 @@ related_wbs:
   - 2.5.2
 ---
 
-# M203 송풍기 PLC Rule Book v1.0
+# M203 송풍기 PLC Rule Book v1.1
 
 ## 기준
 
@@ -80,8 +80,8 @@ PLC에는 `간헐운전` Function Block과 다음 값이 있다.
 | 정지시간 Long | `%MW173` | 소스 초기값 `10` |
 | 정지시간 Middle | `%MW174` | 소스 초기값 `5` |
 | 정지시간 Short | `%MW175` | 소스 초기값 `0` |
-| 가동 진행시간 | `%MW176` | `M203_가동시간` |
-| 정지 진행시간 | `%MW177` | `M203_정지시간` |
+| 가동 진행시간 | `%MW176` | `M203_가동시간` — PLC 내부 Rule 변수 |
+| 정지 진행시간 | `%MW177` | `M203_정지시간` — PLC 내부 Rule 변수 |
 | 시간기준 | - | `T#1M` 사용 확인 |
 
 또한 DO High/Middle/Low 상태에 따라 정지시간 후보를 선택하는 MOVE 분기 구조가 존재한다. **High/Middle/Low ↔ L/M/S의 최종 1:1 대응은 그래픽 Ladder에서 한 번 더 확인 후 확정한다.**
@@ -101,6 +101,13 @@ PLC에는 `간헐운전` Function Block과 다음 값이 있다.
 | 선택 Mode | `%MW1016` | `...AI_DO_MOD_SET` | 현재 선택된 1~4 Mode |
 
 HMI Popup도 `AI_DO_MOD_SET == 1/2/3/4`에 따라 각각 Mode 1~4 화면/Hz를 표시한다. 따라서 **PLC가 DO 상태/제어조건을 이용해 Mode를 선택하고 그 Mode의 Hz를 적용하는 계통**은 확정할 수 있다.
+
+
+### 4.3 Timer 진행값의 내부주소와 SCADA 노출주소
+
+A2 PILOT 원본 Rule에서는 `M203_가동시간 %MW176`, `M203_정지시간 %MW177`가 확인된다. 한편 SCADA 상세매핑에는 `PID.M_203A.AI_TM_ONPV → %MW1012`, `AI_TM_OFFPV → %MW1013`가 기록되어 있다.
+
+이 두 주소쌍은 **같은 값의 내부변수/노출 Mirror인지, 별도 MOVE/계산값인지 현재 근거만으로 단정하지 않는다.** Signal Master에서는 `plc_internal_address`와 `scada_plc_address`를 분리해 보존하고, XG5000 Ladder/온라인 값 대조로 관계를 닫는다.
 
 ## 5. Hz 결정과 VVVF 출력
 
