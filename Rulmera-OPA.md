@@ -1,4 +1,4 @@
----
+﻿---
 type: vault-home
 ---
 
@@ -8,9 +8,9 @@ type: vault-home
 
 ### Rulmera
 
-- [[10-Rulmera/ProjectManager/00-ProjectManager-홈|ProjectManager]]
-- [[10-Rulmera/Player/00-Player-홈|Player]]
-- [[10-Rulmera/Gateway/00-Gateway-홈|Gateway]]
+- [[ProjectManager/00-ProjectManager-홈|ProjectManager]]
+- [[Player/00-Player-홈|Player]]
+- [[Gateway/00-Gateway-홈|Gateway]]
 
 ### Water AI
 

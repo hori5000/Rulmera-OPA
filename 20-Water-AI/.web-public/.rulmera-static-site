@@ -1,5 +1,0 @@
-﻿generated_by: BUILD-WATER-AI-WEB.ps1
-source: Rulmera-OPA/20-Water-AI
-mode: production
-generated_at: 2026-09-14 10:41:48
-publish_flow: local-build -> PUBLISH-RULMERA-OPA.ps1 -> GitHub Water-AI -> Cloudflare Pages

@@ -1,71 +1,44 @@
 {
   "schema": 1,
-  "release_id": "2026-09-14-m203-signal-master-migration-v8",
-  "title": "중랑 M203 Signal Master·직접수집·AI 실행순서 기준선 정리",
-  "note": "중랑 M203 개발을 Signal Master v0.9 QA/Freeze부터 시작하도록 전체 PM·기술문서를 재정렬하고, 과거 SCADA Logger 경로와 향후 PLC Direct Collector 경로를 분리했습니다. 웹 공개본에서도 이번 변경사항을 확인할 수 있도록 Release Update를 갱신했습니다.",
+  "release_id": "2026-09-14-m203-signal-master-freeze-v9",
+  "title": "중랑 M203(송풍기) Signal Master v0.9 Freeze 완료",
+  "note": "기존 56행 Mapping을 Signal Master 정본 규격으로 확장·QA하여 v0.9를 Freeze했습니다. 전체 장기 CLD Batch 변환 Gate를 해제했으며, 미확정 Rule/Scale은 상태값으로 분리해 v1.0 Direct 검증 과제로 유지합니다.",
   "changes": [
     {
-      "type": "added",
+      "type": "modified",
       "category": "중랑/데이터분석",
-      "title": "M203 Signal Master v0.9 신설",
-      "summary": "PLC Symbol/주소, SCADA/Logger, R/W, AI I/O, 안전여부, 근거, 역사/직접수집 상태를 Canonical ID에 연결했습니다.",
+      "title": "M203(송풍기) Signal Master v0.9 FROZEN",
+      "summary": "기존 56행 Mapping을 유지하면서 필수 정본 컬럼, Data Type 메모리폭, SQL/주기/History/Direct/QA 상태를 보강하고 Freeze Gate를 통과했습니다.",
       "path": "중랑/30-데이터-분석/04-M203-Signal-Master-v0.9.md",
       "href": "/중랑/30-데이터-분석/04-M203-Signal-Master-v0.9",
-      "changed_at": "2026-09-14 09:49"
-    },
-    {
-      "type": "modified",
-      "category": "중랑/시스템",
-      "title": "과거 Logger와 PLC Direct Collector 경로 분리",
-      "summary": "기존 SCADA/Logger/MySQL은 과거학습·검증 Source, 신규 실시간은 A2 PILOT/A2O READ-only Collector로 명확히 구분했습니다.",
-      "path": "중랑/20-현장-시스템/01-중랑-데이터흐름-및-시스템경계.md",
-      "href": "/중랑/20-현장-시스템/01-중랑-데이터흐름-및-시스템경계",
-      "changed_at": "2026-09-14 09:49"
-    },
-    {
-      "type": "modified",
-      "category": "중랑/데이터",
-      "title": "M203 Master Dataset v0.3",
-      "summary": "Signal Freeze를 선행 Gate로 두고 AUTO/MANUAL UNKNOWN, 품질/운전 Label, ORP/Interlock/Hz Set의 확인상태를 명시했습니다.",
-      "path": "중랑/30-데이터-분석/05-M203-Master-Dataset-정의.md",
-      "href": "/중랑/30-데이터-분석/05-M203-Master-Dataset-정의",
-      "changed_at": "2026-09-14 09:49"
+      "changed_at": "2026-09-14 11:17"
     },
     {
       "type": "added",
-      "category": "중랑/개발검증",
-      "title": "M203 실행순서·도구선정 기준 신설",
-      "summary": "Signal Master → CLD Batch → Dataset → Baseline → XGB/LGBM → 최적화 → Shadow와 Collector/Simulator 병행 Track을 고정했습니다.",
-      "path": "중랑/70-개발-검증/01-M203-AI-개발-실행순서-및-도구선정.md",
-      "href": "/중랑/70-개발-검증/01-M203-AI-개발-실행순서-및-도구선정",
-      "changed_at": "2026-09-14 09:49"
+      "category": "중랑/근거기록",
+      "title": "M203(송풍기) Signal Master Freeze QA",
+      "summary": "56행, Canonical ID 중복 0, 필수 정본 컬럼 누락 0과 검증상태 분포를 기록했습니다.",
+      "path": "중랑/90-근거-기록/2026-09-14-M203-Signal-Master-v0.9-Freeze-QA.md",
+      "href": "/중랑/90-근거-기록/2026-09-14-M203-Signal-Master-v0.9-Freeze-QA",
+      "changed_at": "2026-09-14 11:17"
     },
     {
       "type": "modified",
       "category": "프로젝트관리",
-      "title": "PM·마일스톤·이슈·리스크·의사결정 정합화",
-      "summary": "Signal Master v0.9 Freeze를 MS-09B로 추가하고 Batch 작업을 선행 Gate 뒤로 이동했으며 Rule Book Open Item을 5개로 통일했습니다.",
+      "title": "Signal Master Gate 완료 및 Batch Gate 해제",
+      "summary": "MS-09B와 ACT-019를 완료로 전환하고 ACT-012 전체 CLD Batch를 착수가능 상태로 갱신했습니다.",
       "path": "00-프로젝트관리/00-PM-대시보드.md",
       "href": "/00-프로젝트관리/00-PM-대시보드",
-      "changed_at": "2026-09-14 09:49"
+      "changed_at": "2026-09-14 11:17"
     },
     {
       "type": "modified",
-      "category": "공통/데이터표준",
-      "title": "DuckDB/Parquet 역할 분리",
-      "summary": "Parquet/DuckDB는 로컬 Batch·분석·Replay 작업공간이며 공식 원천/Canonical DB 선택은 기존 4인 Gate를 유지하도록 명시했습니다.",
-      "path": "00-공통/30-데이터-표준/00-원천데이터-DB-구축-가이드.md",
-      "href": "/00-공통/30-데이터-표준/00-원천데이터-DB-구축-가이드",
-      "changed_at": "2026-09-14 09:49"
-    },
-    {
-      "type": "modified",
-      "category": "Web",
-      "title": "테스트 WBS 고객 Web 노출 제거",
-      "summary": "D.1~D.3 연동 예제 문서를 web_exclude로 전환하고 고객 진행현황을 실제 M203 기술 스프린트 기준으로 정리했습니다.",
-      "path": "00-프로젝트관리/00-고객-진행현황.md",
-      "href": "/00-프로젝트관리/00-고객-진행현황",
-      "changed_at": "2026-09-14 09:49"
+      "category": "중랑/데이터",
+      "title": "Master Dataset 입력 기준선 고정",
+      "summary": "M203(송풍기) Master Dataset은 frozen Signal Master v0.9의 canonical_signal_id를 Batch 출력키로 사용하도록 갱신했습니다.",
+      "path": "중랑/30-데이터-분석/05-M203-Master-Dataset-정의.md",
+      "href": "/중랑/30-데이터-분석/05-M203-Master-Dataset-정의",
+      "changed_at": "2026-09-14 11:17"
     }
   ]
 }

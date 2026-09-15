@@ -162,6 +162,10 @@ Master Dataset에는 원시 Tag만 넣지 말고 다음 파생 컬럼을 만든�
 - 1단계는 Shadow Mode로 `현재 실제 Hz`와 `AI 권고 Hz`를 비교한다.
 - 제한적 자동제어는 Rule Book의 미확정 항목과 현장 승인조건이 모두 닫힌 뒤 검토한다.
 
+## Signal Master v0.9 Freeze 연계
+
+2026-09-14 `M203(송풍기) Signal Master v0.9`는 Freeze 완료했다. 아래 Open Item은 숨기지 않고 `PARTIAL/DIRECT_ONLY` 상태로 유지하며, 전체 장기 CLD Batch 착수를 막지는 않는다. 안전 Rule 확정 및 제한자동 제어 검토 전에는 반드시 닫아야 한다.
+
 ## 9. 아직 추가 확인이 필요한 것
 
 1. `M203_INTLOCK` 구성 접점의 정확한 Boolean 식

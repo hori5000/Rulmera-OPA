@@ -7,6 +7,8 @@ web_exclude: true
 
 # 2026-09-14 Obsidian 마이그레이션 QA
 
+> **후속 상태:** 이 문서는 v8 마이그레이션 당시 QA 기록이다. 현재 정본 상태는 [[중랑/90-근거-기록/2026-09-14-M203-Signal-Master-v0.9-Freeze-QA|M203(송풍기) Signal Master v0.9 Freeze QA]] 및 Release `2026-09-14-m203-signal-master-freeze-v9`를 따른다.
+
 ## 결과
 
 - Source QA: **PASS**
@@ -42,7 +44,7 @@ web_exclude: true
 
 ## 주요 기준선
 
-1. `M203 Signal Master v0.9 QA/Freeze` 선행
+1. `M203(송풍기) Signal Master v0.9` Freeze 완료 → 전체 CLD Batch 착수
 2. 전체 CLD Batch → Master Dataset v0.1 → Baseline
 3. XGBoost/LightGBM 머신러닝 회귀모델 비교
 4. 제약조건 기반 최적화 → Shadow Replay

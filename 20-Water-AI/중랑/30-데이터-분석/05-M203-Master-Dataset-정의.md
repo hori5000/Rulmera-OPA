@@ -12,13 +12,15 @@ related_wbs:
   - 2.2.2
 ---
 
-# M203 Master Dataset 정의 v0.3
+# M203(송풍기) Master Dataset 정의
+
+> **2026-09-14 Freeze 반영:** `04-M203-PLC-SCADA-Logger-Mapping.csv` 56행 Signal Master v0.9를 입력 기준선으로 사용한다. Batch 변환은 `canonical_signal_id`를 출력키로 사용한다. v0.3
 
 ## 목적
 
 장기 CIMON Logger와 A2 PILOT/A2O PLC Signal 기준을 동일 시간축으로 결합해 **운전결과뿐 아니라 가능한 범위의 운전문맥을 설명할 수 있는 M203 학습·Replay 데이터셋**을 만든다.
 
-> **선행 Gate:** [[04-M203-Signal-Master-v0.9|M203 Signal Master v0.9]] QA/Freeze 후 전체 CLD Batch 변환을 수행한다. 컬럼 의미가 고정되기 전에 대량 변환부터 진행하지 않는다.
+> **선행 Gate:** [[04-M203-Signal-Master-v0.9|M203(송풍기) Signal Master v0.9]]은 2026-09-14 **FROZEN**. 전체 CLD Batch 변환 Gate가 해제되었으며 `canonical_signal_id` 기준으로 변환한다.
 
 ## 기준 기간
 
