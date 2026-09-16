@@ -1,47 +1,47 @@
 # 범위·WBS
 
-## WBS 기준선 v0.1
-| WBS | 작업 | 산출물 | 담당 | 시작 | 종료 | 진행률 | 상태 |
-|---|---|---|---|---|---|---:|---|
-| 1.0 | 프로젝트 관리/PMBOK | 헌장·WBS·리스크·요구사항 | 윤석훈 | 2026-09-16 | 2027-03-15 | 15 | 진행 |
-| 2.0 | 10일 Vertical Slice PoC | E2E 데모 | 윤석훈 | 2026-09-16 | 2026-09-29 | 0 | 계획 |
-| 2.1 | A6000/모델 API 기동 | LLM API | 윤석훈 | 2026-09-16 | 2026-09-18 | 0 | 계획 |
-| 2.2 | 샘플문서 수집·색인 | 100~300문서 Index | 윤석훈 | 2026-09-17 | 2026-09-21 | 0 | 계획 |
-| 2.3 | RAG 근거답변 | Citation Chat | 윤석훈 | 2026-09-21 | 2026-09-23 | 0 | 계획 |
-| 2.4 | OPA L0~L5 차단 | Policy Demo | 윤석훈 | 2026-09-22 | 2026-09-24 | 0 | 계획 |
-| 2.5 | Responsive UI | Desktop/Mobile 동일 UI | 윤석훈 | 2026-09-21 | 2026-09-25 | 0 | 계획 |
-| 2.6 | 50문항+권한 시험 | PoC 시험결과 | 윤석훈 | 2026-09-25 | 2026-09-29 | 0 | 계획 |
-| 3.0 | 요구사항·지식모델 정제 | 요구사항/Metadata v1 | 윤석훈 | 2026-09-16 | 2026-10-09 | 10 | 진행 |
-| 4.0 | 인프라·모델 최적화 | Model/Serving Baseline | 윤석훈 | 2026-09-16 | 2026-10-16 | 0 | 계획 |
-| 5.0 | 데이터 Ingestion/RAG | 수집·정규화·검색·Rerank | 윤석훈 | 2026-09-23 | 2026-11-13 | 0 | 계획 |
-| 6.0 | Identity/OPA 권한 | Policy/ACL/Audit | 윤석훈 | 2026-10-05 | 2026-11-20 | 0 | 계획 |
-| 7.0 | 공통 Web UI | 사용자/관리자 Responsive UI | 윤석훈 | 2026-09-21 | 2026-12-04 | 0 | 계획 |
-| 8.0 | 지식 승인/정본화 | Expert Notes/Approval | 윤석훈 | 2026-10-26 | 2026-12-18 | 0 | 계획 |
-| 9.0 | Tenant/감사/운영 | 격리·감사·백업 | 윤석훈 | 2026-11-16 | 2027-01-15 | 0 | 계획 |
-| 10.0 | 품질·평가 자동화 | Golden Set/회귀시험 | 윤석훈 | 2026-10-12 | 2027-02-12 | 0 | 계획 |
-| 11.0 | Android/PWA | Capacitor Android 패키지 | 윤석훈 | 2026-12-14 | 2027-02-12 | 0 | 계획 |
-| 12.0 | Pilot 운영/제품화 | 고객 PoC/패키지/매뉴얼 | 윤석훈 | 2027-01-18 | 2027-03-15 | 0 | 계획 |
-| 13.0 | 마케팅·영업 | PoC 대상 발굴/제안 | 김일형 | 2026-09-16 | 2027-03-15 | 5 | 진행 |
+## WBS 기준선 v0.3
 
-## 일정 시각화
+| WBS | 작업 | 산출물 | 담당 | 종료 목표 | 상태 |
+|---|---|---|---|---|---|
+| 1.0 | 프로젝트 관리/PMBOK | 헌장·WBS·리스크·요구사항 | 윤석훈 | 2027-03-15 | 진행 |
+| 2.0 | 10일 Vertical Slice PoC | E2E 데모 | 윤석훈 | 2026-09-29 | 계획 |
+| 2.1 | A6000/Qwen API | LLM Streaming API | 윤석훈 | 2026-09-18 | 계획 |
+| 2.2 | 샘플문서 수집·색인 | 100~300 Index | 윤석훈 | 2026-09-21 | 계획 |
+| 2.3 | RAG + Citation | 근거답변 | 윤석훈 | 2026-09-23 | 계획 |
+| 2.4 | OPA L0~L5 | Policy Demo | 윤석훈 | 2026-09-24 | 계획 |
+| 2.5 | Rulmera UI + Answer Contract | 고정 템플릿 UI | 윤석훈 | 2026-09-25 | 계획 |
+| 2.6 | Deep Link + Voice smoke | 링크/STT | 윤석훈 | 2026-09-26 | 계획 |
+| 2.7 | 50Q+권한 시험 | PoC 결과 | 윤석훈 | 2026-09-29 | 계획 |
+| 3.0 | 요구사항·지식모델 | Metadata/Schema | 윤석훈 | 2026-10-09 | 진행 |
+| 4.0 | 인프라·모델 최적화 | Serving Baseline | 윤석훈 | 2026-10-16 | 계획 |
+| 5.0 | Continuous Ingestion/RAG | Watcher·분류·증분색인 | 윤석훈 | 2026-11-20 | 계획 |
+| 5.1 | Source Watcher | create/update/delete event | 윤석훈 | 2026-10-23 | 계획 |
+| 5.2 | AI Metadata 분류 | project/security/version 후보 | 윤석훈 | 2026-11-06 | 계획 |
+| 5.3 | Project Candidate | 신규프로젝트 등록 workflow | 윤석훈 | 2026-11-13 | 계획 |
+| 5.4 | Incremental Index | 변경분 upsert/delete | 윤석훈 | 2026-11-20 | 계획 |
+| 6.0 | Identity/OPA/Audit | Policy/ACL/Audit | 윤석훈 | 2026-11-20 | 계획 |
+| 7.0 | 공통 Web UI | 사용자/관리자 Responsive UI | 윤석훈 | 2026-12-04 | 계획 |
+| 8.0 | 지식 승인/정본화 | Expert Notes/Approval | 윤석훈 | 2026-12-18 | 계획 |
+| 9.0 | Deployment Fabric | Cloudflare/On-Prem/Customer Cloud | 윤석훈 | 2027-01-15 | 계획 |
+| 9.1 | Logical Route/Manifest | 공통계약 | 윤석훈 | 2026-12-11 | 계획 |
+| 9.2 | On-Prem Profile | Private 패키지 | 윤석훈 | 2026-12-24 | 계획 |
+| 9.3 | Cloudflare Profile | Worker/Static Assets adapter | 윤석훈 | 2027-01-08 | 계획 |
+| 9.4 | Parity Suite | 동일 기능 회귀시험 | 윤석훈 | 2027-01-15 | 계획 |
+| 10.0 | Tenant/운영 | 격리·백업·운영 | 윤석훈 | 2027-01-22 | 계획 |
+| 11.0 | 품질·평가 자동화 | Golden/보안/Parity | 윤석훈 | 2027-02-12 | 계획 |
+| 12.0 | Android/PWA | Capacitor package | 윤석훈 | 2027-02-12 | 계획 |
+| 13.0 | Pilot/제품화 | 고객 Pilot/매뉴얼 | 윤석훈 | 2027-03-15 | 계획 |
+| 14.0 | 마케팅·영업 | PoC 대상/제안 | 김일형 | 2027-03-15 | 진행 |
+
+## 구조
+
 ```mermaid
-gantt
-    title Rulmera OPA Enterprise Knowledge - 6개월 기준선
-    dateFormat  YYYY-MM-DD
-    axisFormat  %m/%d
-    section 빠른검증
-    10일 Vertical Slice PoC :crit, p1, 2026-09-16, 14d
-    section 기반
-    요구사항·지식모델 :a1, 2026-09-16, 24d
-    인프라·모델 최적화 :a2, 2026-09-16, 31d
-    section 핵심개발
-    Ingestion/RAG :b1, 2026-09-23, 52d
-    Identity/OPA :b2, 2026-10-05, 47d
-    Responsive Web UI :b3, 2026-09-21, 75d
-    지식 승인/정본화 :b4, 2026-10-26, 54d
-    section 제품화
-    Tenant/감사/운영 :c1, 2026-11-16, 61d
-    평가 자동화 :c2, 2026-10-12, 124d
-    Android/PWA :c3, 2026-12-14, 61d
-    Pilot/제품화 :crit, c4, 2027-01-18, 57d
+flowchart LR
+  POC[Vertical Slice] --> CORE[RAG+OPA+UI]
+  CORE --> CK[Continuous Knowledge]
+  CORE --> WF[Approval/Audit]
+  CK --> DF[Deployment Fabric]
+  WF --> DF
+  DF --> PILOT[Multi-Tenant Pilot]
 ```
