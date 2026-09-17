@@ -1,12 +1,12 @@
 ---
-title: PoC 검증계획
+title: PoC 검증계획 v0.8
 doc_path: 40-시험-검증/01-PoC-검증계획.md
 doc_category: 시험검증
 style_version: rulmera-v0.5
 render_profiles: quartz, obsidian, ppt
 last_updated: 2026-09-17
 ---
-# PoC 검증계획 v0.5
+# PoC 검증계획 v0.8
 
 > [!summary]
 > 이 문서는 무엇을 어떻게 검증할지와 합격 기준을 정의한 시험 기준 문서다.
@@ -25,6 +25,8 @@ last_updated: 2026-09-17
 8. Voice가 STT 후 동일 OPA/RAG 경로를 타는가?
 9. Windows/Android 크기에서 같은 UI가 자연스러운가?
 10. Source 변경 1건을 증분색인하는 최소 smoke가 가능한가?
+11. Qwen이 Job Contract를 생성하고 Action OPA를 거쳐 Worker가 안전하게 실행할 수 있는가?
+12. OPA DENY/승인대기 Job이 Worker Queue에 들어가지 않는가?
 
 Deployment Fabric 전체 Parity는 PoC 이후 Alpha gate에서 확대한다.
 
@@ -42,6 +44,9 @@ Deployment Fabric 전체 Parity는 PoC 이후 Alpha gate에서 확대한다.
 | Voice OPA 우회 | 0 |
 | 360/768/1440 핵심기능 | 사용 가능 |
 | 표준질의 median | <= 15초 초기목표 또는 개선원인 기록 |
+| Action OPA 우회 실행 | 0건 |
+| Worker Tenant 경계 위반 | 0건 |
+| Job/Result Contract schema valid | 100% |
 
 ## Go
 - 권한위반 0
@@ -58,3 +63,5 @@ Deployment Fabric 전체 Parity는 PoC 이후 Alpha gate에서 확대한다.
 - Citation가 원문으로 추적 불가
 - 모델 출력 때문에 UI Contract 유지 불가
 - 최신본/tenant filter 구조 보장 실패
+
+상세 Worker 시험: [[05-Worker-실행-검증]]

@@ -1,12 +1,12 @@
 ---
-title: 범위·WBS
+title: 범위·WBS v0.9
 doc_path: 00-프로젝트관리/07-범위-WBS.md
 doc_category: 프로젝트관리
 style_version: rulmera-v0.5
 render_profiles: quartz, obsidian, ppt
 last_updated: 2026-09-17
 ---
-# 범위·WBS v0.5
+# 범위·WBS v0.9
 
 > [!summary]
 > 이 문서는 프로젝트 관리 기준, 책임, 일정, 통제 절차를 정리한 관리 문서다.
@@ -34,7 +34,15 @@ last_updated: 2026-09-17
 | 5.2 | AI Metadata 분류 | project/security/version 후보 | 윤석훈 | 2026-11-06 | 계획 |
 | 5.3 | Project Candidate | 신규프로젝트 등록 workflow | 윤석훈 | 2026-11-13 | 계획 |
 | 5.4 | Incremental Index | 변경분 upsert/delete | 윤석훈 | 2026-11-20 | 계획 |
-| 6.0 | Identity/OPA/Audit | Policy/ACL/Audit | 윤석훈 | 2026-11-20 | 계획 |
+| 6.0 | Identity/OPA/Audit/Action Worker | Policy/ACL/Audit/Worker 실행통제 | 윤석훈 | 2026-12-11 | 계획 |
+| 6.1 | Action OPA | Tool/Resource/Argument/환경 정책 | 윤석훈 | 2026-11-06 | 계획 |
+| 6.2 | Worker Controller / PEP | Job 정규화·OPA 집행·라우팅 | 윤석훈 | 2026-11-13 | 계획 |
+| 6.3 | Execution Worker | 문서/코드/테스트 실행 Worker | 윤석훈 | 2026-11-20 | 계획 |
+| 6.4 | Job/Result Contract | Qwen↔Worker 구조화 계약 | 윤석훈 | 2026-11-20 | 계획 |
+| 6.5 | Action Audit/Approval Gate | 고위험 실행 승인·감사 | 윤석훈 | 2026-11-27 | 계획 |
+| 6.6 | PEP/PDP 실행통제 | Controller 정규화 + OPA Tool/Resource/Argument 판정 | 윤석훈 | 2026-11-27 | 계획 |
+| 6.7 | Job Hash Approval Binding | 승인 Job 불변성·만료·재검증 | 윤석훈 | 2026-12-04 | 계획 |
+| 6.8 | Durable Workflow | 상태 영속·Retry·Timeout·장애복구 Adapter | 윤석훈 | 2026-12-11 | 계획 |
 | 7.0 | 공통 Web UI | 사용자/관리자 Responsive UI | 윤석훈 | 2026-12-04 | 계획 |
 | 8.0 | 지식 승인/정본화 | Expert Notes/Approval | 윤석훈 | 2026-12-18 | 계획 |
 | 9.0 | Deployment Fabric | Cloudflare/On-Prem/Customer Cloud | 윤석훈 | 2027-01-15 | 계획 |
@@ -56,7 +64,9 @@ flowchart LR
   POC[Vertical Slice] --> CORE[RAG+OPA+UI]
   CORE --> CK[Continuous Knowledge]
   CORE --> WF[Approval/Audit]
+  CORE --> AX[Action OPA + Worker Execution]
   CK --> DF[Deployment Fabric]
   WF --> DF
+  AX --> DF
   DF --> PILOT[Multi-Tenant Pilot]
 ```
