@@ -1,0 +1,75 @@
+@use "./variables.scss" as *;
+
+/* =========================================================
+   Rulmera OPA Enterprise Knowledge
+   Quartz v5 custom.scss
+   ========================================================= */
+
+:root {
+  --rulmera-blue: #2f80ed;
+  --rulmera-green: #27ae60;
+  --rulmera-orange: #f2994a;
+  --rulmera-red: #eb5757;
+  --rulmera-purple: #6c5ce7;
+  --rulmera-gray: #64748b;
+  --rulmera-radius: 14px;
+  --rulmera-border: color-mix(in srgb, var(--gray) 48%, transparent);
+  --rulmera-panel: color-mix(in srgb, var(--light) 94%, var(--lightgray));
+  --rulmera-soft-blue: color-mix(in srgb, var(--rulmera-blue) 11%, var(--light));
+  --rulmera-soft-green: color-mix(in srgb, var(--rulmera-green) 11%, var(--light));
+  --rulmera-soft-orange: color-mix(in srgb, var(--rulmera-orange) 13%, var(--light));
+  --rulmera-soft-red: color-mix(in srgb, var(--rulmera-red) 11%, var(--light));
+  --rulmera-soft-purple: color-mix(in srgb, var(--rulmera-purple) 10%, var(--light));
+}
+
+article { max-width: 100%; }
+article > h1 { letter-spacing: -0.035em; line-height: 1.18; margin-bottom: 1rem; }
+article h2, article h3 { letter-spacing: -0.025em; }
+article h2 { padding-bottom: 0.35rem; border-bottom: 1px solid var(--rulmera-border); }
+
+.callout { border-radius: var(--rulmera-radius); box-shadow: 0 1px 2px color-mix(in srgb, var(--dark) 6%, transparent); }
+.callout[data-callout="summary"] { background: var(--rulmera-soft-blue); border-left-color: var(--rulmera-blue); }
+.callout[data-callout="info"] { background: var(--rulmera-soft-purple); border-left-color: var(--rulmera-purple); }
+.callout[data-callout="important"] { background: var(--rulmera-soft-orange); border-left-color: var(--rulmera-orange); }
+.callout[data-callout="warning"], .callout[data-callout="danger"] { background: var(--rulmera-soft-red); border-left-color: var(--rulmera-red); }
+.callout[data-callout="success"], .callout[data-callout="check"] { background: var(--rulmera-soft-green); border-left-color: var(--rulmera-green); }
+
+.table-container { margin: 1rem 0 1.25rem; border: 1px solid var(--rulmera-border); border-radius: var(--rulmera-radius); overflow-x: auto; }
+.table-container > table { width: 100%; margin: 0; }
+th { background: color-mix(in srgb, var(--lightgray) 52%, var(--light)); font-weight: 700; white-space: nowrap; }
+th, td { padding: 0.6rem 0.75rem; vertical-align: top; }
+tr:hover td { background: color-mix(in srgb, var(--secondary) 4%, transparent); }
+
+pre:has(> code.mermaid), .mermaid {
+  border: 1px solid var(--rulmera-border) !important;
+  border-radius: var(--rulmera-radius);
+  background: var(--rulmera-panel);
+  padding: 1rem;
+  margin: 1rem 0 1.3rem;
+  overflow-x: auto;
+  box-sizing: border-box;
+}
+.mermaid svg { max-width: 100%; height: auto; }
+
+pre:not(:has(> code.mermaid)) { border-radius: 12px; border: 1px solid var(--rulmera-border); }
+code { border-radius: 6px; }
+a.internal { border-radius: 6px; }
+a.internal:hover { text-decoration: underline; text-underline-offset: 0.16em; }
+
+.rulmera-meta, .metadata-container {
+  border: 1px solid var(--rulmera-border);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--lightgray) 22%, var(--light));
+}
+
+@media all and ($mobile) {
+  article > h1 { font-size: 1.7rem; }
+  th, td { min-width: 7.5rem; padding: 0.5rem 0.62rem; }
+  pre:has(> code.mermaid), .mermaid { padding: 0.65rem; margin-left: -0.15rem; margin-right: -0.15rem; }
+}
+
+@media print {
+  .mermaid, .callout, .table-container, pre { break-inside: avoid; }
+  .mermaid, pre:has(> code.mermaid) { background: #ffffff !important; }
+  article h2 { break-after: avoid; }
+}
