@@ -1,4 +1,18 @@
-# RAG 평가셋 설계
+---
+title: RAG 평가셋 설계
+doc_path: 40-시험-검증/02-RAG-평가셋-설계.md
+doc_category: 시험검증
+style_version: rulmera-v0.5
+render_profiles: quartz, obsidian, ppt
+last_updated: 2026-09-17
+---
+# RAG 평가셋 설계 v0.5
+
+> [!summary]
+> 이 문서는 무엇을 어떻게 검증할지와 합격 기준을 정의한 시험 기준 문서다.
+
+> [!info]
+> 표기 기준: 전문 용어는 가능하면 `원어(알기 쉬운 설명)` 형식을 사용하고, 공통 기준은 [[20-설계/00-용어-스타일-가이드]]를 따른다.
 
 ## Golden Question CSV 필드
 - question_id

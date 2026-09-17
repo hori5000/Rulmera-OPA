@@ -1,4 +1,18 @@
-# Cloudflare ↔ On-Prem 표준화 기술검증 — 2026-09-16
+---
+title: Cloudflare ↔ On-Prem 표준화 기술검증 — 2026-09-16
+doc_path: 90-근거-기록/03-Cloudflare-OnPrem-기술검증-20260916.md
+doc_category: 근거기록
+style_version: rulmera-v0.5
+render_profiles: quartz, obsidian, ppt
+last_updated: 2026-09-17
+---
+# Cloudflare ↔ On-Prem 표준화 기술검증 — 2026-09-16 v0.5
+
+> [!summary]
+> 이 문서는 의사결정, 조사결과, 변경 이력을 남기는 근거 기록 문서다.
+
+> [!info]
+> 표기 기준: 전문 용어는 가능하면 `원어(알기 쉬운 설명)` 형식을 사용하고, 공통 기준은 [[20-설계/00-용어-스타일-가이드]]를 따른다.
 
 ## 결론
 

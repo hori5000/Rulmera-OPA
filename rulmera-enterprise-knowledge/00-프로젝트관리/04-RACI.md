@@ -1,6 +1,18 @@
-# RACI
+---
+title: RACI
+doc_path: 00-프로젝트관리/04-RACI.md
+doc_category: 프로젝트관리
+style_version: rulmera-v0.5
+render_profiles: quartz, obsidian, ppt
+last_updated: 2026-09-17
+---
+# RACI v0.5
 
-> R=실행, A=최종책임, C=협의, I=공유
+> [!summary]
+> 이 문서는 프로젝트 관리 기준, 책임, 일정, 통제 절차를 정리한 관리 문서다.
+
+> [!info]
+> 표기 기준: 전문 용어는 가능하면 `원어(알기 쉬운 설명)` 형식을 사용하고, 공통 기준은 [[20-설계/00-용어-스타일-가이드]]를 따른다.
 
 | 업무/산출물 | 윤석훈 | 김일형 | PoC 고객 기술책임자 | 고객 IT/보안 | 현장 숙련자 |
 |---|---|---|---|---|---|

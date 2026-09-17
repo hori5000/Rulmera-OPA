@@ -1,0 +1,40 @@
+:root {
+  --rulmera-blue: #2F80ED;
+  --rulmera-green: #27AE60;
+  --rulmera-orange: #F2994A;
+  --rulmera-red: #EB5757;
+  --rulmera-purple: #6C5CE7;
+}
+
+.markdown-preview-view .callout[data-callout="summary"] {
+  background: #EAF4FF;
+  border-left: 4px solid var(--rulmera-blue);
+}
+
+.markdown-preview-view .callout[data-callout="important"] {
+  background: #FFF6E5;
+  border-left: 4px solid var(--rulmera-orange);
+}
+
+.markdown-preview-view .callout[data-callout="warning"] {
+  background: #FDECEC;
+  border-left: 4px solid var(--rulmera-red);
+}
+
+.markdown-preview-view table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.markdown-preview-view th,
+.markdown-preview-view td {
+  border: 1px solid #D7DEE7;
+  padding: 0.55rem 0.7rem;
+}
+
+.markdown-preview-view .mermaid {
+  padding: 1rem;
+  border: 1px solid #E5E7EB;
+  border-radius: 14px;
+  background: #FFFFFF;
+}

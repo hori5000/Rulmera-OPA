@@ -1,4 +1,18 @@
-# 기획안 근거 요약
+---
+title: 기획안 근거 요약
+doc_path: 90-근거-기록/01-PPTX-기획안-근거요약.md
+doc_category: 근거기록
+style_version: rulmera-v0.5
+render_profiles: quartz, obsidian, ppt
+last_updated: 2026-09-17
+---
+# 기획안 근거 요약 v0.5
+
+> [!summary]
+> 이 문서는 의사결정, 조사결과, 변경 이력을 남기는 근거 기록 문서다.
+
+> [!info]
+> 표기 기준: 전문 용어는 가능하면 `원어(알기 쉬운 설명)` 형식을 사용하고, 공통 기준은 [[20-설계/00-용어-스타일-가이드]]를 따른다.
 
 기준 파일: `Rulmera_OPA_Enterprise_Knowledge_기획안_남동공단_20260915.pptx`
 

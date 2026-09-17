@@ -1,4 +1,18 @@
-# UI/UX 요구사항 — Desktop/Web/Android 공통 v0.3
+---
+title: UI/UX 요구사항 — Desktop/Web/Android 공통
+doc_path: 10-요구사항/03-UI-UX-요구사항.md
+doc_category: 요구사항
+style_version: rulmera-v0.5
+render_profiles: quartz, obsidian, ppt
+last_updated: 2026-09-17
+---
+# UI/UX 요구사항 — Desktop/Web/Android 공통 v0.5
+
+> [!summary]
+> 이 문서는 제품이 반드시 충족해야 할 기능·비기능 요구를 정리한 요구 기준 문서다.
+
+> [!info]
+> 표기 기준: 전문 용어는 가능하면 `원어(알기 쉬운 설명)` 형식을 사용하고, 공통 기준은 [[20-설계/00-용어-스타일-가이드]]를 따른다.
 
 ## 핵심 원칙
 
@@ -65,6 +79,7 @@ Qwen/Citation
 ## 반응형 Layout
 
 ```mermaid
+%%{init: {"theme":"base","themeVariables":{"primaryColor":"#F8FAFC","primaryTextColor":"#1F2937","primaryBorderColor":"#64748B","lineColor":"#64748B","secondaryColor":"#EAF4FF","tertiaryColor":"#EAFBF2","clusterBkg":"#F8FAFC","clusterBorder":"#CBD5E1","fontSize":"15px"}} }%%
 flowchart TB
   S[하나의 React UI] --> D[Desktop >= 1200px<br/>Sidebar + Chat + Source Panel]
   S --> T[Tablet 768~1199px<br/>축약 Sidebar + Drawer]

@@ -1,4 +1,18 @@
-# Rulmera Deployment Fabric — Build Once, Deploy Anywhere
+---
+title: Rulmera Deployment Fabric — Build Once, Deploy Anywhere
+doc_path: 20-설계/08-Rulmera-Deployment-Fabric.md
+doc_category: 설계
+style_version: rulmera-v0.5
+render_profiles: quartz, obsidian, ppt
+last_updated: 2026-09-17
+---
+# Rulmera Deployment Fabric — Build Once, Deploy Anywhere v0.5
+
+> [!summary]
+> 이 문서는 제품 구조, 데이터 흐름, 권한 구조, 동작 원리를 설명하는 설계 기준 문서다.
+
+> [!info]
+> 표기 기준: 전문 용어는 가능하면 `원어(알기 쉬운 설명)` 형식을 사용하고, 공통 기준은 [[20-설계/00-용어-스타일-가이드]]를 따른다.
 
 ## 1. 목적
 
@@ -30,6 +44,7 @@ Rulmera를 Cloudflare용 제품과 On-Prem용 제품으로 따로 만들지 않�
 ## 3. 구조
 
 ```mermaid
+%%{init: {"theme":"base","themeVariables":{"primaryColor":"#F8FAFC","primaryTextColor":"#1F2937","primaryBorderColor":"#64748B","lineColor":"#64748B","secondaryColor":"#EAF4FF","tertiaryColor":"#EAFBF2","clusterBkg":"#F8FAFC","clusterBorder":"#CBD5E1","fontSize":"15px"}} }%%
 flowchart TB
   REL[One Release Artifact]
   MAN[rulmera.deploy.yaml]

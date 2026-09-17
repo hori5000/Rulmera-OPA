@@ -1,4 +1,18 @@
-# Android/PWA 배포전략
+---
+title: Android/PWA 배포전략
+doc_path: 50-배포-운영/02-Android-PWA-배포전략.md
+doc_category: 배포운영
+style_version: rulmera-v0.5
+render_profiles: quartz, obsidian, ppt
+last_updated: 2026-09-17
+---
+# Android/PWA 배포전략 v0.5
+
+> [!summary]
+> 이 문서는 배포 방식, 운영 절차, 프로파일별 차이를 정리한 운영 기준 문서다.
+
+> [!info]
+> 표기 기준: 전문 용어는 가능하면 `원어(알기 쉬운 설명)` 형식을 사용하고, 공통 기준은 [[20-설계/00-용어-스타일-가이드]]를 따른다.
 
 ## 1차
 브라우저 + PWA로 기능을 먼저 완성한다. Android에서도 Chrome/PWA로 즉시 검증 가능하다.
@@ -7,6 +21,7 @@
 동일 Web build를 Capacitor로 패키징한다.
 
 ```mermaid
+%%{init: {"theme":"base","themeVariables":{"primaryColor":"#F8FAFC","primaryTextColor":"#1F2937","primaryBorderColor":"#64748B","lineColor":"#64748B","secondaryColor":"#EAF4FF","tertiaryColor":"#EAFBF2","clusterBkg":"#F8FAFC","clusterBorder":"#CBD5E1","fontSize":"15px"}} }%%
 flowchart LR
   SRC[React Source 1개] --> BUILD[Vite Build]
   BUILD --> WEB[Web Server]

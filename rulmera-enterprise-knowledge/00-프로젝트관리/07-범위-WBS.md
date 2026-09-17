@@ -1,4 +1,18 @@
-# 범위·WBS
+---
+title: 범위·WBS
+doc_path: 00-프로젝트관리/07-범위-WBS.md
+doc_category: 프로젝트관리
+style_version: rulmera-v0.5
+render_profiles: quartz, obsidian, ppt
+last_updated: 2026-09-17
+---
+# 범위·WBS v0.5
+
+> [!summary]
+> 이 문서는 프로젝트 관리 기준, 책임, 일정, 통제 절차를 정리한 관리 문서다.
+
+> [!info]
+> 표기 기준: 전문 용어는 가능하면 `원어(알기 쉬운 설명)` 형식을 사용하고, 공통 기준은 [[20-설계/00-용어-스타일-가이드]]를 따른다.
 
 ## WBS 기준선 v0.3
 
@@ -37,6 +51,7 @@
 ## 구조
 
 ```mermaid
+%%{init: {"theme":"base","themeVariables":{"primaryColor":"#F8FAFC","primaryTextColor":"#1F2937","primaryBorderColor":"#64748B","lineColor":"#64748B","secondaryColor":"#EAF4FF","tertiaryColor":"#EAFBF2","clusterBkg":"#F8FAFC","clusterBorder":"#CBD5E1","fontSize":"15px"}} }%%
 flowchart LR
   POC[Vertical Slice] --> CORE[RAG+OPA+UI]
   CORE --> CK[Continuous Knowledge]

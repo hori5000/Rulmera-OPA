@@ -1,4 +1,18 @@
-# PoC 검증계획 v0.3
+---
+title: PoC 검증계획
+doc_path: 40-시험-검증/01-PoC-검증계획.md
+doc_category: 시험검증
+style_version: rulmera-v0.5
+render_profiles: quartz, obsidian, ppt
+last_updated: 2026-09-17
+---
+# PoC 검증계획 v0.5
+
+> [!summary]
+> 이 문서는 무엇을 어떻게 검증할지와 합격 기준을 정의한 시험 기준 문서다.
+
+> [!info]
+> 표기 기준: 전문 용어는 가능하면 `원어(알기 쉬운 설명)` 형식을 사용하고, 공통 기준은 [[20-설계/00-용어-스타일-가이드]]를 따른다.
 
 ## PoC가 답해야 할 질문
 1. A6000 1장으로 목표 Qwen이 실사용 가능한가?
